@@ -361,10 +361,205 @@ footer {
 }
 footer p { max-width: 72rem; margin: 0 auto; }
 
+/* Tab utama */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--paper);
+}
+.tabs {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 8;
+  background: var(--ink);
+  color: var(--paper);
+}
+.tabs-inner {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex;
+  gap: 0.25rem;
+  overflow-x: auto;
+  height: var(--tabs-h);
+  align-items: stretch;
+}
+.tabs a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.9rem;
+  color: inherit;
+  opacity: 0.72;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  white-space: nowrap;
+  border-bottom: 3px solid transparent;
+}
+.tabs a:hover { opacity: 1; }
+.tabs a[aria-current="page"] { opacity: 1; border-bottom-color: var(--accent); }
+.tabs a .count { font-family: var(--font-mono); font-weight: 400; font-size: 0.75rem; opacity: 0.8; }
+:root { --tabs-h: 3.25rem; }
+html { scroll-padding-top: calc(var(--tabs-h) + 1rem); }
+.toc { top: calc(env(safe-area-inset-top, 0px) + var(--tabs-h) + 1.5rem); }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); }
+.hero-stats b { color: var(--ink); font-weight: 500; font-size: 1.1rem; }
+
+.page {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 2rem 4rem;
+  display: grid;
+  gap: 1.75rem;
+}
+.page-head { display: grid; gap: 0.5rem; }
+.page-head p { max-width: 68ch; color: var(--muted); }
+
+/* Kontrol glosarium & regulasi */
+.controls { display: grid; gap: 0.9rem; }
+.search {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1.5px solid var(--ink);
+  background: var(--surface);
+  padding: 0 0.9rem;
+  max-width: 40rem;
+}
+.search svg { flex: none; width: 1.1rem; height: 1.1rem; stroke: var(--muted); fill: none; stroke-width: 2; }
+.search input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 1.1rem;
+  padding: 0.75rem 0;
+}
+.search input:focus { outline: none; }
+.search:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip {
+  font: inherit;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: baseline;
+}
+.chip:hover { border-color: var(--accent); }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.chip .n { font-family: var(--font-mono); font-size: 0.72rem; opacity: 0.7; }
+.az { display: flex; flex-wrap: wrap; gap: 2px; }
+.az a, .az span {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+.az a:hover { background: var(--accent-soft); }
+.az span { color: var(--rule); background: transparent; }
+.result-line { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.result-line button { font: inherit; background: none; border: 0; color: var(--accent); text-decoration: underline; cursor: pointer; padding: 0; }
+
+.letter { display: grid; gap: 0; }
+.letter h3 {
+  position: sticky;
+  top: calc(env(safe-area-inset-top, 0px) + var(--tabs-h));
+  z-index: 2;
+  background: var(--paper);
+  font-size: 1.6rem;
+  padding: 0.4rem 0;
+  border-bottom: 2px solid var(--ink);
+}
+.entries { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 21rem), 1fr)); gap: 0 2rem; }
+.entry { padding: 0.9rem 0; border-bottom: 1px solid var(--rule); display: grid; gap: 0.3rem; align-content: start; min-width: 0; }
+.entry h4 { margin: 0; font-family: var(--font-display); font-size: 1.08rem; line-height: 1.25; }
+.entry .cat { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.entry p { font-size: 0.97rem; }
+.entry mark { background: var(--accent-soft); color: inherit; padding: 0 1px; }
+.refs { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.15rem; }
+.refs a {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  text-decoration: none;
+  color: var(--muted);
+}
+.refs a:hover { color: var(--accent); border-color: var(--accent); }
+.empty { padding: 2rem 0; color: var(--muted); }
+
+/* Regulasi */
+.authorities { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+.authority { background: var(--surface); padding: 1rem 1.1rem; display: grid; gap: 0.3rem; align-content: start; }
+.authority h3 { font-size: 1.05rem; }
+.authority p { font-size: 0.93rem; color: var(--muted); }
+.regs { display: grid; gap: 0.9rem; }
+.reg {
+  display: grid;
+  grid-template-columns: 13rem minmax(0, 1fr);
+  gap: 1.25rem;
+  padding: 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  scroll-margin-top: calc(var(--tabs-h) + 1rem);
+}
+.reg.flash { outline: 2px solid var(--accent); outline-offset: 2px; }
+.reg-id { display: grid; gap: 0.35rem; align-content: start; }
+.reg-id .no { font-family: var(--font-mono); font-weight: 500; font-size: 0.9rem; line-height: 1.35; }
+.badge {
+  justify-self: start;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.45rem;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  color: var(--accent);
+}
+.badge.bi { color: var(--k4); }
+.badge.uu { color: var(--muted); }
+.badge.lps { color: var(--k2); }
+.reg-body { display: grid; gap: 0.5rem; min-width: 0; }
+.reg-body h3 { font-size: 1.12rem; }
+.reg-body ul { font-size: 0.96rem; }
+.reg-body .status { font-size: 0.88rem; color: var(--muted); font-style: italic; }
+.reg-body .rel { font-size: 0.85rem; }
+.reg-body .rel button { font: inherit; background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; text-decoration: underline; }
+
+@media (max-width: 480px) {
+  .tabs a { padding: 0 0.55rem; }
+  .tabs a .count { display: none; }
+}
 @media (max-width: 860px) {
+  html { scroll-padding-top: calc(var(--tabs-h) + 3.75rem); }
+  .reg { grid-template-columns: minmax(0, 1fr); gap: 0.6rem; }
   .shell { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; padding-top: 0; }
   .toc {
-    top: env(safe-area-inset-top, 0px);
+    top: calc(env(safe-area-inset-top, 0px) + var(--tabs-h));
     z-index: 5;
     background: var(--paper);
     border-bottom: 1px solid var(--rule);
@@ -378,14 +573,6 @@ footer p { max-width: 72rem; margin: 0 auto; }
   .toc .label { display: none; }
   .toc ol { margin: 0; display: flex; gap: 0.25rem; width: max-content; }
   .toc a { display: flex; gap: 0.35rem; white-space: nowrap; }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0 0 auto;
-    height: env(safe-area-inset-top, 0px);
-    z-index: 10;
-    background: var(--paper);
-  }
   .kol-scale { grid-template-columns: minmax(0, 1fr); }
   .kol { border-top: 0; border-left: 6px solid var(--c); grid-template-columns: 4.5rem 1fr auto; align-items: baseline; }
   .compare-row { grid-template-columns: 1fr auto; }
@@ -397,9 +584,10 @@ footer p { max-width: 72rem; margin: 0 auto; }
 
 <header class="hero">
   <div class="hero-inner">
-    <span class="label">Rangkuman materi perbankan · Bab kredit &amp; pinjaman</span>
+    <span class="label">Glosarium · Regulasi OJK &amp; BI · Materi kredit</span>
     <h1>Buku Saku <em>Kredit</em> Perbankan</h1>
-    <p class="lead">Ringkasan materi pinjaman bank untuk belajar dan persiapan ujian: dari pengertian dan analisis 5C sampai kolektibilitas dan penyelamatan kredit macet. Dilengkapi simulasi angsuran dan kuis.</p>
+    <p class="lead">Kamus istilah perbankan dan pinjaman, daftar aturan OJK, Bank Indonesia, dan undang-undang yang mengatur kredit, plus rangkuman materi untuk belajar dan persiapan ujian.</p>
+    <p class="hero-stats"><span><b id="stat-terms">0</b> istilah</span><span><b id="stat-regs">0</b> regulasi</span><span><b>12</b> bab materi</span><span>diperbarui Oktober 2026</span></p>
     <blockquote class="legal-quote">
       “Kredit adalah penyediaan uang atau tagihan yang dapat dipersamakan dengan itu, berdasarkan persetujuan atau kesepakatan pinjam-meminjam antara bank dengan pihak lain yang mewajibkan pihak peminjam untuk melunasi utangnya setelah jangka waktu tertentu dengan pemberian bunga.”
       <cite class="label">UU No. 10 Tahun 1998 tentang Perbankan, Pasal 1 angka 11</cite>
@@ -407,6 +595,63 @@ footer p { max-width: 72rem; margin: 0 auto; }
   </div>
 </header>
 
+<nav class="tabs" aria-label="Menu utama">
+  <div class="tabs-inner">
+    <a href="#glosarium" data-view="glosarium">Glosarium <span class="count" id="tab-terms"></span></a>
+    <a href="#regulasi" data-view="regulasi">Regulasi OJK &amp; BI <span class="count" id="tab-regs"></span></a>
+    <a href="#materi" data-view="materi">Materi &amp; kuis</a>
+  </div>
+</nav>
+
+<!-- ===== GLOSARIUM ===== -->
+<div class="view" id="view-glosarium">
+  <div class="page">
+    <div class="page-head">
+      <span class="label">Glosarium</span>
+      <h2>Kamus istilah perbankan &amp; kredit</h2>
+      <p>Cari istilah, singkatan, atau kata di dalam definisi. Filter per kategori, atau lompat ke huruf awal. Label kecil di bawah definisi menunjuk aturan yang menjadi dasarnya; klik untuk membuka di tab Regulasi.</p>
+    </div>
+    <div class="controls">
+      <label class="search" for="g-q">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+        <input type="search" id="g-q" placeholder="Cari: NPL, fidusia, SLIK, restrukturisasi…" autocomplete="off">
+      </label>
+      <div class="chips" id="g-cats" role="group" aria-label="Kategori"></div>
+      <nav class="az" id="g-az" aria-label="Huruf awal"></nav>
+      <div class="result-line" id="g-info" aria-live="polite"></div>
+    </div>
+    <div id="g-list"></div>
+  </div>
+</div>
+
+<!-- ===== REGULASI ===== -->
+<div class="view" id="view-regulasi" hidden>
+  <div class="page">
+    <div class="page-head">
+      <span class="label">Regulasi</span>
+      <h2>Aturan OJK, Bank Indonesia &amp; undang-undang terkait kredit</h2>
+      <p>Ringkasan poin yang paling sering ditanyakan dari tiap aturan. Angka dan status dicek per Oktober 2026; aturan bisa berubah, jadi untuk keperluan resmi selalu rujuk teks lengkap di ojk.go.id, bi.go.id, atau JDIH.</p>
+    </div>
+    <div class="authorities">
+      <div class="authority"><span class="badge">OJK</span><h3>Otoritas Jasa Keuangan</h3><p>Mengatur dan mengawasi bank secara individual (mikroprudensial): perizinan, kualitas kredit, permodalan, tata kelola, manajemen risiko, dan pelindungan konsumen. Mengambil alih pengawasan bank dari BI sejak 31 Desember 2013.</p></div>
+      <div class="authority"><span class="badge bi">BI</span><h3>Bank Indonesia</h3><p>Bank sentral: kebijakan moneter (BI-Rate), makroprudensial (GWM, RIM, LTV/FTV, CCyB), sistem pembayaran, dan pemberi pinjaman terakhir (lender of last resort).</p></div>
+      <div class="authority"><span class="badge lps">LPS</span><h3>Lembaga Penjamin Simpanan</h3><p>Menjamin simpanan nasabah hingga Rp2 miliar per nasabah per bank dan melakukan resolusi bank gagal.</p></div>
+      <div class="authority"><span class="badge uu">KSSK</span><h3>Komite Stabilitas Sistem Keuangan</h3><p>Menteri Keuangan (koordinator), Gubernur BI, Ketua DK OJK, dan Ketua DK LPS. Mencegah dan menangani krisis sistem keuangan.</p></div>
+    </div>
+    <div class="controls">
+      <label class="search" for="r-q">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>
+        <input type="search" id="r-q" placeholder="Cari nomor atau topik: 40/2019, BMPK, penagihan…" autocomplete="off">
+      </label>
+      <div class="chips" id="r-groups" role="group" aria-label="Penerbit"></div>
+      <div class="result-line" id="r-info" aria-live="polite"></div>
+    </div>
+    <div class="regs" id="r-list"></div>
+  </div>
+</div>
+
+<!-- ===== MATERI ===== -->
+<div class="view" id="view-materi" hidden>
 <div class="shell">
   <nav class="toc" aria-label="Daftar bab">
     <span class="label">Daftar bab</span>
@@ -422,8 +667,7 @@ footer p { max-width: 72rem; margin: 0 auto; }
       <li><a href="#bermasalah"><span>09</span>Kredit bermasalah</a></li>
       <li><a href="#regulasi"><span>10</span>Rambu regulasi</a></li>
       <li><a href="#syariah"><span>11</span>Pembiayaan syariah</a></li>
-      <li><a href="#glosarium"><span>12</span>Glosarium</a></li>
-      <li><a href="#kuis"><span>13</span>Kuis</a></li>
+      <li><a href="#kuis"><span>12</span>Kuis</a></li>
     </ol>
   </nav>
 
@@ -500,7 +744,7 @@ footer p { max-width: 72rem; margin: 0 auto; }
         <div class="term"><h3>KPR</h3><p>Kredit Pemilikan Rumah. Agunan berupa rumah yang dibeli, diikat Hak Tanggungan. Tenor bisa sampai 20–30 tahun.</p></div>
         <div class="term"><h3>KKB</h3><p>Kredit Kendaraan Bermotor. BPKB kendaraan diikat dengan jaminan fidusia.</p></div>
         <div class="term"><h3>KTA</h3><p>Kredit Tanpa Agunan. Bunga lebih tinggi karena risiko lebih besar; persetujuan bergantung pada penghasilan dan riwayat kredit.</p></div>
-        <div class="term"><h3>KUR</h3><p>Kredit Usaha Rakyat. Kredit modal kerja/investasi untuk UMKM dengan bunga yang disubsidi pemerintah. Plafon dan bunga mengikuti ketentuan pemerintah yang berlaku.</p></div>
+        <div class="term"><h3>KUR</h3><p>Kredit Usaha Rakyat untuk UMKM dengan bunga bersubsidi. Menurut Permenko No. 1 Tahun 2026: Super Mikro s.d. Rp10 juta (3% efektif/tahun), Mikro &gt;Rp10–100 juta, Kecil &gt;Rp100–500 juta.</p></div>
         <div class="term"><h3>Kredit rekening koran</h3><p>Fasilitas yang bisa ditarik dan disetor kapan saja selama di bawah plafon. Bunga dihitung dari saldo yang dipakai.</p></div>
         <div class="term"><h3>Kredit sindikasi</h3><p>Satu kredit besar yang dibiayai bersama oleh beberapa bank, dipimpin satu bank sebagai <em>arranger</em>/agen.</p></div>
       </div>
@@ -725,13 +969,13 @@ footer p { max-width: 72rem; margin: 0 auto; }
             <tr><td><strong>BMPK</strong></td><td>Batas Maksimum Pemberian Kredit, untuk mencegah konsentrasi risiko. Menurut POJK 32/POJK.03/2018: pihak terkait maks. 10% modal inti; satu peminjam tidak terkait maks. 20%; satu kelompok peminjam tidak terkait maks. 25%.</td></tr>
             <tr><td><strong>NPL</strong></td><td>Rasio kredit bermasalah (Kol 3–5) terhadap total kredit. Batas yang dipakai pengawas: NPL neto di bawah 5%.</td></tr>
             <tr><td><strong>LDR / RIM</strong></td><td>Loan to Deposit Ratio: kredit dibagi dana pihak ketiga. Bank Indonesia memakai Rasio Intermediasi Makroprudensial (RIM) sebagai acuan target intermediasi.</td></tr>
-            <tr><td><strong>LTV / FTV</strong></td><td>Loan to Value (KPR) dan Financing to Value (syariah): batas plafon dibanding nilai agunan untuk kredit properti dan uang muka kendaraan, diatur Bank Indonesia dan dapat berubah sesuai kebijakan makroprudensial.</td></tr>
+            <tr><td><strong>LTV / FTV</strong></td><td>Loan to Value (KPR) dan Financing to Value (syariah): batas plafon dibanding nilai agunan untuk kredit properti, serta uang muka kendaraan. Lewat PADG No. 30 Tahun 2025, BI melanjutkan pelonggaran (LTV/FTV hingga 100% dan uang muka kendaraan hingga 0% bagi bank yang memenuhi kriteria kredit bermasalah) sampai 31 Desember 2026.</td></tr>
             <tr><td><strong>SLIK OJK</strong></td><td>Sistem Layanan Informasi Keuangan, pengganti “BI Checking”. Berisi riwayat dan kolektibilitas kredit debitur di seluruh lembaga keuangan pelapor.</td></tr>
             <tr><td><strong>Rahasia bank</strong></td><td>Data nasabah penyimpan dan simpanannya dilindungi; pengecualian diatur undang-undang (pajak, peradilan, dll.).</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="callout"><span class="label">Dasar hukum utama</span>UU No. 7 Tahun 1992 jo. UU No. 10 Tahun 1998 tentang Perbankan, sebagaimana diubah dengan UU No. 4 Tahun 2023 tentang Pengembangan dan Penguatan Sektor Keuangan (P2SK). Selalu cek versi terbaru POJK dan PBI karena angka ketentuan bisa berubah.</p>
+      <p class="callout"><span class="label">Dasar hukum utama</span>UU No. 7 Tahun 1992 jo. UU No. 10 Tahun 1998 tentang Perbankan, sebagaimana diubah dengan UU No. 4 Tahun 2023 tentang Pengembangan dan Penguatan Sektor Keuangan (P2SK). Daftar lengkap aturan OJK, BI, dan undang-undang terkait ada di <a href="#regulasi">tab Regulasi</a>.</p>
     </section>
 
     <!-- 11 -->
@@ -760,42 +1004,9 @@ footer p { max-width: 72rem; margin: 0 auto; }
     </section>
 
     <!-- 12 -->
-    <section id="glosarium">
-      <div class="bab-head">
-        <span class="label">Bab 12</span>
-        <h2>Glosarium</h2>
-      </div>
-      <div class="gloss-search">
-        <label class="label" for="gloss-q">Cari istilah</label>
-        <input type="search" id="gloss-q" placeholder="mis. plafon, provisi, baki debet">
-      </div>
-      <dl class="gloss" id="gloss">
-        <div><dt>Plafon</dt><dd>Batas maksimum kredit yang disetujui bank.</dd></div>
-        <div><dt>Baki debet (outstanding)</dt><dd>Sisa pokok kredit yang belum dilunasi pada suatu tanggal.</dd></div>
-        <div><dt>Tenor</dt><dd>Jangka waktu kredit sampai lunas.</dd></div>
-        <div><dt>Provisi</dt><dd>Biaya persentase dari plafon yang dibayar di awal sebagai imbalan atas penyediaan fasilitas.</dd></div>
-        <div><dt>Commitment fee</dt><dd>Biaya atas plafon yang sudah disediakan tetapi belum ditarik.</dd></div>
-        <div><dt>Grace period</dt><dd>Masa tenggang ketika debitur belum wajib membayar pokok.</dd></div>
-        <div><dt>Akad kredit</dt><dd>Perjanjian tertulis yang memuat hak dan kewajiban bank dan debitur.</dd></div>
-        <div><dt>Covenant</dt><dd>Syarat atau janji debitur dalam akad, misalnya larangan menambah utang tanpa izin bank.</dd></div>
-        <div><dt>Appraisal</dt><dd>Penilaian nilai pasar dan nilai likuidasi agunan.</dd></div>
-        <div><dt>Take over</dt><dd>Pengalihan kredit dari bank lain ke bank baru.</dd></div>
-        <div><dt>Top up</dt><dd>Penambahan plafon pada kredit yang masih berjalan.</dd></div>
-        <div><dt>DPD (days past due)</dt><dd>Jumlah hari tunggakan sejak jatuh tempo angsuran.</dd></div>
-        <div><dt>SBDK</dt><dd>Suku Bunga Dasar Kredit, bunga terendah sebelum premi risiko yang wajib diumumkan bank.</dd></div>
-        <div><dt>BI-Rate</dt><dd>Suku bunga kebijakan Bank Indonesia yang menjadi acuan arah suku bunga pasar.</dd></div>
-        <div><dt>Debt Service Ratio</dt><dd>Perbandingan total angsuran dengan penghasilan; bank umumnya membatasi sekitar 30–40%.</dd></div>
-        <div><dt>CKPN</dt><dd>Cadangan Kerugian Penurunan Nilai menurut standar akuntansi keuangan (PSAK) yang berlaku.</dd></div>
-        <div><dt>Wanprestasi</dt><dd>Debitur lalai memenuhi kewajiban dalam akad (ingkar janji).</dd></div>
-        <div><dt>Pelunasan dipercepat</dt><dd>Debitur melunasi sebelum jatuh tempo; dapat dikenai penalti sesuai akad.</dd></div>
-      </dl>
-      <p id="gloss-empty" class="label" hidden>Istilah tidak ditemukan.</p>
-    </section>
-
-    <!-- 13 -->
     <section id="kuis">
       <div class="bab-head">
-        <span class="label">Bab 13</span>
+        <span class="label">Bab 12</span>
         <h2>Kuis cepat</h2>
       </div>
       <p>Pilih satu jawaban di tiap soal. Penjelasan muncul setelah kamu memeriksa jawaban.</p>
@@ -809,11 +1020,666 @@ footer p { max-width: 72rem; margin: 0 auto; }
 
   </main>
 </div>
+</div>
 
 <footer>
   <p>Disusun sebagai bahan belajar dari UU Perbankan, POJK, dan buku ajar manajemen perbankan. Angka ketentuan (BMPK, PPKA, LTV, KUR) dapat berubah; selalu rujuk regulasi terbaru dari OJK dan Bank Indonesia.</p>
 </footer>
 
+<script>
+/* ---------- Data: kategori, regulasi, istilah ---------- */
+var CATS = {
+  dasar: "Produk & dasar kredit",
+  proses: "Analisis & proses",
+  jaminan: "Agunan & hukum",
+  bunga: "Bunga & biaya",
+  kualitas: "Kualitas & kredit bermasalah",
+  prudensial: "Prudensial & pengawasan OJK",
+  bi: "Moneter, makroprudensial & sistem pembayaran",
+  lembaga: "Lembaga",
+  syariah: "Syariah",
+  konsumen: "Konsumen & fintech",
+  akuntansi: "Akuntansi, rasio & risiko"
+};
+
+var GROUPS = { uu: "UU, PP & pemerintah", ojk: "OJK", bi: "Bank Indonesia", lps: "LPS" };
+
+var REGS = [
+  /* ---- Undang-undang & pemerintah ---- */
+  { id: "uu-perbankan", g: "uu", no: "UU 7/1992 jo. UU 10/1998", j: "Perbankan",
+    p: ["Pasal 1 angka 11 mendefinisikan kredit; angka 12 mendefinisikan pembiayaan berdasarkan prinsip syariah.",
+        "Pasal 8: bank wajib yakin atas kemampuan dan kesanggupan debitur melunasi utangnya, serta wajib memiliki pedoman perkreditan.",
+        "Pasal 11: dasar Batas Maksimum Pemberian Kredit (BMPK).",
+        "Pasal 29: bank wajib menjaga tingkat kesehatan dan menerapkan prinsip kehati-hatian. Pasal 40: rahasia bank."],
+    s: "Diubah terakhir oleh UU 4/2023 (P2SK), yang juga mengganti nama BPR menjadi Bank Perekonomian Rakyat." },
+  { id: "uu-p2sk", g: "uu", no: "UU 4/2023", j: "Pengembangan dan Penguatan Sektor Keuangan (P2SK/PPSK)",
+    p: ["Undang-undang omnibus yang mengubah belasan undang-undang sektor keuangan sekaligus, termasuk UU Perbankan, UU BI, UU OJK, dan UU LPS.",
+        "Tujuan BI diperluas: stabilitas nilai rupiah, stabilitas sistem pembayaran, dan turut menjaga stabilitas sistem keuangan untuk mendukung pertumbuhan ekonomi berkelanjutan.",
+        "Pasal 249–251: kewajiban kemudahan akses pembiayaan UMKM dan dasar penghapusan piutang macet UMKM.",
+        "Memperluas pengawasan OJK, antara lain ke koperasi simpan pinjam yang melayani nonanggota (open loop) dan aset kripto; memberi LPS mandat program penjaminan polis."],
+    s: "Banyak POJK terbitan 2024–2025 merupakan aturan turunan UU ini." },
+  { id: "uu-syariah", g: "uu", no: "UU 21/2008", j: "Perbankan Syariah",
+    p: ["Jenis bank syariah: Bank Umum Syariah (BUS), Unit Usaha Syariah (UUS), dan BPR Syariah.",
+        "Penyaluran dana dilakukan lewat akad: murabahah, mudharabah, musyarakah, ijarah, istishna, salam, qardh, dan lainnya.",
+        "Setiap bank syariah dan UUS wajib memiliki Dewan Pengawas Syariah (DPS)."],
+    s: "Fatwa DSN-MUI menjadi rujukan kesesuaian syariah produk." },
+  { id: "uu-bi", g: "uu", no: "UU 23/1999", j: "Bank Indonesia",
+    p: ["BI adalah bank sentral yang independen.",
+        "Tugas: menetapkan dan melaksanakan kebijakan moneter, mengatur dan menjaga sistem pembayaran, serta kebijakan makroprudensial.",
+        "BI dapat memberi pinjaman likuiditas jangka pendek kepada bank (fungsi lender of last resort)."],
+    s: "Diubah oleh UU 3/2004, UU 6/2009, dan UU 4/2023 (P2SK)." },
+  { id: "uu-ojk", g: "uu", no: "UU 21/2011", j: "Otoritas Jasa Keuangan",
+    p: ["OJK mengatur dan mengawasi secara terintegrasi sektor perbankan, pasar modal, dan industri keuangan nonbank.",
+        "Fungsi pengaturan dan pengawasan bank beralih dari BI ke OJK sejak 31 Desember 2013.",
+        "OJK juga bertugas melindungi konsumen dan masyarakat."],
+    s: "Diubah oleh UU 4/2023 (P2SK)." },
+  { id: "uu-lps", g: "uu", no: "UU 24/2004", j: "Lembaga Penjamin Simpanan",
+    p: ["LPS menjamin simpanan nasabah bank dan melakukan resolusi bank.",
+        "Setiap bank yang beroperasi di Indonesia wajib menjadi peserta penjaminan.",
+        "Bank yang dicabut izinnya ditangani LPS: membayar klaim penjaminan dan melikuidasi bank."],
+    s: "Diubah oleh UU 7/2009 dan UU 4/2023 (P2SK)." },
+  { id: "uu-ppksk", g: "uu", no: "UU 9/2016", j: "Pencegahan dan Penanganan Krisis Sistem Keuangan (PPKSK)",
+    p: ["Membentuk KSSK: Menteri Keuangan, Gubernur BI, Ketua DK OJK, dan Ketua DK LPS.",
+        "Mengatur penetapan bank sistemik dan protokol krisis.",
+        "Penanganan bank bermasalah mengutamakan sumber daya bank dan pemegang sahamnya sendiri (bail-in), bukan dana APBN."],
+    s: "" },
+  { id: "uu-ht", g: "uu", no: "UU 4/1996", j: "Hak Tanggungan atas Tanah beserta Benda yang Berkaitan dengan Tanah",
+    p: ["Objek: hak atas tanah (SHM, HGB, HGU, Hak Pakai tertentu) beserta bangunan di atasnya.",
+        "Dibuat dengan Akta Pemberian Hak Tanggungan (APHT) oleh PPAT, lalu didaftarkan di Kantor Pertanahan; Hak Tanggungan lahir pada tanggal buku tanah.",
+        "SKMHT wajib diikuti APHT paling lambat 1 bulan (tanah terdaftar) atau 3 bulan (tanah belum terdaftar).",
+        "Pasal 6 dan 20: bila debitur cedera janji, pemegang Hak Tanggungan pertama dapat menjual objek lewat pelelangan umum (parate eksekusi)."],
+    s: "Menggantikan hipotek dan creditverband untuk tanah." },
+  { id: "uu-fidusia", g: "uu", no: "UU 42/1999", j: "Jaminan Fidusia",
+    p: ["Objek: benda bergerak (kendaraan, mesin, persediaan, piutang) dan bangunan yang tidak dapat dibebani Hak Tanggungan.",
+        "Dibuat dengan akta notaris dan wajib didaftarkan secara elektronik; kreditur menerima Sertifikat Jaminan Fidusia.",
+        "Putusan MK 18/PUU-XVII/2019: bila tidak ada kesepakatan tentang cedera janji dan debitur menolak menyerahkan benda secara sukarela, eksekusi harus lewat pengadilan.",
+        "Benda yang sudah difidusiakan tidak boleh difidusiakan ulang."],
+    s: "" },
+  { id: "kuhper", g: "uu", no: "KUHPerdata (BW)", j: "Kitab Undang-Undang Hukum Perdata",
+    p: ["Pasal 1131–1132: seluruh harta debitur menjadi jaminan umum bagi semua krediturnya.",
+        "Pasal 1150: gadai. Pasal 1162: hipotek. Pasal 1820: penanggungan (borgtocht).",
+        "Pasal 1238 dan 1243: wanprestasi dan somasi. Pasal 1754: pinjam-meminjam."],
+    s: "" },
+  { id: "uu-kpkpu", g: "uu", no: "UU 37/2004", j: "Kepailitan dan Penundaan Kewajiban Pembayaran Utang",
+    p: ["Debitur dapat dipailitkan bila punya minimal dua kreditur dan tidak membayar sedikitnya satu utang yang jatuh tempo dan dapat ditagih.",
+        "PKPU memberi debitur kesempatan mengajukan rencana perdamaian kepada kreditur.",
+        "Kreditur separatis (pemegang Hak Tanggungan, fidusia, gadai, hipotek) tetap dapat mengeksekusi jaminan, setelah masa penangguhan (stay) hingga 90 hari."],
+    s: "" },
+  { id: "uu-pk", g: "uu", no: "UU 8/1999", j: "Perlindungan Konsumen",
+    p: ["Mengatur hak dan kewajiban konsumen dan pelaku usaha.",
+        "Pasal 18 melarang klausula baku tertentu, misalnya pengalihan tanggung jawab pelaku usaha atau aturan sepihak yang dibuat setelah perjanjian."],
+    s: "" },
+  { id: "uu-pdp", g: "uu", no: "UU 27/2022", j: "Pelindungan Data Pribadi",
+    p: ["Setiap pemrosesan data pribadi butuh dasar yang sah, misalnya persetujuan atau pelaksanaan perjanjian.",
+        "Subjek data berhak mengakses, memperbaiki, dan meminta penghapusan datanya.",
+        "Masa transisi dua tahun berakhir Oktober 2024."],
+    s: "Relevan untuk data debitur, SLIK, dan larangan menyebarkan data saat penagihan." },
+  { id: "uu-tppu", g: "uu", no: "UU 8/2010", j: "Pencegahan dan Pemberantasan Tindak Pidana Pencucian Uang",
+    p: ["Bank wajib melapor ke PPATK: Laporan Transaksi Keuangan Mencurigakan (LTKM) dan Laporan Transaksi Keuangan Tunai (LTKT) minimal Rp500 juta.",
+        "Bank wajib menerapkan prinsip mengenali pengguna jasa."],
+    s: "" },
+  { id: "pp47-2024", g: "uu", no: "PP 47/2024", j: "Penghapusan Piutang Macet kepada UMKM",
+    p: ["Memungkinkan bank dan lembaga keuangan BUMN menghapus tagih kredit macet UMKM, antara lain di sektor pertanian, perkebunan, peternakan, perikanan, dan kelautan.",
+        "Syarat antara lain: pokok maksimal Rp500 juta, sudah dihapus buku minimal 5 tahun, tidak dijamin asuransi atau penjaminan, dan agunan tidak ada atau tidak dapat dijual.",
+        "Berlaku terbatas (6 bulan sejak November 2024)."],
+    s: "Hapus tagih UMKM selanjutnya mengacu pada UU P2SK dan aturan turunannya." },
+  { id: "kur", g: "uu", no: "Permenko Perekonomian 1/2026", j: "Pedoman Pelaksanaan Kredit Usaha Rakyat (KUR)",
+    p: ["KUR Super Mikro hingga Rp10 juta dengan bunga 3% efektif per tahun.",
+        "KUR Mikro di atas Rp10 juta s.d. Rp100 juta; KUR Kecil di atas Rp100 juta s.d. Rp500 juta.",
+        "Bunga KUR Mikro dan Kecil untuk sektor produksi dan perdagangan berorientasi ekspor 6% efektif per tahun; sektor lain dapat naik bertahap untuk akses berulang.",
+        "Selisih bunga disubsidi pemerintah; risiko kredit sebagian dijamin perusahaan penjaminan (misalnya Askrindo, Jamkrindo)."],
+    s: "Berlaku sejak Januari 2026 bersama Permenko 2/2026. Ketentuan KUR biasanya diperbarui tiap tahun." },
+
+  /* ---- OJK ---- */
+  { id: "pojk40-2019", g: "ojk", no: "POJK 40/POJK.03/2019", j: "Penilaian Kualitas Aset Bank Umum",
+    p: ["Kualitas kredit dinilai dari prospek usaha, kinerja debitur, dan kemampuan membayar.",
+        "Lima golongan: Lancar, Dalam Perhatian Khusus (tunggakan s.d. 90 hari), Kurang Lancar (>90–120), Diragukan (>120–180), Macet (>180 hari).",
+        "Satu debitur di satu bank dinilai dengan kualitas yang sama untuk semua fasilitasnya (one obligor); penyamaan antarbank berlaku untuk kriteria tertentu.",
+        "PPKA minimum: 1% Lancar; 5% DPK, 15% Kurang Lancar, 50% Diragukan, 100% Macet (setelah dikurangi agunan yang memenuhi syarat). Juga mengatur restrukturisasi dan AYDA."],
+    s: "" },
+  { id: "pojk32-2018", g: "ojk", no: "POJK 32/POJK.03/2018", j: "Batas Maksimum Pemberian Kredit dan Penyediaan Dana Besar Bank Umum",
+    p: ["BMPK kepada pihak terkait: maksimal 10% dari modal inti (Tier 1).",
+        "Kepada satu peminjam tidak terkait: maksimal 20% modal inti; satu kelompok peminjam tidak terkait: maksimal 25% modal inti.",
+        "Penyediaan dana besar (large exposure) wajib dipantau dan dilaporkan."],
+    s: "Diubah oleh POJK 38/POJK.03/2019." },
+  { id: "pojk42-2017", g: "ojk", no: "POJK 42/POJK.03/2017", j: "Kewajiban Penyusunan dan Pelaksanaan Kebijakan Perkreditan atau Pembiayaan Bank (KPB) bagi Bank Umum",
+    p: ["Setiap bank wajib memiliki KPB tertulis yang disetujui dewan komisaris.",
+        "Isi minimal: prinsip kehati-hatian, organisasi dan manajemen kredit, kebijakan persetujuan, dokumentasi dan administrasi, pengawasan, serta penyelesaian kredit bermasalah.",
+        "Wajib ada pemisahan fungsi antara pemrakarsa, analis, pemutus, dan administrasi kredit."],
+    s: "" },
+  { id: "pojk18-2016", g: "ojk", no: "POJK 18/POJK.03/2016", j: "Penerapan Manajemen Risiko bagi Bank Umum",
+    p: ["Delapan risiko yang wajib dikelola: kredit, pasar, likuiditas, operasional, hukum, reputasi, stratejik, dan kepatuhan.",
+        "Empat pilar: pengawasan aktif direksi dan komisaris; kebijakan, prosedur, dan limit; proses identifikasi, pengukuran, pemantauan, dan pengendalian risiko; serta pengendalian intern."],
+    s: "Bank syariah menambah risiko imbal hasil dan risiko investasi (POJK 65/POJK.03/2016)." },
+  { id: "pojk4-2016", g: "ojk", no: "POJK 4/POJK.03/2016", j: "Penilaian Tingkat Kesehatan Bank Umum",
+    p: ["Metode RGEC: Risk profile, Good Corporate Governance, Earnings (rentabilitas), dan Capital (permodalan).",
+        "Hasilnya Peringkat Komposit (PK) 1 sampai 5; PK 1 berarti sangat sehat.",
+        "Penilaian dilakukan sendiri oleh bank (self-assessment) minimal tiap semester dan dievaluasi OJK."],
+    s: "Pedoman teknis: SEOJK 14/SEOJK.03/2017. Menggantikan metode CAMELS." },
+  { id: "pojk17-2023", g: "ojk", no: "POJK 17/2023", j: "Penerapan Tata Kelola bagi Bank Umum",
+    p: ["Prinsip tata kelola: keterbukaan, akuntabilitas, pertanggungjawaban, independensi, dan kewajaran.",
+        "Mengatur tugas direksi, dewan komisaris, komite-komite, fungsi kepatuhan, audit intern, dan manajemen risiko."],
+    s: "Menggantikan POJK 55/POJK.03/2016." },
+  { id: "pojk11-2016", g: "ojk", no: "POJK 11/POJK.03/2016", j: "Kewajiban Penyediaan Modal Minimum (KPMM) Bank Umum",
+    p: ["Rasio KPMM/CAR minimal sesuai profil risiko: 8% (peringkat 1), 9% s.d. <10% (peringkat 2), 10% s.d. <11% (peringkat 3), 11% s.d. 14% (peringkat 4–5).",
+        "Modal terdiri atas modal inti (Tier 1: CET1 dan AT1) dan modal pelengkap (Tier 2).",
+        "Tambahan modal penyangga: capital conservation buffer 2,5%, countercyclical buffer 0–2,5%, dan capital surcharge untuk bank sistemik."],
+    s: "Telah beberapa kali diubah." },
+  { id: "pojk12-2021", g: "ojk", no: "POJK 12/POJK.03/2021", j: "Bank Umum",
+    p: ["Modal inti minimum bank umum Rp3 triliun.",
+        "Pengelompokan Bank berdasarkan Modal Inti (KBMI): KBMI 1 s.d. Rp6 T, KBMI 2 >Rp6–14 T, KBMI 3 >Rp14–70 T, KBMI 4 >Rp70 T.",
+        "Mengatur bank digital, perizinan, kepemilikan, dan konsolidasi."],
+    s: "KBMI menggantikan istilah BUKU." },
+  { id: "pojk42-2015", g: "ojk", no: "POJK 42/POJK.03/2015", j: "Kewajiban Pemenuhan Rasio Kecukupan Likuiditas (LCR) bagi Bank Umum",
+    p: ["LCR minimal 100%: aset likuid berkualitas tinggi (HQLA) cukup untuk menutup arus kas keluar bersih selama 30 hari dalam skenario stres."],
+    s: "" },
+  { id: "pojk50-2017", g: "ojk", no: "POJK 50/POJK.03/2017", j: "Kewajiban Pemenuhan Rasio Pendanaan Stabil Bersih (NSFR) bagi Bank Umum",
+    p: ["NSFR minimal 100%: pendanaan stabil yang tersedia harus cukup membiayai aset jangka panjang, termasuk kredit."],
+    s: "" },
+  { id: "pojk18-2017", g: "ojk", no: "POJK 18/POJK.03/2017", j: "Pelaporan dan Permintaan Informasi Debitur melalui Sistem Layanan Informasi Keuangan (SLIK)",
+    p: ["SLIK menggantikan Sistem Informasi Debitur (BI Checking) dan beroperasi penuh sejak 2018.",
+        "Pelapor wajib melaporkan data debitur dan fasilitasnya setiap bulan; debitur dapat meminta iDeb (informasi debitur) atas dirinya sendiri.",
+        "POJK 11/2024 menambah pelapor wajib: perusahaan asuransi kredit/suretyship, perusahaan penjaminan, dan penyelenggara pinjaman daring (LPBBTI)."],
+    s: "Diubah oleh POJK 64/POJK.03/2020 dan POJK 11/2024." },
+  { id: "pojk22-2023", g: "ojk", no: "POJK 22/2023", j: "Pelindungan Konsumen dan Masyarakat di Sektor Jasa Keuangan",
+    p: ["PUJK wajib memberi informasi yang jelas (termasuk RIPLAY), memperlakukan konsumen secara adil, melindungi data, dan menangani pengaduan.",
+        "Penagihan hanya Senin–Sabtu di luar hari libur nasional, pukul 08.00–20.00 waktu setempat, di alamat penagihan atau domisili konsumen; di luar itu harus dengan persetujuan konsumen.",
+        "Dilarang menagih dengan ancaman, kekerasan, mempermalukan, tekanan fisik atau verbal, atau menagih pihak selain debitur (misalnya kontak darurat).",
+        "PUJK tetap bertanggung jawab atas tindakan pihak ketiga (debt collector) yang ditunjuknya; penagih wajib bersertifikat."],
+    s: "Menggantikan POJK 6/POJK.07/2022." },
+  { id: "pojk40-2024", g: "ojk", no: "POJK 40/2024", j: "Layanan Pendanaan Bersama Berbasis Teknologi Informasi (LPBBTI / pinjaman daring)",
+    p: ["Mengatur penyelenggara pinjaman daring berizin: permodalan, tata kelola, manajemen risiko, dan pelindungan pengguna.",
+        "Membatasi nilai pendanaan per penerima dana (umumnya hingga Rp2 miliar).",
+        "Penyelenggara dilarang mewakili pemberi dana untuk mendanai secara otomatis."],
+    s: "Penyempurnaan POJK 10/POJK.05/2022. Berlaku sejak 27 Desember 2024." },
+  { id: "seojk19-2023", g: "ojk", no: "SEOJK 19/SEOJK.06/2023", j: "Penyelenggaraan LPBBTI (batas manfaat ekonomi)",
+    p: ["Batas manfaat ekonomi (bunga dan biaya) pendanaan konsumtif jangka pendek: 0,3%/hari (2024), 0,2%/hari (2025), 0,1%/hari mulai 1 Januari 2026.",
+        "Pendanaan produktif: 0,1%/hari (2024–2025), 0,067%/hari mulai 1 Januari 2026.",
+        "Total manfaat ekonomi dan denda keterlambatan tidak boleh melebihi 100% dari nilai pendanaan."],
+    s: "OJK dapat meninjau ulang batas ini." },
+  { id: "pojk46-2024", g: "ojk", no: "POJK 46/2024", j: "Pengembangan dan Penguatan Perusahaan Pembiayaan, Perusahaan Pembiayaan Infrastruktur, dan Perusahaan Modal Ventura",
+    p: ["Aturan utama perusahaan pembiayaan (multifinance) seperti leasing kendaraan, anjak piutang, dan pembiayaan multiguna.",
+        "Menguatkan aspek prudensial dan mitigasi risiko sebagai tindak lanjut UU P2SK."],
+    s: "Diubah oleh POJK 35/2025." },
+  { id: "pojk19-2022", g: "ojk", no: "POJK 19/2022", j: "Perlakuan Khusus bagi Lembaga Jasa Keuangan pada Daerah dan Sektor Tertentu yang Terkena Dampak Bencana",
+    p: ["OJK dapat menetapkan perlakuan khusus untuk debitur di wilayah bencana.",
+        "Kredit yang direstrukturisasi karena bencana dapat ditetapkan berkualitas Lancar.",
+        "Contoh penerapan: banjir dan longsor di Aceh, Sumatera Utara, dan Sumatera Barat (efektif 10 Desember 2025)."],
+    s: "" },
+  { id: "pojk11-2020", g: "ojk", no: "POJK 11/POJK.03/2020", j: "Stimulus Perekonomian Nasional sebagai Kebijakan Countercyclical Dampak COVID-19",
+    p: ["Kredit terdampak COVID-19 yang direstrukturisasi dapat langsung berkualitas Lancar.",
+        "Penilaian kualitas kredit hingga Rp10 miliar cukup berdasarkan ketepatan pembayaran (satu pilar)."],
+    s: "Diperpanjang beberapa kali (POJK 48/2020, 17/2021) dan berakhir 31 Maret 2024." },
+  { id: "pojk19-2025", g: "ojk", no: "POJK 19/2025", j: "Kemudahan Akses Pembiayaan kepada UMKM",
+    p: ["Bank dan LKNB wajib memberi kemudahan akses kredit atau pembiayaan UMKM yang mudah, tepat, cepat, murah, dan inklusif.",
+        "Membuka ruang kebijakan khusus: skema sesuai karakter usaha, percepatan proses, dan biaya yang diatur khusus.",
+        "Rencana penyaluran kredit UMKM masuk rencana bisnis bank dan realisasinya dilaporkan."],
+    s: "Tindak lanjut Pasal 249 UU P2SK." },
+  { id: "pojk1-2024", g: "ojk", no: "POJK 1/2024", j: "Kualitas Aset Bank Perekonomian Rakyat",
+    p: ["Mengatur penilaian kualitas aset dan pencadangan di BPR.",
+        "Menyelaraskan ketentuan AYDA dan kegiatan usaha dengan UU P2SK, serta standar akuntansi entitas privat."],
+    s: "Menggantikan POJK 33/POJK.03/2018." },
+  { id: "pojk7-2024", g: "ojk", no: "POJK 7/2024", j: "Bank Perekonomian Rakyat dan Bank Perekonomian Rakyat Syariah",
+    p: ["Mengatur kelembagaan BPR dan BPRS: perizinan, permodalan, kepemilikan, kegiatan usaha, dan konsolidasi."],
+    s: "Diterbitkan bersama POJK 1/2024 untuk penguatan BPR/BPRS." },
+  { id: "pojk16-2014", g: "ojk", no: "POJK 16/POJK.03/2014", j: "Penilaian Kualitas Aset Bank Umum Syariah dan Unit Usaha Syariah",
+    p: ["Padanan aturan kolektibilitas untuk pembiayaan syariah (murabahah, mudharabah, musyarakah, ijarah, dan lainnya).",
+        "Rasio pembiayaan bermasalah di bank syariah disebut NPF (Non Performing Financing)."],
+    s: "" },
+  { id: "pojk8-2023", g: "ojk", no: "POJK 8/2023", j: "Penerapan Program APU, PPT, dan PPPSPM di Sektor Jasa Keuangan",
+    p: ["Program Anti Pencucian Uang, Pencegahan Pendanaan Terorisme, dan Pencegahan Pendanaan Proliferasi Senjata Pemusnah Massal.",
+        "Kewajiban Customer Due Diligence (CDD), Enhanced Due Diligence (EDD) untuk nasabah berisiko tinggi, identifikasi pemilik manfaat (beneficial owner), dan pemantauan transaksi.",
+        "Mengacu pada rekomendasi FATF."],
+    s: "Menggantikan POJK 12/POJK.01/2017 beserta perubahannya." },
+  { id: "pojk13-2021", g: "ojk", no: "POJK 13/POJK.03/2021", j: "Penyelenggaraan Produk Bank Umum",
+    p: ["Produk bank (termasuk produk kredit) dikelompokkan menjadi produk dasar dan produk lanjutan.",
+        "Bank wajib menerapkan manajemen risiko dan pelindungan konsumen sebelum meluncurkan produk; produk tertentu butuh persetujuan OJK."],
+    s: "" },
+  { id: "pojk26-2024", g: "ojk", no: "POJK 26/2024", j: "Perluasan Kegiatan Usaha Perbankan",
+    p: ["Memberi ruang bank umum melakukan kegiatan usaha tambahan, antara lain di bidang pasar modal, emas, dan perdagangan sesuai amanat UU P2SK, dengan syarat prudensial."],
+    s: "Berlaku sejak 13 Desember 2024." },
+  { id: "pojk18-2025", g: "ojk", no: "POJK 18/2025", j: "Transparansi dan Publikasi Laporan Bank",
+    p: ["Bank wajib menyusun dan mengumumkan laporan publikasi (keuangan, rasio, kualitas aset, permodalan) kepada masyarakat dan OJK."],
+    s: "Menggantikan POJK 37/POJK.03/2019." },
+  { id: "pojk51-2017", g: "ojk", no: "POJK 51/POJK.03/2017", j: "Penerapan Keuangan Berkelanjutan",
+    p: ["Lembaga jasa keuangan wajib menyusun Rencana Aksi Keuangan Berkelanjutan (RAKB) dan laporan keberlanjutan.",
+        "Mendorong penyaluran kredit ke kegiatan hijau; klasifikasinya merujuk Taksonomi untuk Keuangan Berkelanjutan Indonesia (TKBI)."],
+    s: "" },
+  { id: "pojk5-2024", g: "ojk", no: "POJK 5/2024", j: "Penetapan Status Pengawasan dan Penanganan Permasalahan Bank Umum",
+    p: ["Status pengawasan bank: normal, intensif, atau khusus, beserta tindak lanjutnya.",
+        "Mengatur penetapan bank sistemik, kewajiban rencana pemulihan (recovery plan) yang kini juga berlaku untuk bank nonsistemik, dan pembentukan bank perantara oleh LPS."],
+    s: "Berlaku sejak 27 Maret 2024; menggantikan POJK 15/POJK.03/2017." },
+
+  /* ---- Bank Indonesia ---- */
+  { id: "pbi-birate", g: "bi", no: "PBI 15/2023", j: "Operasi moneter dan suku bunga kebijakan BI-Rate",
+    p: ["Sejak 21 Desember 2023, suku bunga kebijakan BI kembali disebut BI-Rate, menggantikan nama BI 7-Day (Reverse) Repo Rate.",
+        "Instrumennya tetap: suku bunga reverse repo tenor 7 hari; koridornya Deposit Facility dan Lending Facility.",
+        "Ditetapkan dalam Rapat Dewan Gubernur (RDG) bulanan."],
+    s: "" },
+  { id: "pbi-ltv", g: "bi", no: "PBI 20/8/PBI/2018 jo. PBI 23/2/PBI/2021", j: "Rasio Loan to Value (LTV) / Financing to Value (FTV) untuk Kredit Properti dan Uang Muka Kendaraan Bermotor",
+    p: ["Membatasi plafon kredit properti dibanding nilai agunan (LTV/FTV) dan menetapkan uang muka minimum kredit kendaraan.",
+        "Bank yang memenuhi kriteria rasio kredit bermasalah tertentu boleh memberi LTV/FTV hingga 100% (tanpa uang muka) dan uang muka kendaraan hingga 0%.",
+        "PADG 30/2025 (perubahan ketujuh atas PADG 21/25/PADG/2019) memperpanjang pelonggaran ini sampai 31 Desember 2026."],
+    s: "Instrumen makroprudensial; angkanya disesuaikan BI dari waktu ke waktu." },
+  { id: "pbi-gwm", g: "bi", no: "PBI 24/4/PBI/2022", j: "Giro Wajib Minimum (GWM) dalam Rupiah dan Valuta Asing",
+    p: ["Bank wajib menempatkan sebagian dana pihak ketiga dalam bentuk giro di BI.",
+        "Sebagian dipenuhi harian dan sebagian rata-rata selama periode tertentu.",
+        "PADG 31/2025 (berlaku 23 Desember 2025) memungkinkan pengecualian komponen DPK tertentu dan remunerasi atas kelebihan cadangan."],
+    s: "Persentase GWM ditetapkan BI dan dapat berubah." },
+  { id: "pbi-rim", g: "bi", no: "PBI 20/4/PBI/2018", j: "Rasio Intermediasi Makroprudensial (RIM) dan Penyangga Likuiditas Makroprudensial (PLM)",
+    p: ["RIM: rasio kredit plus surat berharga korporasi yang dimiliki bank terhadap DPK plus surat berharga yang diterbitkan bank. Target 84–94%.",
+        "PLM: bank wajib memiliki cadangan likuiditas berupa surat berharga rupiah yang dapat direpokan ke BI."],
+    s: "RIM menggantikan konsep GWM-LFR." },
+  { id: "pbi-rpim", g: "bi", no: "PBI 23/13/PBI/2021", j: "Rasio Pembiayaan Inklusif Makroprudensial (RPIM)",
+    p: ["Bank wajib menyalurkan kredit inklusif (UMKM dan perseorangan berpenghasilan rendah) minimal 30% dari total kredit, dipenuhi bertahap sejak 2022.",
+        "Dapat dipenuhi langsung, lewat kerja sama (linkage/channeling), atau membeli surat berharga pembiayaan inklusif."],
+    s: "Menggantikan kewajiban rasio kredit UMKM 20%." },
+  { id: "pbi-klm", g: "bi", no: "PBI 11/2023", j: "Kebijakan Insentif Likuiditas Makroprudensial (KLM)",
+    p: ["Bank yang menyalurkan kredit ke sektor prioritas (misalnya hilirisasi, perumahan, pariwisata, UMKM) mendapat pengurangan kewajiban GWM rupiah.",
+        "PADG 8/2025 menaikkan insentif maksimum dari 4% menjadi 5% dari DPK mulai 1 April 2025."],
+    s: "Sektor dan besaran insentif ditinjau berkala." },
+  { id: "pbi-ccyb", g: "bi", no: "PBI 17/22/PBI/2015", j: "Pembentukan Countercyclical Buffer",
+    p: ["Tambahan modal 0–2,5% dari ATMR yang dibentuk saat kredit tumbuh berlebihan dan dilepas saat krisis.",
+        "Besaran ditetapkan BI berdasarkan indikator credit-to-GDP gap dan lainnya."],
+    s: "" },
+  { id: "pbi-sp", g: "bi", no: "PBI 22/23/PBI/2020", j: "Sistem Pembayaran",
+    p: ["Payung aturan industri sistem pembayaran: Penyedia Jasa Pembayaran (PJP) dan Penyelenggara Infrastruktur Sistem Pembayaran (PIP).",
+        "Menjadi dasar layanan BI-FAST, QRIS, dan Gerbang Pembayaran Nasional (GPN)."],
+    s: "" },
+  { id: "pbi-kk", g: "bi", no: "PBI 14/2/PBI/2012 dan ketentuan pelaksananya", j: "Alat Pembayaran Menggunakan Kartu (APMK), termasuk kartu kredit",
+    p: ["BI menetapkan batas maksimum suku bunga kartu kredit; sejak Juli 2021 sebesar 1,75% per bulan.",
+        "Penerbit dilarang menerapkan bunga berbunga dan wajib membatasi jumlah kartu serta plafon sesuai penghasilan pemegang kartu."],
+    s: "" },
+  { id: "pbi-pk", g: "bi", no: "PBI 3/2023", j: "Pelindungan Konsumen Bank Indonesia",
+    p: ["Pelindungan konsumen untuk produk dan layanan di bawah kewenangan BI, terutama sistem pembayaran dan valuta asing.",
+        "Mengatur penanganan pengaduan konsumen oleh penyelenggara dan BI."],
+    s: "" },
+
+  /* ---- LPS ---- */
+  { id: "lps-penjaminan", g: "lps", no: "Ketentuan penjaminan LPS", j: "Penjaminan Simpanan dan Tingkat Bunga Penjaminan (TBP)",
+    p: ["Simpanan dijamin hingga Rp2 miliar per nasabah per bank.",
+        "Syarat 3T: Tercatat di pembukuan bank, Tingkat bunga tidak melebihi TBP, dan Tidak melakukan tindakan yang merugikan bank.",
+        "TBP 1 Oktober 2026–31 Januari 2027: 3,75% (rupiah, bank umum), 6,25% (rupiah, BPR), 2,00% (valas)."],
+    s: "TBP ditinjau LPS secara berkala." }
+];
+
+/* [istilah, kategori, definisi, id regulasi (dipisah spasi)] */
+var TERMS = [
+  /* --- Produk & dasar kredit --- */
+  ["Kredit", "dasar", "Penyediaan uang atau tagihan yang dapat dipersamakan dengan itu, berdasarkan kesepakatan pinjam-meminjam antara bank dan pihak lain yang mewajibkan peminjam melunasi utangnya setelah jangka waktu tertentu dengan pemberian bunga.", "uu-perbankan"],
+  ["Pinjaman", "dasar", "Sebutan sehari-hari untuk kredit. Di bank syariah dan sebagian lembaga keuangan disebut pembiayaan.", ""],
+  ["Debitur", "dasar", "Pihak yang menerima kredit dan wajib melunasinya. Di pinjaman daring disebut penerima dana.", ""],
+  ["Kreditur", "dasar", "Pihak yang memberi pinjaman dan berhak menagih pelunasan, misalnya bank.", ""],
+  ["Plafon", "dasar", "Batas maksimum kredit yang disetujui bank untuk seorang debitur.", ""],
+  ["Baki debet (outstanding)", "dasar", "Sisa pokok kredit yang belum dilunasi debitur pada suatu tanggal.", ""],
+  ["Tenor", "dasar", "Jangka waktu kredit, dari pencairan sampai lunas.", ""],
+  ["Fasilitas kredit", "dasar", "Kredit yang disediakan bank dengan syarat tertentu. Satu debitur bisa memiliki beberapa fasilitas sekaligus.", ""],
+  ["Kredit investasi", "dasar", "Kredit untuk membeli barang modal seperti mesin, gedung, atau perluasan usaha. Tenor umumnya menengah atau panjang.", ""],
+  ["Kredit modal kerja (KMK)", "dasar", "Kredit untuk membiayai kebutuhan operasional usaha: bahan baku, persediaan, gaji, dan piutang dagang.", ""],
+  ["Kredit konsumtif", "dasar", "Kredit untuk kebutuhan pribadi, bukan usaha. Contoh: KPR, KKB, KTA, kartu kredit.", ""],
+  ["Kredit produktif", "dasar", "Kredit untuk kegiatan yang menghasilkan barang atau jasa, yaitu kredit investasi dan modal kerja.", ""],
+  ["KPR (Kredit Pemilikan Rumah)", "dasar", "Kredit untuk membeli rumah dengan agunan rumah itu sendiri yang diikat Hak Tanggungan. Plafonnya dibatasi rasio LTV.", "pbi-ltv uu-ht"],
+  ["KPA (Kredit Pemilikan Apartemen)", "dasar", "Kredit untuk membeli unit apartemen atau rumah susun, umumnya dengan agunan Sertifikat Hak Milik Satuan Rumah Susun.", "pbi-ltv"],
+  ["KKB (Kredit Kendaraan Bermotor)", "dasar", "Kredit untuk membeli kendaraan. BPKB kendaraan diikat jaminan fidusia dan uang muka minimumnya diatur BI.", "pbi-ltv uu-fidusia"],
+  ["KTA (Kredit Tanpa Agunan)", "dasar", "Kredit konsumtif tanpa jaminan khusus. Persetujuan bergantung pada penghasilan dan riwayat kredit, dan bunganya relatif tinggi.", ""],
+  ["Kredit multiguna", "dasar", "Kredit konsumtif yang penggunaannya bebas, biasanya dengan agunan rumah, kendaraan, atau pembayaran melalui gaji.", ""],
+  ["Kredit payroll", "dasar", "Kredit untuk karyawan yang gajinya dibayarkan lewat bank pemberi kredit; angsuran langsung dipotong dari rekening gaji.", ""],
+  ["Kredit pensiun", "dasar", "Kredit untuk pensiunan yang angsurannya dipotong dari manfaat pensiun bulanan.", ""],
+  ["KUR (Kredit Usaha Rakyat)", "dasar", "Kredit modal kerja dan investasi untuk UMKM dengan bunga bersubsidi pemerintah. Terdiri atas KUR Super Mikro, Mikro, Kecil, dan KUR Penempatan Pekerja Migran Indonesia.", "kur"],
+  ["Kredit UMKM", "dasar", "Kredit kepada usaha mikro, kecil, dan menengah sesuai kriteria UU UMKM. Bank wajib memberi kemudahan aksesnya.", "pojk19-2025 pbi-rpim"],
+  ["Kredit program", "dasar", "Kredit yang dirancang dan didukung pemerintah (subsidi bunga atau penjaminan) untuk sektor tertentu, misalnya KUR.", "kur"],
+  ["Kredit rekening koran", "dasar", "Fasilitas yang dapat ditarik dan disetor kapan saja selama saldo pinjaman di bawah plafon. Bunga dihitung dari saldo yang dipakai.", ""],
+  ["Cerukan (overdraft)", "dasar", "Penarikan melebihi saldo rekening giro yang dibayar bank. Jika tidak diperjanjikan sebagai fasilitas, cerukan termasuk kredit yang harus segera dilunasi.", ""],
+  ["Kredit revolving", "dasar", "Fasilitas yang plafonnya bisa dipakai berulang: setelah dilunasi, dapat ditarik kembali selama masa berlaku.", ""],
+  ["Kredit non-revolving", "dasar", "Fasilitas yang hanya bisa ditarik sekali; angsuran yang sudah dibayar tidak dapat ditarik lagi.", ""],
+  ["Kredit sindikasi", "dasar", "Satu kredit besar yang dibiayai bersama beberapa bank dengan satu perjanjian, dipimpin arranger dan dikelola bank agen.", "pojk32-2018"],
+  ["Kredit channeling", "dasar", "Bank menyalurkan dana milik pihak lain (misalnya pemerintah); risiko kredit ditanggung pemilik dana, bank menerima fee.", ""],
+  ["Kredit executing", "dasar", "Bank meminjamkan dana kepada lembaga lain (misalnya koperasi atau multifinance) yang lalu meneruskannya ke debitur akhir; risiko ditanggung lembaga penerus.", ""],
+  ["Joint financing", "dasar", "Pembiayaan bersama antara bank dan lembaga lain (misalnya perusahaan pembiayaan) atas satu debitur dengan porsi dan risiko masing-masing.", ""],
+  ["Kredit back to back", "dasar", "Kredit yang dijamin sepenuhnya dengan simpanan (deposito/tabungan) debitur di bank yang sama.", ""],
+  ["Kredit ekspor", "dasar", "Kredit untuk membiayai kegiatan ekspor, baik sebelum pengapalan (pre-shipment) maupun sesudahnya.", ""],
+  ["Trade finance", "dasar", "Layanan pembiayaan perdagangan seperti L/C, SKBDN, bank garansi, dan pembiayaan dokumen ekspor-impor.", ""],
+  ["Supply chain financing", "dasar", "Pembiayaan bagi pemasok atau distributor dari perusahaan inti (anchor), berdasarkan transaksi dalam rantai pasok.", ""],
+  ["Anjak piutang (factoring)", "dasar", "Pembelian atau pengalihan piutang dagang jangka pendek sebuah perusahaan beserta pengurusannya.", "pojk46-2024"],
+  ["Sewa guna usaha (leasing)", "dasar", "Pembiayaan barang modal lewat skema sewa, dengan atau tanpa hak opsi membeli di akhir masa sewa. Dijalankan perusahaan pembiayaan.", "pojk46-2024"],
+  ["Pinjaman tunai (cash loan)", "dasar", "Fasilitas yang dicairkan dalam bentuk dana, misalnya kredit investasi atau modal kerja.", ""],
+  ["Fasilitas non-tunai (non-cash loan)", "dasar", "Fasilitas yang tidak langsung mencairkan dana, seperti bank garansi dan L/C. Baru menjadi kredit jika bank harus membayar.", ""],
+  ["Bank garansi", "dasar", "Jaminan tertulis bank bahwa bank akan membayar pihak penerima jika nasabah gagal memenuhi kewajibannya.", ""],
+  ["Letter of Credit (L/C)", "dasar", "Janji tertulis bank penerbit untuk membayar eksportir/penjual bila dokumen yang disyaratkan diserahkan sesuai ketentuan.", ""],
+  ["SKBDN", "dasar", "Surat Kredit Berdokumen Dalam Negeri, padanan L/C untuk perdagangan dalam negeri.", ""],
+  ["Kartu kredit", "dasar", "Alat pembayaran dengan kartu yang tagihannya dibayar kemudian, sekaligus atau mencicil. Bunganya dibatasi BI.", "pbi-kk"],
+  ["Paylater (BNPL)", "dasar", "Buy Now Pay Later: fasilitas beli sekarang bayar nanti yang diberikan bank, multifinance, atau platform pinjaman daring. Tercatat di SLIK.", "pojk18-2017"],
+  ["Refinancing", "dasar", "Mengganti kredit lama dengan kredit baru, biasanya untuk mendapat bunga lebih rendah atau tenor lebih panjang.", ""],
+  ["Take over", "dasar", "Pengalihan kredit dari bank lain ke bank baru; bank baru melunasi kredit di bank lama.", ""],
+  ["Top up", "dasar", "Penambahan plafon pada kredit yang masih berjalan, biasanya dengan agunan yang sama.", ""],
+  ["Kredit inden", "dasar", "Kredit untuk properti yang belum jadi atau belum siap huni. Pencairannya dibatasi sesuai progres pembangunan.", "pbi-ltv"],
+  ["Committed facility", "dasar", "Fasilitas yang wajib disediakan bank selama syarat dipenuhi debitur. Sebaliknya, uncommitted facility dapat dibatalkan bank sewaktu-waktu.", ""],
+
+  /* --- Analisis & proses --- */
+  ["5C", "proses", "Prinsip analisis kredit: Character, Capacity, Capital, Collateral, dan Condition of economy.", "uu-perbankan"],
+  ["Character", "proses", "Watak dan kemauan membayar debitur, dinilai dari riwayat SLIK, reputasi, dan wawancara.", ""],
+  ["Capacity", "proses", "Kemampuan debitur membayar dari penghasilan atau arus kas usaha.", ""],
+  ["Capital", "proses", "Modal sendiri yang ditanam debitur dalam usaha atau pembelian yang dibiayai.", ""],
+  ["Collateral", "proses", "Agunan sebagai sumber pelunasan kedua bila sumber utama gagal.", ""],
+  ["Condition of economy", "proses", "Kondisi ekonomi, sektor usaha, dan regulasi yang memengaruhi kemampuan bayar debitur.", ""],
+  ["7P", "proses", "Personality, Party, Purpose, Prospect, Payment, Profitability, dan Protection.", ""],
+  ["3R", "proses", "Returns, Repayment capacity, dan Risk-bearing ability. Jangan tertukar dengan 3R penyelamatan kredit.", ""],
+  ["First way out", "proses", "Sumber pelunasan utama, yaitu arus kas usaha atau penghasilan debitur.", ""],
+  ["Second way out", "proses", "Sumber pelunasan kedua, yaitu hasil penjualan agunan atau pembayaran oleh penjamin.", ""],
+  ["Analisis kredit", "proses", "Penilaian kelayakan calon debitur dan usahanya sebelum kredit diputus.", "pojk42-2017"],
+  ["Studi kelayakan", "proses", "Kajian aspek hukum, pasar, keuangan, teknis, manajemen, sosial-ekonomi, dan lingkungan (AMDAL) suatu usaha.", ""],
+  ["Memorandum Analisis Kredit (MAK)", "proses", "Dokumen hasil analisis yang diajukan kepada pejabat pemutus, berisi profil debitur, analisis, risiko, dan usulan struktur kredit.", "pojk42-2017"],
+  ["Account Officer (AO)", "proses", "Petugas pemasaran kredit yang mencari, menganalisis awal, dan membina debitur. Di segmen korporasi disebut Relationship Manager (RM).", ""],
+  ["Credit analyst", "proses", "Petugas yang menganalisis risiko kredit secara independen dari unit pemasaran.", ""],
+  ["Komite kredit", "proses", "Forum pejabat bank yang berwenang menyetujui atau menolak kredit dengan nilai tertentu.", "pojk42-2017"],
+  ["Four eyes principle", "proses", "Prinsip bahwa keputusan kredit harus melibatkan minimal dua pihak independen, biasanya unit bisnis dan unit risiko.", "pojk42-2017"],
+  ["Batas wewenang memutus kredit (BWMK)", "proses", "Limit nilai kredit yang boleh diputus oleh tiap pejabat atau komite.", "pojk42-2017"],
+  ["Surat Penawaran Pemberian Kredit (SPPK)", "proses", "Offering letter: surat bank berisi persetujuan dan syarat kredit yang harus disetujui debitur sebelum akad.", ""],
+  ["Akad kredit", "proses", "Penandatanganan perjanjian kredit oleh bank dan debitur, sering kali di hadapan notaris.", ""],
+  ["Perjanjian kredit", "proses", "Perjanjian pokok yang memuat plafon, bunga, tenor, jaminan, hak dan kewajiban, serta peristiwa cedera janji.", "kuhper"],
+  ["Pencairan (drawdown)", "proses", "Penyerahan dana kredit kepada debitur setelah semua syarat terpenuhi. Disebut juga realisasi kredit.", ""],
+  ["Syarat pendahuluan (conditions precedent)", "proses", "Syarat yang harus dipenuhi sebelum dana boleh ditarik, misalnya pengikatan agunan atau penyerahan dokumen.", ""],
+  ["Covenant", "proses", "Janji debitur dalam perjanjian kredit: wajib melakukan (affirmative) atau dilarang melakukan (negative) sesuatu, misalnya menjaga rasio keuangan.", ""],
+  ["Negative pledge", "proses", "Janji debitur untuk tidak menjaminkan asetnya kepada kreditur lain tanpa persetujuan bank.", ""],
+  ["On the spot (OTS)", "proses", "Kunjungan langsung ke lokasi usaha, rumah, atau agunan calon debitur untuk verifikasi.", ""],
+  ["Appraisal", "proses", "Penilaian agunan untuk menentukan nilai pasar dan nilai likuidasi.", ""],
+  ["KJPP", "proses", "Kantor Jasa Penilai Publik, penilai independen berizin yang menilai agunan bernilai besar.", ""],
+  ["Credit scoring", "proses", "Penilaian kelayakan kredit dengan model statistik yang menghasilkan skor, banyak dipakai untuk kredit konsumtif dan pinjaman daring.", ""],
+  ["Debt Service Ratio (DSR)", "proses", "Perbandingan total angsuran utang dengan penghasilan. Bank umumnya membatasi sekitar 30–40% penghasilan. Disebut juga Debt Burden Ratio atau Repayment Capacity.", ""],
+  ["iDeb", "proses", "Informasi Debitur hasil permintaan ke SLIK OJK, berisi daftar fasilitas dan kolektibilitas 24 bulan terakhir.", "pojk18-2017"],
+  ["BI Checking", "proses", "Sebutan lama untuk pengecekan riwayat kredit lewat Sistem Informasi Debitur BI, kini digantikan SLIK OJK.", "pojk18-2017"],
+  ["Due diligence", "proses", "Pemeriksaan menyeluruh atas aspek hukum, keuangan, dan operasional calon debitur sebelum kredit diberikan.", ""],
+  ["Monitoring kredit", "proses", "Pemantauan debitur setelah pencairan: penggunaan dana, kinerja usaha, kondisi agunan, dan pemenuhan covenant.", "pojk42-2017"],
+  ["Early warning system (EWS)", "proses", "Sistem deteksi dini tanda-tanda penurunan kualitas debitur, seperti keterlambatan bayar atau penurunan omzet.", ""],
+  ["Grace period", "proses", "Masa tenggang ketika debitur belum wajib membayar pokok, biasanya hanya bunga.", ""],
+  ["Jatuh tempo", "proses", "Tanggal kewajiban angsuran atau pelunasan kredit harus dibayar.", ""],
+  ["Perpanjangan kredit (renewal)", "proses", "Memperpanjang masa berlaku fasilitas yang jatuh tempo, umumnya kredit modal kerja, setelah dianalisis ulang.", ""],
+  ["Pelunasan dipercepat", "proses", "Debitur melunasi sebelum jatuh tempo, sebagian atau seluruhnya. Dapat dikenai penalti sesuai perjanjian.", ""],
+  ["Siklus modal kerja", "proses", "Waktu dari pembelian bahan sampai penerimaan kas penjualan. Dipakai untuk menghitung kebutuhan kredit modal kerja.", ""],
+
+  /* --- Agunan & hukum --- */
+  ["Agunan", "jaminan", "Jaminan tambahan yang diserahkan debitur kepada bank untuk mendukung pelunasan kredit.", "uu-perbankan"],
+  ["Jaminan umum", "jaminan", "Seluruh harta debitur, sekarang dan yang akan datang, menjadi jaminan bagi semua krediturnya secara bersama.", "kuhper"],
+  ["Jaminan khusus", "jaminan", "Jaminan atas benda atau orang tertentu yang memberi kreditur hak didahulukan, misalnya Hak Tanggungan atau fidusia.", ""],
+  ["Hak Tanggungan", "jaminan", "Hak jaminan atas tanah beserta bangunan di atasnya yang memberi kedudukan diutamakan kepada kreditur.", "uu-ht"],
+  ["APHT", "jaminan", "Akta Pemberian Hak Tanggungan yang dibuat oleh PPAT.", "uu-ht"],
+  ["SKMHT", "jaminan", "Surat Kuasa Membebankan Hak Tanggungan. Wajib diikuti APHT paling lambat 1 bulan (tanah terdaftar) atau 3 bulan (belum terdaftar).", "uu-ht"],
+  ["Sertifikat Hak Tanggungan", "jaminan", "Tanda bukti Hak Tanggungan dari Kantor Pertanahan; memuat irah-irah “Demi Keadilan Berdasarkan Ketuhanan Yang Maha Esa” sehingga berkekuatan eksekutorial.", "uu-ht"],
+  ["Roya", "jaminan", "Pencoretan Hak Tanggungan dari buku tanah setelah kredit lunas.", "uu-ht"],
+  ["Fidusia", "jaminan", "Pengalihan hak milik suatu benda atas dasar kepercayaan, sementara bendanya tetap dikuasai pemilik (debitur).", "uu-fidusia"],
+  ["Sertifikat jaminan fidusia", "jaminan", "Bukti pendaftaran fidusia yang berkekuatan eksekutorial, diterbitkan secara elektronik.", "uu-fidusia"],
+  ["Gadai", "jaminan", "Jaminan atas benda bergerak yang diserahkan dan dikuasai kreditur, misalnya emas, deposito, atau saham.", "kuhper"],
+  ["Hipotek", "jaminan", "Jaminan atas kapal terdaftar. Sejak UU Hak Tanggungan, tidak dipakai lagi untuk tanah.", "kuhper"],
+  ["Borgtocht (penanggungan)", "jaminan", "Pihak ketiga mengikatkan diri untuk membayar utang debitur bila debitur gagal.", "kuhper"],
+  ["Personal guarantee", "jaminan", "Penanggungan oleh perorangan, misalnya pemilik perusahaan.", "kuhper"],
+  ["Corporate guarantee", "jaminan", "Penanggungan oleh badan usaha, misalnya induk perusahaan.", "kuhper"],
+  ["Cessie", "jaminan", "Pengalihan piutang atas nama kepada pihak lain dengan akta. Dipakai juga dalam penjualan kredit bermasalah.", "kuhper"],
+  ["Subrogasi", "jaminan", "Penggantian hak kreditur oleh pihak ketiga yang membayar utang debitur, misalnya perusahaan penjaminan setelah membayar klaim.", "kuhper"],
+  ["Novasi", "jaminan", "Pembaruan utang: perikatan lama hapus dan diganti perikatan baru.", "kuhper"],
+  ["Agunan tunai (cash collateral)", "jaminan", "Agunan berupa simpanan yang diblokir di bank. Termasuk agunan yang dapat diperhitungkan sebagai pengurang dalam pembentukan cadangan.", "pojk40-2019"],
+  ["Nilai pasar", "jaminan", "Perkiraan harga agunan bila dijual secara wajar di pasar.", ""],
+  ["Nilai likuidasi", "jaminan", "Perkiraan harga agunan bila harus dijual cepat, lebih rendah dari nilai pasar.", ""],
+  ["Banker's clause", "jaminan", "Klausul polis asuransi yang menetapkan bank sebagai penerima ganti rugi atas agunan yang diasuransikan.", ""],
+  ["Asuransi kredit", "jaminan", "Asuransi yang menanggung risiko debitur gagal bayar; penerima manfaatnya bank.", "pojk18-2017"],
+  ["Asuransi jiwa kredit", "jaminan", "Asuransi yang melunasi sisa kredit bila debitur meninggal dunia.", ""],
+  ["Wanprestasi", "jaminan", "Cedera janji: debitur tidak memenuhi, terlambat, atau keliru memenuhi kewajiban dalam perjanjian.", "kuhper"],
+  ["Somasi", "jaminan", "Teguran resmi kepada debitur agar memenuhi kewajibannya sebelum langkah hukum diambil.", "kuhper"],
+  ["Parate eksekusi", "jaminan", "Hak kreditur menjual agunan atas kekuasaan sendiri lewat pelelangan umum tanpa putusan pengadilan.", "uu-ht"],
+  ["Eksekusi jaminan", "jaminan", "Penjualan agunan untuk melunasi utang debitur yang cedera janji, lewat lelang, penjualan di bawah tangan, atau putusan pengadilan.", "uu-ht uu-fidusia"],
+  ["Lelang", "jaminan", "Penjualan terbuka untuk umum dengan penawaran harga. Lelang eksekusi agunan dilakukan lewat KPKNL atau balai lelang swasta.", "uu-ht"],
+  ["Kreditur separatis", "jaminan", "Kreditur pemegang jaminan kebendaan (Hak Tanggungan, fidusia, gadai, hipotek) yang dapat mengeksekusi jaminannya terpisah dari harta pailit.", "uu-kpkpu"],
+  ["Kreditur preferen", "jaminan", "Kreditur yang didahulukan karena undang-undang, misalnya tagihan pajak dan upah pekerja.", "uu-kpkpu"],
+  ["Kreditur konkuren", "jaminan", "Kreditur tanpa hak istimewa; dibayar bersama-sama secara proporsional dari sisa harta debitur.", "uu-kpkpu"],
+  ["Kepailitan", "jaminan", "Sita umum atas seluruh kekayaan debitur pailit yang diurus kurator di bawah pengawasan hakim pengawas.", "uu-kpkpu"],
+  ["PKPU", "jaminan", "Penundaan Kewajiban Pembayaran Utang: kesempatan debitur menawarkan rencana perdamaian kepada kreditur.", "uu-kpkpu"],
+  ["PPAT", "jaminan", "Pejabat Pembuat Akta Tanah, berwenang membuat akta peralihan hak atas tanah dan APHT.", "uu-ht"],
+  ["Covernote", "jaminan", "Surat keterangan notaris bahwa proses pengikatan atau balik nama agunan sedang berjalan.", ""],
+  ["SHM / HGB", "jaminan", "Sertifikat Hak Milik dan Hak Guna Bangunan, jenis hak atas tanah yang dapat dibebani Hak Tanggungan.", "uu-ht"],
+
+  /* --- Bunga & biaya --- */
+  ["Bunga", "bunga", "Balas jasa atas pinjaman yang dibayar debitur kepada kreditur, dinyatakan dalam persen per periode.", ""],
+  ["Bunga flat", "bunga", "Bunga dihitung dari plafon awal sepanjang tenor sehingga angsuran tetap dan total bunga paling besar.", ""],
+  ["Bunga efektif (sliding rate)", "bunga", "Bunga dihitung dari sisa pokok. Dengan pokok tetap per bulan, angsuran menurun.", ""],
+  ["Bunga anuitas", "bunga", "Angsuran total tetap, porsi bunga mengecil dan porsi pokok membesar. Umum untuk KPR.", ""],
+  ["Bunga tetap (fixed rate)", "bunga", "Suku bunga yang tidak berubah selama periode tertentu.", ""],
+  ["Bunga mengambang (floating rate)", "bunga", "Suku bunga yang dapat berubah mengikuti suku bunga pasar atau acuan bank.", ""],
+  ["Bunga berjenjang", "bunga", "Suku bunga yang berbeda untuk periode tertentu, misalnya tetap 3 tahun pertama lalu mengambang.", ""],
+  ["Suku Bunga Dasar Kredit (SBDK)", "bunga", "Suku bunga terendah sebelum premi risiko, yang wajib diumumkan bank per segmen kredit.", "pojk18-2025"],
+  ["Biaya dana (cost of fund)", "bunga", "Biaya yang dikeluarkan bank untuk menghimpun dana, terutama bunga simpanan dan premi penjaminan LPS.", ""],
+  ["Premi risiko", "bunga", "Tambahan bunga di atas SBDK sesuai tingkat risiko debitur.", ""],
+  ["Spread", "bunga", "Selisih antara bunga kredit dan bunga simpanan.", ""],
+  ["Provisi", "bunga", "Biaya persentase dari plafon yang dibayar di awal sebagai imbalan atas penyediaan fasilitas kredit.", ""],
+  ["Biaya administrasi", "bunga", "Biaya pengurusan kredit yang dibayar debitur, biasanya saat akad.", ""],
+  ["Commitment fee", "bunga", "Biaya atas plafon yang sudah disediakan tetapi belum ditarik debitur.", ""],
+  ["Denda keterlambatan (late charge)", "bunga", "Denda atas angsuran yang dibayar melewati jatuh tempo, sesuai perjanjian.", ""],
+  ["Penalti pelunasan dipercepat", "bunga", "Biaya yang dikenakan bila debitur melunasi kredit sebelum jatuh tempo.", ""],
+  ["Kapitalisasi bunga", "bunga", "Tunggakan bunga ditambahkan ke pokok kredit. Lazim dalam restrukturisasi.", "pojk40-2019"],
+  ["Bunga berbunga (majemuk)", "bunga", "Bunga dihitung atas pokok ditambah bunga yang belum dibayar. Dilarang untuk kartu kredit.", "pbi-kk"],
+  ["Angsuran", "bunga", "Pembayaran berkala yang terdiri atas angsuran pokok dan bunga.", ""],
+  ["Amortisasi", "bunga", "Pelunasan pokok secara bertahap sesuai jadwal angsuran.", ""],
+  ["Balloon payment", "bunga", "Struktur angsuran dengan pembayaran pokok besar di akhir tenor.", ""],
+  ["Uang muka (down payment)", "bunga", "Porsi harga yang dibayar sendiri oleh pembeli; sisanya dibiayai kredit. Uang muka minimum kredit kendaraan diatur BI.", "pbi-ltv"],
+  ["LTV (Loan to Value)", "bunga", "Rasio plafon kredit properti terhadap nilai agunan. Untuk bank yang memenuhi kriteria NPL tertentu, BI membolehkan hingga 100% sampai akhir 2026.", "pbi-ltv"],
+  ["Manfaat ekonomi", "bunga", "Istilah bunga dan biaya pada pinjaman daring. Batas maksimumnya diatur OJK per hari.", "seojk19-2023"],
+  ["Suku bunga kartu kredit", "bunga", "Bunga atas tagihan kartu kredit yang tidak dibayar penuh. Batas maksimumnya ditetapkan BI.", "pbi-kk"],
+  ["INDONIA", "bunga", "Indonesia Overnight Index Average: suku bunga acuan rata-rata transaksi pinjam-meminjam antarbank semalam, dipublikasikan BI.", ""],
+  ["JIBOR", "bunga", "Jakarta Interbank Offered Rate, suku bunga acuan pasar uang antarbank yang lama. BI mendorong transisi ke INDONIA.", ""],
+  ["Suku bunga efektif tahunan", "bunga", "Biaya pinjaman yang dinyatakan per tahun dari sisa pokok. Cara paling adil untuk membandingkan produk.", ""],
+
+  /* --- Kualitas & kredit bermasalah --- */
+  ["Kolektibilitas", "kualitas", "Penggolongan kualitas kredit berdasarkan ketepatan pembayaran dan kondisi debitur: Lancar, DPK, Kurang Lancar, Diragukan, Macet.", "pojk40-2019"],
+  ["Lancar (Kol 1)", "kualitas", "Kredit tanpa tunggakan pokok maupun bunga.", "pojk40-2019"],
+  ["Dalam Perhatian Khusus (Kol 2)", "kualitas", "Kredit dengan tunggakan sampai 90 hari.", "pojk40-2019"],
+  ["Kurang Lancar (Kol 3)", "kualitas", "Kredit dengan tunggakan lebih dari 90 sampai 120 hari.", "pojk40-2019"],
+  ["Diragukan (Kol 4)", "kualitas", "Kredit dengan tunggakan lebih dari 120 sampai 180 hari.", "pojk40-2019"],
+  ["Macet (Kol 5)", "kualitas", "Kredit dengan tunggakan lebih dari 180 hari.", "pojk40-2019"],
+  ["DPD (days past due)", "kualitas", "Jumlah hari tunggakan sejak angsuran jatuh tempo.", ""],
+  ["Tiga pilar penilaian", "kualitas", "Kualitas kredit dinilai dari prospek usaha, kinerja (performance) debitur, dan kemampuan membayar.", "pojk40-2019"],
+  ["One obligor concept", "kualitas", "Semua fasilitas satu debitur di satu bank harus memiliki kualitas yang sama, mengikuti yang terburuk.", "pojk40-2019"],
+  ["NPL (Non Performing Loan)", "kualitas", "Kredit bermasalah, yaitu kredit Kurang Lancar, Diragukan, dan Macet.", "pojk40-2019"],
+  ["NPL gross", "kualitas", "Rasio kredit bermasalah terhadap total kredit sebelum dikurangi cadangan.", "pojk18-2025"],
+  ["NPL net", "kualitas", "Rasio kredit bermasalah setelah dikurangi cadangan kerugian terhadap total kredit. Batas pengawasan di bawah 5%.", "pojk18-2025"],
+  ["Loan at Risk (LaR)", "kualitas", "Kredit berisiko: gabungan Kol 2, kredit restrukturisasi yang masih lancar, dan NPL.", ""],
+  ["Restrukturisasi kredit", "kualitas", "Upaya perbaikan agar debitur yang kesulitan bisa memenuhi kewajiban: menurunkan bunga, memperpanjang tenor, mengurangi tunggakan, menambah fasilitas, atau konversi menjadi penyertaan modal.", "pojk40-2019 pojk19-2022"],
+  ["Rescheduling", "kualitas", "Penjadwalan ulang: perubahan jadwal pembayaran atau jangka waktu kredit.", "pojk40-2019"],
+  ["Reconditioning", "kualitas", "Persyaratan ulang: perubahan sebagian atau seluruh syarat, misalnya penurunan bunga atau penundaan pembayaran bunga.", "pojk40-2019"],
+  ["Restructuring", "kualitas", "Penataan ulang struktur kredit, misalnya penambahan fasilitas atau konversi tunggakan menjadi pokok atau modal.", "pojk40-2019"],
+  ["Penyertaan Modal Sementara (PMS)", "kualitas", "Penyertaan modal bank pada debitur sebagai hasil konversi kredit dalam restrukturisasi. Wajib dilepas dalam jangka waktu tertentu.", "pojk40-2019"],
+  ["Hapus buku (write-off)", "kualitas", "Mengeluarkan kredit macet dari neraca dengan membebankan cadangan. Hak tagih tetap ada.", "pojk40-2019"],
+  ["Hapus tagih", "kualitas", "Pembebasan kewajiban debitur sehingga hak tagih bank hilang.", "pp47-2024 uu-p2sk"],
+  ["AYDA (Agunan Yang Diambil Alih)", "kualitas", "Aset yang dibeli bank dari hasil penyelesaian agunan debitur macet, untuk dijual kembali.", "pojk40-2019 pojk1-2024"],
+  ["PPKA", "kualitas", "Penyisihan Penilaian Kualitas Aset: cadangan regulatori minimum sesuai kualitas kredit (1%, 5%, 15%, 50%, 100%).", "pojk40-2019"],
+  ["Coverage ratio", "kualitas", "Rasio cadangan kerugian terhadap kredit bermasalah. Makin tinggi, makin siap bank menyerap kerugian.", ""],
+  ["Recovery rate", "kualitas", "Persentase kredit bermasalah yang berhasil ditagih kembali, termasuk dari penjualan agunan.", ""],
+  ["Penagihan (collection)", "kualitas", "Upaya bank menagih kewajiban debitur, dari pengingat, telepon (desk collection), hingga kunjungan (field collection).", "pojk22-2023"],
+  ["Debt collector", "kualitas", "Pihak ketiga yang ditunjuk lembaga keuangan untuk menagih. Wajib bersertifikat dan tunduk pada aturan etika penagihan OJK.", "pojk22-2023"],
+  ["Surat peringatan (SP)", "kualitas", "Teguran tertulis bertahap (SP1–SP3) sebelum bank mengambil langkah penyelesaian.", ""],
+  ["Roll rate", "kualitas", "Persentase kredit yang berpindah ke golongan tunggakan lebih buruk dari bulan ke bulan.", ""],
+  ["Perlakuan khusus bencana", "kualitas", "Kebijakan OJK agar kredit debitur terdampak bencana yang direstrukturisasi dapat tetap berkualitas Lancar.", "pojk19-2022"],
+  ["Restrukturisasi COVID-19", "kualitas", "Kebijakan stimulus OJK sejak Maret 2020 agar kredit terdampak pandemi yang direstrukturisasi dapat berkualitas Lancar. Berakhir 31 Maret 2024.", "pojk11-2020"],
+
+  /* --- Prudensial & OJK --- */
+  ["Prinsip kehati-hatian", "prudensial", "Kewajiban bank mengelola usahanya secara hati-hati untuk melindungi dana masyarakat.", "uu-perbankan"],
+  ["BMPK", "prudensial", "Batas Maksimum Pemberian Kredit: pihak terkait 10%, satu peminjam tidak terkait 20%, satu kelompok 25% dari modal inti.", "pojk32-2018 uu-perbankan"],
+  ["Pihak terkait", "prudensial", "Pihak yang memiliki hubungan kepemilikan, kepengurusan, atau keuangan dengan bank, misalnya pemegang saham pengendali, direksi, dan komisaris.", "pojk32-2018"],
+  ["Penyediaan dana besar (large exposure)", "prudensial", "Penyediaan dana kepada satu peminjam atau kelompok dalam jumlah besar dibanding modal bank; wajib dipantau dan dilaporkan.", "pojk32-2018"],
+  ["Kebijakan Perkreditan Bank (KPB)", "prudensial", "Pedoman tertulis perkreditan yang wajib dimiliki setiap bank dan disetujui dewan komisaris.", "pojk42-2017"],
+  ["KPMM / CAR", "prudensial", "Kewajiban Penyediaan Modal Minimum atau Capital Adequacy Ratio: rasio modal terhadap Aset Tertimbang Menurut Risiko. Minimal 8–14% sesuai profil risiko.", "pojk11-2016"],
+  ["ATMR", "prudensial", "Aset Tertimbang Menurut Risiko: aset bank yang dibobot sesuai risiko kredit, pasar, dan operasional.", "pojk11-2016"],
+  ["Modal inti (Tier 1)", "prudensial", "Modal utama bank: modal disetor, laba ditahan, dan cadangan (CET1) ditambah instrumen modal inti tambahan (AT1).", "pojk11-2016"],
+  ["Modal pelengkap (Tier 2)", "prudensial", "Modal tambahan seperti pinjaman subordinasi dan cadangan umum tertentu.", "pojk11-2016"],
+  ["CET1", "prudensial", "Common Equity Tier 1, komponen modal paling berkualitas: saham biasa dan laba ditahan.", "pojk11-2016"],
+  ["Capital conservation buffer", "prudensial", "Tambahan modal 2,5% dari ATMR yang dijaga bank untuk menyerap kerugian saat krisis.", "pojk11-2016"],
+  ["Capital surcharge D-SIB", "prudensial", "Tambahan modal 1–2,5% bagi bank berdampak sistemik domestik.", "pojk11-2016"],
+  ["Bank sistemik", "prudensial", "Bank yang kegagalannya dapat mengganggu sistem keuangan; ditetapkan OJK berkoordinasi dengan BI.", "uu-ppksk pojk5-2024"],
+  ["KBMI", "prudensial", "Kelompok Bank berdasarkan Modal Inti (1–4), menggantikan BUKU.", "pojk12-2021"],
+  ["Tingkat kesehatan bank (RGEC)", "prudensial", "Penilaian kesehatan bank dari Risk profile, Good Corporate Governance, Earnings, dan Capital, menghasilkan peringkat komposit 1–5.", "pojk4-2016"],
+  ["Profil risiko", "prudensial", "Gambaran risiko inheren dan kualitas penerapan manajemen risiko bank untuk delapan jenis risiko.", "pojk18-2016 pojk4-2016"],
+  ["Good Corporate Governance (GCG)", "prudensial", "Tata kelola yang baik: keterbukaan, akuntabilitas, pertanggungjawaban, independensi, dan kewajaran.", "pojk17-2023"],
+  ["Manajemen risiko", "prudensial", "Proses mengidentifikasi, mengukur, memantau, dan mengendalikan risiko bank.", "pojk18-2016"],
+  ["Risiko kredit", "prudensial", "Risiko kerugian karena debitur atau pihak lain gagal memenuhi kewajibannya.", "pojk18-2016"],
+  ["Risiko konsentrasi kredit", "prudensial", "Risiko karena kredit terpusat pada satu debitur, kelompok, sektor, atau wilayah.", "pojk18-2016 pojk32-2018"],
+  ["Risiko likuiditas", "prudensial", "Risiko bank tidak mampu memenuhi kewajiban jatuh tempo dari sumber dana yang tersedia.", "pojk18-2016"],
+  ["Risiko operasional", "prudensial", "Risiko kerugian karena proses internal, manusia, sistem, atau kejadian eksternal yang gagal.", "pojk18-2016"],
+  ["LCR", "prudensial", "Liquidity Coverage Ratio: aset likuid berkualitas tinggi dibanding arus kas keluar bersih 30 hari. Minimal 100%.", "pojk42-2015"],
+  ["NSFR", "prudensial", "Net Stable Funding Ratio: pendanaan stabil tersedia dibanding pendanaan stabil yang diperlukan. Minimal 100%.", "pojk50-2017"],
+  ["Stress test", "prudensial", "Simulasi dampak skenario buruk (misalnya kenaikan NPL atau bunga) terhadap modal dan likuiditas bank.", "pojk18-2016"],
+  ["Rencana pemulihan (recovery plan)", "prudensial", "Rencana bank untuk memulihkan kondisi keuangan saat mengalami tekanan, disusun sebelum masalah terjadi.", "pojk5-2024"],
+  ["Status pengawasan bank", "prudensial", "Status yang ditetapkan OJK (normal, intensif, khusus) sesuai kondisi bank, beserta tindakan yang wajib dilakukan.", "pojk5-2024"],
+  ["Bank perantara (bridge bank)", "prudensial", "Bank yang didirikan LPS untuk menerima pengalihan aset dan kewajiban bank gagal.", "pojk5-2024 uu-lps"],
+  ["Penilaian kemampuan dan kepatutan", "prudensial", "Fit and proper test OJK atas calon pemegang saham pengendali, direksi, dan komisaris bank.", "pojk17-2023"],
+  ["SLIK", "prudensial", "Sistem Layanan Informasi Keuangan OJK yang menampung data kredit dari bank, multifinance, pinjaman daring, dan pelapor lain.", "pojk18-2017"],
+  ["Rahasia bank", "prudensial", "Kewajiban bank merahasiakan keterangan nasabah penyimpan dan simpanannya, kecuali untuk kepentingan yang diatur undang-undang.", "uu-perbankan"],
+  ["Laporan publikasi", "prudensial", "Laporan keuangan dan rasio bank yang wajib diumumkan kepada masyarakat secara berkala.", "pojk18-2025"],
+  ["APU PPT", "prudensial", "Anti Pencucian Uang dan Pencegahan Pendanaan Terorisme: program wajib bank untuk mengenali nasabah dan memantau transaksi.", "pojk8-2023 uu-tppu"],
+  ["KYC (Know Your Customer)", "prudensial", "Prinsip mengenali nasabah: identitas, profil, sumber dana, dan tujuan hubungan usaha.", "pojk8-2023"],
+  ["CDD", "prudensial", "Customer Due Diligence: identifikasi, verifikasi, dan pemantauan nasabah.", "pojk8-2023"],
+  ["EDD", "prudensial", "Enhanced Due Diligence: CDD yang lebih mendalam untuk nasabah berisiko tinggi, misalnya politically exposed person (PEP).", "pojk8-2023"],
+  ["Beneficial owner", "prudensial", "Pemilik manfaat: orang yang sebenarnya mengendalikan atau menikmati hasil dari suatu nasabah korporasi.", "pojk8-2023"],
+  ["LTKM", "prudensial", "Laporan Transaksi Keuangan Mencurigakan yang wajib disampaikan bank ke PPATK.", "uu-tppu"],
+  ["LTKT", "prudensial", "Laporan Transaksi Keuangan Tunai senilai minimal Rp500 juta yang wajib dilaporkan ke PPATK.", "uu-tppu"],
+  ["Keuangan berkelanjutan", "prudensial", "Dukungan sektor keuangan pada pertumbuhan yang memperhatikan aspek ekonomi, sosial, dan lingkungan.", "pojk51-2017"],
+  ["RAKB", "prudensial", "Rencana Aksi Keuangan Berkelanjutan yang wajib disusun lembaga jasa keuangan.", "pojk51-2017"],
+  ["TKBI", "prudensial", "Taksonomi untuk Keuangan Berkelanjutan Indonesia: klasifikasi kegiatan ekonomi berdasarkan dampak lingkungannya.", "pojk51-2017"],
+  ["Produk bank", "prudensial", "Produk dan layanan bank yang dikelompokkan menjadi produk dasar dan produk lanjutan; penerbitannya wajib memenuhi manajemen risiko.", "pojk13-2021"],
+  ["Pelaporan bank", "prudensial", "Kewajiban bank menyampaikan laporan berkala ke OJK melalui sistem pelaporan OJK, diatur dalam POJK 22/2025.", ""],
+
+  /* --- BI --- */
+  ["BI-Rate", "bi", "Suku bunga kebijakan Bank Indonesia yang menjadi acuan arah suku bunga pasar, ditetapkan dalam RDG bulanan.", "pbi-birate"],
+  ["BI 7-Day Reverse Repo Rate", "bi", "Nama suku bunga kebijakan BI periode Agustus 2016 hingga Desember 2023, kini kembali disebut BI-Rate.", "pbi-birate"],
+  ["Deposit Facility", "bi", "Suku bunga fasilitas penempatan dana bank di BI; batas bawah koridor suku bunga.", "pbi-birate"],
+  ["Lending Facility", "bi", "Suku bunga fasilitas pinjaman BI kepada bank; batas atas koridor suku bunga.", "pbi-birate"],
+  ["RDG", "bi", "Rapat Dewan Gubernur BI yang menetapkan kebijakan moneter, termasuk BI-Rate.", "pbi-birate"],
+  ["Operasi moneter", "bi", "Kegiatan BI di pasar uang untuk mengendalikan likuiditas dan suku bunga, misalnya lewat repo, reverse repo, dan SRBI.", "pbi-birate"],
+  ["SRBI", "bi", "Sekuritas Rupiah Bank Indonesia, instrumen operasi moneter yang diterbitkan BI sejak September 2023 dan dapat diperdagangkan.", ""],
+  ["Transmisi kebijakan moneter", "bi", "Proses perubahan BI-Rate memengaruhi suku bunga simpanan dan kredit, lalu konsumsi, investasi, dan inflasi.", ""],
+  ["Giro Wajib Minimum (GWM)", "bi", "Dana minimum yang wajib ditempatkan bank di rekening giro BI, dihitung dari persentase DPK.", "pbi-gwm"],
+  ["Kebijakan makroprudensial", "bi", "Kebijakan BI untuk mencegah risiko sistemik dan menjaga stabilitas sistem keuangan secara keseluruhan.", "uu-bi"],
+  ["RIM", "bi", "Rasio Intermediasi Makroprudensial: kredit plus surat berharga korporasi terhadap DPK plus surat berharga bank. Target 84–94%.", "pbi-rim"],
+  ["PLM", "bi", "Penyangga Likuiditas Makroprudensial: cadangan likuiditas wajib berupa surat berharga rupiah.", "pbi-rim"],
+  ["RPIM", "bi", "Rasio Pembiayaan Inklusif Makroprudensial: kewajiban kredit inklusif (UMKM dan perorangan berpenghasilan rendah) minimal 30% dari total kredit.", "pbi-rpim"],
+  ["KLM", "bi", "Kebijakan Insentif Likuiditas Makroprudensial: pengurangan GWM bagi bank yang menyalurkan kredit ke sektor prioritas, maksimal 5% DPK.", "pbi-klm"],
+  ["Countercyclical buffer (CCyB)", "bi", "Tambahan modal 0–2,5% dari ATMR yang dibentuk saat kredit tumbuh berlebihan dan dilepas saat krisis.", "pbi-ccyb"],
+  ["FTV (Financing to Value)", "bi", "Padanan LTV untuk pembiayaan properti syariah.", "pbi-ltv"],
+  ["PLJP", "bi", "Pinjaman Likuiditas Jangka Pendek: pinjaman BI kepada bank yang mengalami kesulitan likuiditas sementara tetapi masih solven.", "uu-bi"],
+  ["Lender of last resort", "bi", "Fungsi bank sentral sebagai pemberi pinjaman terakhir bagi bank yang kesulitan likuiditas.", "uu-bi"],
+  ["PUAB", "bi", "Pasar Uang Antarbank: tempat bank saling meminjam dana jangka pendek.", ""],
+  ["Repo", "bi", "Repurchase agreement: penjualan surat berharga dengan janji membeli kembali; secara ekonomi merupakan pinjaman beragunan.", ""],
+  ["BI-FAST", "bi", "Infrastruktur transfer dana ritel real time 24/7 milik BI dengan biaya rendah.", "pbi-sp"],
+  ["BI-RTGS", "bi", "Sistem transfer dana bernilai besar secara real time yang diselesaikan per transaksi.", "pbi-sp"],
+  ["SKNBI", "bi", "Sistem Kliring Nasional BI untuk transfer dana dan kliring warkat bernilai kecil.", "pbi-sp"],
+  ["QRIS", "bi", "Quick Response Code Indonesian Standard: standar kode QR nasional untuk pembayaran.", "pbi-sp"],
+  ["GPN", "bi", "Gerbang Pembayaran Nasional: sistem yang menghubungkan kartu debit dan kanal pembayaran agar transaksi domestik diproses di dalam negeri.", "pbi-sp"],
+  ["APMK", "bi", "Alat Pembayaran Menggunakan Kartu: kartu ATM, kartu debit, dan kartu kredit.", "pbi-kk"],
+  ["PJP", "bi", "Penyedia Jasa Pembayaran, misalnya penerbit uang elektronik dan penyelenggara transfer dana.", "pbi-sp"],
+  ["Uang elektronik", "bi", "Alat pembayaran yang nilainya disimpan secara elektronik dalam server atau chip, misalnya dompet digital.", "pbi-sp"],
+  ["PBI", "bi", "Peraturan Bank Indonesia, aturan yang ditetapkan BI dan mengikat publik.", "uu-bi"],
+  ["PADG", "bi", "Peraturan Anggota Dewan Gubernur, aturan pelaksana PBI.", "uu-bi"],
+
+  /* --- Lembaga --- */
+  ["Bank", "lembaga", "Badan usaha yang menghimpun dana masyarakat dalam bentuk simpanan dan menyalurkannya dalam bentuk kredit atau bentuk lain.", "uu-perbankan"],
+  ["Bank umum", "lembaga", "Bank yang memberi jasa lalu lintas pembayaran, baik konvensional maupun syariah.", "uu-perbankan pojk12-2021"],
+  ["BPR (Bank Perekonomian Rakyat)", "lembaga", "Bank yang tidak memberi jasa lalu lintas pembayaran secara langsung; fokus pada simpanan dan kredit skala kecil. Dulu bernama Bank Perkreditan Rakyat.", "uu-p2sk pojk7-2024"],
+  ["Bank Umum Syariah (BUS)", "lembaga", "Bank umum yang seluruh kegiatannya berdasarkan prinsip syariah.", "uu-syariah"],
+  ["Unit Usaha Syariah (UUS)", "lembaga", "Unit kerja bank umum konvensional yang menjalankan kegiatan berdasarkan prinsip syariah.", "uu-syariah"],
+  ["BPR Syariah (BPRS)", "lembaga", "BPR yang beroperasi berdasarkan prinsip syariah.", "uu-syariah pojk7-2024"],
+  ["Bank digital", "lembaga", "Bank yang menyediakan dan menjalankan kegiatan usaha terutama melalui saluran elektronik tanpa kantor fisik selain kantor pusat, atau dengan kantor fisik terbatas.", "pojk12-2021"],
+  ["Himbara", "lembaga", "Himpunan Bank Milik Negara: bank-bank BUMN.", ""],
+  ["BPD", "lembaga", "Bank Pembangunan Daerah, bank umum milik pemerintah daerah.", ""],
+  ["OJK", "lembaga", "Otoritas Jasa Keuangan: lembaga independen yang mengatur dan mengawasi seluruh sektor jasa keuangan, termasuk bank.", "uu-ojk"],
+  ["Bank Indonesia (BI)", "lembaga", "Bank sentral Republik Indonesia: kebijakan moneter, makroprudensial, dan sistem pembayaran.", "uu-bi"],
+  ["LPS", "lembaga", "Lembaga Penjamin Simpanan: menjamin simpanan nasabah dan melakukan resolusi bank.", "uu-lps lps-penjaminan"],
+  ["KSSK", "lembaga", "Komite Stabilitas Sistem Keuangan: Menkeu, Gubernur BI, Ketua DK OJK, Ketua DK LPS.", "uu-ppksk"],
+  ["PPATK", "lembaga", "Pusat Pelaporan dan Analisis Transaksi Keuangan, penerima laporan transaksi mencurigakan dan tunai.", "uu-tppu"],
+  ["KPKNL", "lembaga", "Kantor Pelayanan Kekayaan Negara dan Lelang (DJKN Kemenkeu), penyelenggara lelang termasuk lelang eksekusi Hak Tanggungan.", "uu-ht"],
+  ["LKNB", "lembaga", "Lembaga Keuangan Nonbank: perusahaan pembiayaan, asuransi, dana pensiun, pegadaian, pinjaman daring, dan lainnya.", ""],
+  ["Perusahaan pembiayaan (multifinance)", "lembaga", "Lembaga yang membiayai pengadaan barang atau jasa: pembiayaan investasi, modal kerja, multiguna, sewa guna usaha, dan anjak piutang.", "pojk46-2024"],
+  ["Pegadaian", "lembaga", "Lembaga pembiayaan berbasis gadai, sebagian besar atas emas.", ""],
+  ["Perusahaan penjaminan", "lembaga", "Lembaga yang menjamin pemenuhan kewajiban debitur kepada kreditur, misalnya penjaminan KUR oleh Askrindo dan Jamkrindo.", "kur pojk18-2017"],
+  ["LPEI", "lembaga", "Lembaga Pembiayaan Ekspor Indonesia (Indonesia Eximbank), pembiayaan khusus kegiatan ekspor.", ""],
+  ["Koperasi simpan pinjam (KSP)", "lembaga", "Koperasi yang menghimpun dan menyalurkan dana anggota. KSP yang melayani nonanggota (open loop) diawasi OJK sesuai UU P2SK.", "uu-p2sk"],
+  ["Lembaga Keuangan Mikro (LKM)", "lembaga", "Lembaga keuangan yang memberi pinjaman dan menerima simpanan skala mikro.", ""],
+  ["LAPS SJK", "lembaga", "Lembaga Alternatif Penyelesaian Sengketa Sektor Jasa Keuangan, untuk sengketa konsumen di luar pengadilan.", "pojk22-2023"],
+  ["Satgas PASTI", "lembaga", "Satuan Tugas Pemberantasan Aktivitas Keuangan Ilegal, termasuk pinjaman daring dan investasi ilegal; dahulu Satgas Waspada Investasi.", "uu-p2sk"],
+
+  /* --- Syariah --- */
+  ["Pembiayaan", "syariah", "Penyediaan dana atau tagihan berdasarkan akad syariah yang wajib dikembalikan dengan imbalan berupa margin, bagi hasil, atau ujrah.", "uu-perbankan uu-syariah"],
+  ["Akad", "syariah", "Kesepakatan tertulis antara bank syariah dan nasabah yang memuat hak dan kewajiban sesuai prinsip syariah.", "uu-syariah"],
+  ["Murabahah", "syariah", "Jual-beli barang dengan harga pokok ditambah margin yang disepakati; dibayar mencicil.", "uu-syariah"],
+  ["Mudharabah", "syariah", "Kerja sama usaha: bank menyediakan seluruh modal, nasabah mengelola; keuntungan dibagi sesuai nisbah.", "uu-syariah"],
+  ["Musyarakah", "syariah", "Kerja sama usaha dengan modal dari kedua pihak; untung dibagi sesuai nisbah, rugi sesuai porsi modal.", "uu-syariah"],
+  ["Musyarakah mutanaqisah (MMQ)", "syariah", "Musyarakah yang porsi bank berkurang bertahap karena dibeli nasabah. Banyak dipakai untuk pembiayaan rumah.", "uu-syariah"],
+  ["Ijarah", "syariah", "Sewa-menyewa barang atau jasa dengan imbalan ujrah.", "uu-syariah"],
+  ["IMBT", "syariah", "Ijarah Muntahiyah Bittamlik: sewa yang diakhiri perpindahan kepemilikan barang kepada penyewa.", "uu-syariah"],
+  ["Istishna", "syariah", "Jual-beli barang pesanan yang dibuat sesuai spesifikasi, pembayaran dapat bertahap.", "uu-syariah"],
+  ["Salam", "syariah", "Jual-beli barang yang diserahkan kemudian dengan pembayaran di muka; lazim di pertanian.", "uu-syariah"],
+  ["Qardh", "syariah", "Pinjaman kebajikan tanpa imbalan; peminjam hanya wajib mengembalikan pokok.", "uu-syariah"],
+  ["Rahn", "syariah", "Gadai syariah: barang dijadikan jaminan atas utang.", "uu-syariah"],
+  ["Kafalah", "syariah", "Penjaminan oleh pihak ketiga, padanan bank garansi syariah.", "uu-syariah"],
+  ["Wakalah", "syariah", "Pelimpahan kuasa dari satu pihak kepada pihak lain, misalnya bank mewakilkan pembelian barang murabahah kepada nasabah.", "uu-syariah"],
+  ["Hawalah", "syariah", "Pengalihan utang dari satu pihak kepada pihak lain.", "uu-syariah"],
+  ["Ujrah", "syariah", "Imbalan atau upah atas jasa atau sewa.", "uu-syariah"],
+  ["Nisbah", "syariah", "Rasio pembagian keuntungan antara bank dan nasabah dalam mudharabah atau musyarakah.", "uu-syariah"],
+  ["Margin", "syariah", "Keuntungan bank dalam akad jual-beli seperti murabahah, disepakati di awal dan tidak berubah.", "uu-syariah"],
+  ["Ta'widh", "syariah", "Ganti rugi atas kerugian riil akibat keterlambatan pembayaran yang disengaja.", ""],
+  ["Ta'zir", "syariah", "Denda atas nasabah mampu yang menunda pembayaran; dananya disalurkan untuk dana sosial, bukan pendapatan bank.", ""],
+  ["Riba", "syariah", "Tambahan yang disyaratkan dalam pinjam-meminjam; dilarang dalam prinsip syariah.", ""],
+  ["Gharar", "syariah", "Ketidakjelasan objek atau syarat akad; harus dihindari.", ""],
+  ["Maysir", "syariah", "Unsur spekulasi atau untung-untungan; dilarang dalam akad syariah.", ""],
+  ["DSN-MUI", "syariah", "Dewan Syariah Nasional Majelis Ulama Indonesia, penerbit fatwa produk keuangan syariah.", "uu-syariah"],
+  ["Dewan Pengawas Syariah (DPS)", "syariah", "Dewan di tiap bank syariah yang mengawasi kepatuhan produk dan operasional terhadap prinsip syariah.", "uu-syariah"],
+  ["NPF", "syariah", "Non Performing Financing: rasio pembiayaan bermasalah di bank syariah.", "pojk16-2014"],
+  ["FDR", "syariah", "Financing to Deposit Ratio: padanan LDR di bank syariah.", ""],
+
+  /* --- Konsumen & fintech --- */
+  ["PUJK", "konsumen", "Pelaku Usaha Jasa Keuangan: bank, perusahaan pembiayaan, asuransi, pinjaman daring, dan lainnya yang diawasi OJK.", "pojk22-2023"],
+  ["Pelindungan konsumen", "konsumen", "Upaya memastikan konsumen mendapat informasi jelas, perlakuan adil, keamanan data, dan penanganan pengaduan.", "pojk22-2023 pbi-pk uu-pk"],
+  ["RIPLAY", "konsumen", "Ringkasan Informasi Produk dan Layanan yang wajib diberikan PUJK sebelum konsumen membeli produk.", "pojk22-2023"],
+  ["Klausula baku", "konsumen", "Syarat perjanjian yang disiapkan sepihak oleh pelaku usaha. Klausul yang merugikan konsumen dilarang.", "uu-pk pojk22-2023"],
+  ["Pengaduan konsumen", "konsumen", "Keluhan konsumen yang wajib ditangani PUJK terlebih dahulu; bila tidak selesai, dapat dibawa ke OJK atau LAPS SJK.", "pojk22-2023"],
+  ["Kontak OJK 157", "konsumen", "Layanan informasi dan pengaduan konsumen OJK lewat telepon 157 dan kanal daring.", "pojk22-2023"],
+  ["APPK", "konsumen", "Aplikasi Portal Pelindungan Konsumen OJK untuk menyampaikan pengaduan secara daring.", "pojk22-2023"],
+  ["Etika penagihan", "konsumen", "Aturan penagihan: Senin–Sabtu pukul 08.00–20.00 waktu setempat, tanpa ancaman, kekerasan, atau mempermalukan, dan hanya kepada debitur.", "pojk22-2023"],
+  ["Kontak darurat", "konsumen", "Orang yang dicantumkan debitur untuk keadaan darurat. Tidak boleh ditagih atas utang debitur.", "pojk22-2023"],
+  ["Data pribadi", "konsumen", "Informasi yang mengidentifikasi seseorang. Pemrosesan dan penyebarannya diatur UU PDP.", "uu-pdp"],
+  ["LPBBTI (pinjaman daring)", "konsumen", "Layanan Pendanaan Bersama Berbasis Teknologi Informasi, sebutan resmi fintech lending atau pinjol berizin OJK.", "pojk40-2024 seojk19-2023"],
+  ["Pemberi dana (lender)", "konsumen", "Pihak yang menyalurkan dana melalui platform pinjaman daring.", "pojk40-2024"],
+  ["Penerima dana (borrower)", "konsumen", "Pihak yang menerima pinjaman melalui platform pinjaman daring.", "pojk40-2024"],
+  ["TWP90", "konsumen", "Tingkat Wanprestasi 90 hari: ukuran kredit macet pada pinjaman daring, yaitu pinjaman yang menunggak lebih dari 90 hari.", "pojk40-2024"],
+  ["Pinjol ilegal", "konsumen", "Pinjaman daring tanpa izin OJK. Cek legalitas di daftar resmi OJK dan laporkan ke Satgas PASTI.", "pojk40-2024"],
+  ["Literasi keuangan", "konsumen", "Pengetahuan, keterampilan, dan keyakinan yang memengaruhi sikap dan perilaku dalam mengelola keuangan.", "pojk22-2023"],
+  ["Inklusi keuangan", "konsumen", "Ketersediaan akses masyarakat ke produk dan layanan keuangan formal.", "pojk22-2023 pbi-rpim"],
+  ["Penjaminan simpanan", "konsumen", "Jaminan LPS atas simpanan nasabah hingga Rp2 miliar per nasabah per bank, dengan syarat 3T.", "lps-penjaminan"],
+  ["Tingkat bunga penjaminan (TBP)", "konsumen", "Bunga simpanan maksimum yang masih dijamin LPS. Simpanan berbunga di atas TBP tidak dijamin.", "lps-penjaminan"],
+
+  /* --- Akuntansi, rasio & risiko --- */
+  ["DPK (Dana Pihak Ketiga)", "akuntansi", "Dana yang dihimpun bank dari masyarakat: giro, tabungan, dan deposito.", ""],
+  ["CASA", "akuntansi", "Current Account Saving Account: giro dan tabungan, dana murah bank.", ""],
+  ["LDR", "akuntansi", "Loan to Deposit Ratio: total kredit dibagi DPK, ukuran fungsi intermediasi dan likuiditas bank.", "pbi-rim"],
+  ["NIM", "akuntansi", "Net Interest Margin: pendapatan bunga bersih dibagi rata-rata aset produktif.", "pojk18-2025"],
+  ["NII", "akuntansi", "Net Interest Income: pendapatan bunga dikurangi beban bunga.", ""],
+  ["BOPO", "akuntansi", "Rasio Biaya Operasional terhadap Pendapatan Operasional. Makin rendah, makin efisien.", "pojk18-2025"],
+  ["ROA", "akuntansi", "Return on Assets: laba sebelum pajak dibagi rata-rata total aset.", "pojk18-2025"],
+  ["ROE", "akuntansi", "Return on Equity: laba setelah pajak dibagi rata-rata modal.", "pojk18-2025"],
+  ["Aset produktif", "akuntansi", "Aset yang menghasilkan pendapatan, terutama kredit, surat berharga, dan penempatan antarbank.", "pojk40-2019"],
+  ["Cost of credit (CoC)", "akuntansi", "Beban pencadangan kredit dibagi rata-rata kredit; menunjukkan biaya risiko kredit.", ""],
+  ["CKPN", "akuntansi", "Cadangan Kerugian Penurunan Nilai menurut standar akuntansi (PSAK 109), berdasarkan kerugian kredit ekspektasian.", "pojk40-2019"],
+  ["PSAK 109", "akuntansi", "Standar akuntansi instrumen keuangan (dahulu PSAK 71, padanan IFRS 9) yang mewajibkan pencadangan berbasis expected credit loss.", ""],
+  ["Expected Credit Loss (ECL)", "akuntansi", "Kerugian kredit ekspektasian: probabilitas gagal bayar dikali kerugian saat gagal bayar dikali eksposur.", ""],
+  ["Stage 1, 2, 3", "akuntansi", "Tahap ECL: Stage 1 kredit normal (ECL 12 bulan), Stage 2 risiko meningkat signifikan (ECL sepanjang umur), Stage 3 kredit gagal (impaired).", ""],
+  ["SICR", "akuntansi", "Significant Increase in Credit Risk: peningkatan risiko kredit signifikan yang memindahkan kredit ke Stage 2.", ""],
+  ["PD", "akuntansi", "Probability of Default: kemungkinan debitur gagal bayar dalam periode tertentu.", ""],
+  ["LGD", "akuntansi", "Loss Given Default: persentase kerugian bila debitur gagal bayar setelah memperhitungkan agunan.", ""],
+  ["EAD", "akuntansi", "Exposure at Default: nilai eksposur saat debitur gagal bayar.", ""],
+  ["Pinjaman subordinasi", "akuntansi", "Pinjaman yang dalam pelunasan berada di bawah kreditur lain; dapat dihitung sebagai modal pelengkap bank.", "pojk11-2016"],
+  ["Interest coverage ratio (ICR)", "akuntansi", "EBIT dibagi beban bunga; mengukur kemampuan usaha membayar bunga.", ""],
+  ["DSCR", "akuntansi", "Debt Service Coverage Ratio: arus kas operasional dibagi total kewajiban pokok dan bunga. Di bawah 1 berarti kas tidak cukup.", ""],
+  ["DER", "akuntansi", "Debt to Equity Ratio: total utang dibagi modal sendiri.", ""],
+  ["Current ratio", "akuntansi", "Aset lancar dibagi kewajiban lancar; mengukur likuiditas usaha debitur.", ""],
+  ["EBITDA", "akuntansi", "Laba sebelum bunga, pajak, depresiasi, dan amortisasi; proksi arus kas operasional.", ""],
+  ["Laporan arus kas", "akuntansi", "Laporan aliran kas masuk dan keluar dari kegiatan operasi, investasi, dan pendanaan. Inti analisis kemampuan bayar.", ""]
+];
+</script>
 <script>
 (function () {
   var rp = new Intl.NumberFormat("id-ID", { maximumFractionDigits: 0 });
@@ -916,19 +1782,6 @@ footer p { max-width: 72rem; margin: 0 auto; }
   document.getElementById("dpd").addEventListener("input", renderKol);
   renderKol();
 
-  /* ---------- Glosarium ---------- */
-  var gq = document.getElementById("gloss-q");
-  gq.addEventListener("input", function () {
-    var q = gq.value.trim().toLowerCase();
-    var shown = 0;
-    document.querySelectorAll("#gloss > div").forEach(function (el) {
-      var hit = !q || el.textContent.toLowerCase().indexOf(q) !== -1;
-      el.hidden = !hit;
-      if (hit) shown++;
-    });
-    document.getElementById("gloss-empty").hidden = shown > 0;
-  });
-
   /* ---------- Kuis ---------- */
   var questions = [
     { q: "Definisi kredit dalam hukum perbankan Indonesia tercantum di…",
@@ -996,6 +1849,228 @@ footer p { max-width: 72rem; margin: 0 auto; }
       "Skor " + score + "/" + questions.length + (answered < questions.length ? " · " + (questions.length - answered) + " soal belum dijawab" : "");
   });
   document.getElementById("quiz-reset").addEventListener("click", buildQuiz);
+
+  /* ---------- Util ---------- */
+  function esc(t) {
+    return String(t).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function hl(text, q) {
+    var safe = esc(text);
+    if (!q) return safe;
+    var re = new RegExp("(" + esc(q).replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
+    return safe.replace(re, "<mark>$1</mark>");
+  }
+  var regById = {};
+  REGS.forEach(function (r) { regById[r.id] = r; });
+  var terms = TERMS.map(function (t) {
+    return { t: t[0], c: t[1], d: t[2], r: t[3] ? t[3].split(" ") : [] };
+  }).sort(function (a, b) { return a.t.localeCompare(b.t, "id", { sensitivity: "base" }); });
+  terms.forEach(function (x) {
+    var ch = x.t.charAt(0).toUpperCase();
+    x.letter = /[A-Z]/.test(ch) ? ch : "#";
+    x.hay = (x.t + " " + x.d + " " + CATS[x.c]).toLowerCase();
+  });
+  function relatedCount(id) {
+    return terms.filter(function (x) { return x.r.indexOf(id) !== -1; }).length;
+  }
+
+  document.getElementById("stat-terms").textContent = terms.length;
+  document.getElementById("stat-regs").textContent = REGS.length;
+  document.getElementById("tab-terms").textContent = terms.length;
+  document.getElementById("tab-regs").textContent = REGS.length;
+
+  /* ---------- Glosarium ---------- */
+  var gState = { q: "", cat: "all", ref: null };
+  var gq = document.getElementById("g-q");
+
+  function gFiltered(ignoreCat) {
+    var q = gState.q.toLowerCase();
+    return terms.filter(function (x) {
+      if (!ignoreCat && gState.cat !== "all" && x.c !== gState.cat) return false;
+      if (gState.ref && x.r.indexOf(gState.ref) === -1) return false;
+      if (q && x.hay.indexOf(q) === -1) return false;
+      return true;
+    });
+  }
+
+  function renderCats() {
+    var base = gFiltered(true);
+    var counts = { all: base.length };
+    base.forEach(function (x) { counts[x.c] = (counts[x.c] || 0) + 1; });
+    var html = '<button type="button" class="chip" data-cat="all" aria-pressed="' + (gState.cat === "all") + '">Semua <span class="n">' + counts.all + "</span></button>";
+    Object.keys(CATS).forEach(function (k) {
+      html += '<button type="button" class="chip" data-cat="' + k + '" aria-pressed="' + (gState.cat === k) + '">' +
+        esc(CATS[k]) + ' <span class="n">' + (counts[k] || 0) + "</span></button>";
+    });
+    document.getElementById("g-cats").innerHTML = html;
+  }
+
+  function renderGloss() {
+    renderCats();
+    var list = gFiltered(false);
+    var q = gState.q;
+    var groups = {}, order = [];
+    list.forEach(function (x) {
+      if (!groups[x.letter]) { groups[x.letter] = []; order.push(x.letter); }
+      groups[x.letter].push(x);
+    });
+
+    var az = "";
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(function (L) {
+      az += groups[L] ? '<a href="#glosarium" data-letter="' + L + '">' + L + "</a>" : '<span aria-hidden="true">' + L + "</span>";
+    });
+    document.getElementById("g-az").innerHTML = az;
+
+    var info = "Menampilkan " + list.length + " dari " + terms.length + " istilah";
+    if (gState.ref && regById[gState.ref]) {
+      info += " · terkait " + esc(regById[gState.ref].no) + ' <button type="button" id="g-clear-ref">Hapus filter aturan</button>';
+    }
+    document.getElementById("g-info").innerHTML = info;
+
+    if (!list.length) {
+      document.getElementById("g-list").innerHTML = '<p class="empty">Tidak ada istilah yang cocok dengan “' + esc(q) + '”. Coba kata lain, singkatannya, atau pilih kategori “Semua”.</p>';
+      return;
+    }
+    var html = "";
+    order.forEach(function (L) {
+      html += '<section class="letter" id="huruf-' + L + '"><h3>' + L + '</h3><div class="entries">';
+      groups[L].forEach(function (x) {
+        html += '<article class="entry"><span class="cat">' + esc(CATS[x.c]) + "</span><h4>" + hl(x.t, q) + "</h4><p>" + hl(x.d, q) + "</p>";
+        if (x.r.length) {
+          html += '<div class="refs">';
+          x.r.forEach(function (id) {
+            var r = regById[id];
+            if (r) html += '<a href="#r-' + id + '" title="' + esc(r.j) + '">' + esc(r.no) + "</a>";
+          });
+          html += "</div>";
+        }
+        html += "</article>";
+      });
+      html += "</div></section>";
+    });
+    document.getElementById("g-list").innerHTML = html;
+  }
+
+  gq.addEventListener("input", function () { gState.q = gq.value.trim(); renderGloss(); });
+  document.getElementById("g-cats").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-cat]");
+    if (!b) return;
+    gState.cat = b.getAttribute("data-cat");
+    renderGloss();
+  });
+  document.getElementById("g-az").addEventListener("click", function (e) {
+    var a = e.target.closest("[data-letter]");
+    if (!a) return;
+    e.preventDefault();
+    var sec = document.getElementById("huruf-" + a.getAttribute("data-letter"));
+    if (sec) sec.scrollIntoView();
+  });
+  document.getElementById("g-info").addEventListener("click", function (e) {
+    if (e.target.id === "g-clear-ref") { gState.ref = null; renderGloss(); }
+  });
+  renderGloss();
+
+  /* ---------- Regulasi ---------- */
+  var rState = { q: "", g: "all" };
+  var rq = document.getElementById("r-q");
+
+  function renderRegs() {
+    var q = rState.q.toLowerCase();
+    var base = REGS.filter(function (r) {
+      return !q || (r.no + " " + r.j + " " + r.p.join(" ") + " " + r.s).toLowerCase().indexOf(q) !== -1;
+    });
+    var counts = { all: base.length };
+    base.forEach(function (r) { counts[r.g] = (counts[r.g] || 0) + 1; });
+    var chips = '<button type="button" class="chip" data-g="all" aria-pressed="' + (rState.g === "all") + '">Semua <span class="n">' + counts.all + "</span></button>";
+    Object.keys(GROUPS).forEach(function (k) {
+      chips += '<button type="button" class="chip" data-g="' + k + '" aria-pressed="' + (rState.g === k) + '">' + esc(GROUPS[k]) + ' <span class="n">' + (counts[k] || 0) + "</span></button>";
+    });
+    document.getElementById("r-groups").innerHTML = chips;
+
+    var list = base.filter(function (r) { return rState.g === "all" || r.g === rState.g; });
+    document.getElementById("r-info").textContent = "Menampilkan " + list.length + " dari " + REGS.length + " aturan";
+    if (!list.length) {
+      document.getElementById("r-list").innerHTML = '<p class="empty">Tidak ada aturan yang cocok. Coba nomor saja (misalnya “40/2019”) atau topik seperti “agunan”.</p>';
+      return;
+    }
+    var label = { uu: "UU / Pemerintah", ojk: "OJK", bi: "Bank Indonesia", lps: "LPS" };
+    var html = "";
+    list.forEach(function (r) {
+      var n = relatedCount(r.id);
+      html += '<article class="reg" id="r-' + r.id + '"><div class="reg-id"><span class="badge ' + r.g + '">' + label[r.g] + '</span><span class="no">' + hl(r.no, rState.q) + "</span></div>" +
+        '<div class="reg-body"><h3>' + hl(r.j, rState.q) + "</h3><ul>";
+      r.p.forEach(function (pt) { html += "<li>" + hl(pt, rState.q) + "</li>"; });
+      html += "</ul>";
+      if (r.s) html += '<p class="status">' + hl(r.s, rState.q) + "</p>";
+      if (n) html += '<p class="rel"><button type="button" data-rel="' + r.id + '">Lihat ' + n + " istilah terkait di glosarium</button></p>";
+      html += "</div></article>";
+    });
+    document.getElementById("r-list").innerHTML = html;
+  }
+
+  rq.addEventListener("input", function () { rState.q = rq.value.trim(); renderRegs(); });
+  document.getElementById("r-groups").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-g]");
+    if (!b) return;
+    rState.g = b.getAttribute("data-g");
+    renderRegs();
+  });
+  document.getElementById("r-list").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-rel]");
+    if (!b) return;
+    gState.ref = b.getAttribute("data-rel");
+    gState.cat = "all";
+    gState.q = "";
+    gq.value = "";
+    renderGloss();
+    if (location.hash === "#glosarium") route(); else location.hash = "glosarium";
+  });
+  renderRegs();
+
+  /* ---------- Navigasi antar-tab ---------- */
+  var views = ["glosarium", "regulasi", "materi"];
+  var tabs = document.querySelector(".tabs");
+  var current = null;
+  function show(v) {
+    views.forEach(function (name) {
+      document.getElementById("view-" + name).hidden = name !== v;
+    });
+    document.querySelectorAll(".tabs a").forEach(function (a) {
+      if (a.getAttribute("data-view") === v) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    var changed = current !== v;
+    current = v;
+    return changed;
+  }
+  function route() {
+    var h = decodeURIComponent(location.hash.slice(1));
+    var view = "glosarium", target = null;
+    if (h === "regulasi" || h.indexOf("r-") === 0) {
+      view = "regulasi";
+      if (h !== "regulasi") {
+        target = document.getElementById(h);
+        if (!target) { rState.q = ""; rState.g = "all"; rq.value = ""; renderRegs(); target = document.getElementById(h); }
+      }
+    } else if (h === "materi") {
+      view = "materi";
+    } else if (h && h !== "glosarium") {
+      var el = document.getElementById(h);
+      if (el && document.getElementById("view-materi").contains(el)) { view = "materi"; target = el; }
+    }
+    var changed = show(view);
+    if (target) {
+      target.scrollIntoView();
+      if (target.classList.contains("reg")) {
+        target.classList.add("flash");
+        setTimeout(function () { target.classList.remove("flash"); }, 1800);
+      }
+    } else if (changed && h && window.scrollY > tabs.offsetTop) {
+      window.scrollTo(0, tabs.offsetTop);
+    }
+  }
+  window.addEventListener("hashchange", route);
+  route();
 
   /* ---------- Penanda bab aktif ---------- */
   if ("IntersectionObserver" in window) {
