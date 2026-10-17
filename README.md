@@ -47,11 +47,11 @@ Repo ini sudah berisi `wrangler.jsonc` yang mengunggah folder `public/` sebagai 
 di Cloudflare Workers. Permintaan ke static assets gratis, juga di paket Free.
 
 Di dashboard Cloudflare (Workers & Pages → Create → Import a repository):
-- Project name: `super-duper-happiness` (harus sama dengan `name` di `wrangler.jsonc`)
+- Project name: `kredit` (harus sama dengan `name` di `wrangler.jsonc`)
 - Build command: kosongkan
 - Deploy command: `npx wrangler deploy`
 
-Situs akan tersedia di `super-duper-happiness.<subdomain-akun>.workers.dev`, dan setiap push
+Situs akan tersedia di `kredit.<subdomain-akun>.workers.dev`, dan setiap push
 ke branch production otomatis di-deploy ulang.
 
 Isi regulasi dicek per Oktober 2026. Aturan dapat berubah; untuk keperluan resmi
