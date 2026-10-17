@@ -5,829 +5,866 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Buku Saku Kredit</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Diktat kuliah kredit perbankan: glosarium, regulasi OJK & BI, materi, lembar kerja simulasi, dan latihan soal.">
+<meta name="description" content="Glosarium perbankan dan kredit, regulasi OJK, BI, dan LPS, materi kuliah, lembar kerja simulasi, dan latihan soal.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Kalam:wght@400&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: diktat fotokopian. Satu lembar kertas di atas meja, pembatas indeks di atasnya sebagai menu. Isi satu kolom, glosarium dua kolom seperti kamus. */
+/* Layout: sidebar pohon menu di kiri (laci di HP), satu kolom konten tenang di kanan. Netral hangat, satu oranye, Geist + Geist Mono. */
 :root {
-  --desk: #dfe1df;
-  --sheet: #ffffff;
-  --ink: #161616;
-  --muted: #595955;
-  --rule: #c9c9c4;
-  --shade: #efefeb;
-  --pen: #1f3f9c;
-  --red: #bd2a2a;
-  --stabilo: #fff04f;
-  --font-text: "Tinos", "Times New Roman", Times, serif;
-  --font-ui: "Arimo", Arial, Helvetica, sans-serif;
-  --font-hand: "Kalam", "Comic Sans MS", cursive;
-  --tabs-h: 2.9rem;
+  --bg: #f6f4ef;
+  --card: #fffefb;
+  --ink: #0c0c0c;
+  --ink-2: #3a3a37;
+  --dim: #6e6e68;
+  --faint: #a3a39d;
+  --ring: #c9c7c0;
+  --rule: #e6e3dc;
+  --panel: #1c1b19;
+  --p-ink: #ffffff;
+  --p-dim: #8d8b84;
+  --p-rule: #3a3833;
+  --btn-hover: #2a2a2a;
+  --or: #ff4d00;
+  --or-soft: #ff4d0024;
+  --shadow-card: 0 1px 2px rgba(40, 34, 24, 0.05), 0 14px 40px -18px rgba(40, 34, 24, 0.16);
+  --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --side-w: 276px;
+  --bar-h: 0px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --desk: #0d0d0c;
-    --sheet: #1a1a19;
-    --ink: #e8e6e0;
-    --muted: #a6a49d;
-    --rule: #3b3b38;
-    --shade: #252523;
-    --pen: #a8bbff;
-    --red: #ff8b80;
-    --stabilo: #6b5f10;
+    --bg: #151412;
+    --card: #1c1b19;
+    --ink: #f2f0ea;
+    --ink-2: #cfcdc5;
+    --dim: #9a988f;
+    --faint: #66645d;
+    --ring: #4a4842;
+    --rule: #2a2925;
+    --panel: #26241f;
+    --p-ink: #f2f0ea;
+    --p-dim: #9a988f;
+    --p-rule: #3d3b35;
+    --btn-hover: #dcd9d1;
+    --or-soft: #ff4d0030;
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 50px -20px rgba(0, 0, 0, 0.6);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --desk: #0d0d0c;
-  --sheet: #1a1a19;
-  --ink: #e8e6e0;
-  --muted: #a6a49d;
-  --rule: #3b3b38;
-  --shade: #252523;
-  --pen: #a8bbff;
-  --red: #ff8b80;
-  --stabilo: #6b5f10;
+  --bg: #151412;
+  --card: #1c1b19;
+  --ink: #f2f0ea;
+  --ink-2: #cfcdc5;
+  --dim: #9a988f;
+  --faint: #66645d;
+  --ring: #4a4842;
+  --rule: #2a2925;
+  --panel: #26241f;
+  --p-ink: #f2f0ea;
+  --p-dim: #9a988f;
+  --p-rule: #3d3b35;
+  --btn-hover: #dcd9d1;
+  --or-soft: #ff4d0030;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 18px 50px -20px rgba(0, 0, 0, 0.6);
   color-scheme: dark;
 }
 
-* { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html { scroll-padding-top: calc(var(--tabs-h) + 1.25rem); }
+html { scroll-padding-top: 24px; -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
-  background: var(--desk);
+  background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-text);
-  font-size: 1.0625rem;
-  line-height: 1.6;
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
 body::before {
   content: "";
   position: fixed;
   inset: 0 0 auto;
   height: env(safe-area-inset-top, 0px);
-  z-index: 10;
-  background: var(--desk);
+  z-index: 60;
+  background: var(--bg);
 }
-a { color: var(--pen); text-underline-offset: 2px; }
-:focus-visible { outline: 2px solid var(--pen); outline-offset: 2px; }
-p, ul, ol, dl, table, figure { margin: 0; }
-h1, h2, h3, h4 { margin: 0; line-height: 1.3; text-wrap: balance; }
-b, strong, th { font-weight: 700; }
+a { color: inherit; }
+p, ul, ol, h1, h2, h3, h4, table, figure, dl, dd { margin: 0; }
+h1, h2, h3, h4 { font-weight: 500; text-wrap: balance; }
+::selection { background: var(--or); color: #fff; }
+:focus-visible { outline: 2px solid var(--or); outline-offset: 3px; border-radius: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.mono { font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.02em; color: var(--dim); }
 .num { font-variant-numeric: tabular-nums; }
-
-/* Meja & lembar */
-.desk {
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
+.or { color: var(--or); }
+.sc {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim); font-weight: 500; line-height: 1;
 }
-.sheet {
-  max-width: 54rem;
-  margin: 0 auto;
-  background: var(--sheet);
-  border: 1px solid var(--rule);
-  padding-inline: clamp(1.1rem, 5vw, 4rem);
-}
+.sc::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--or); flex: none; }
+mark { background: var(--or-soft); color: inherit; border-radius: 3px; padding: 0 1px; }
+svg.i { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; flex: none; }
 
-/* Sampul */
-.cover {
-  margin-top: 1.5rem;
-  padding-block: 2.5rem 2rem;
-  text-align: center;
-  display: grid;
-  gap: 0.6rem;
-  justify-items: center;
-  border-bottom: 0;
-}
-.cover .jenis { font-family: var(--font-ui); font-size: 0.8rem; letter-spacing: 0.18em; }
-.cover h1 { font-size: clamp(1.6rem, 4.5vw, 2.3rem); text-transform: uppercase; letter-spacing: 0.01em; max-width: 22ch; }
-.cover .sub { font-style: italic; color: var(--muted); max-width: 46ch; }
-.cover .ket { font-size: 0.9rem; color: var(--muted); }
-.cover .kalangan { font-size: 0.8rem; border: 1px solid var(--ink); padding: 0.15rem 0.6rem; }
-
-/* Pembatas indeks */
-.tabs {
+/* ── kerangka ─────────────────────────────── */
+.app { display: grid; grid-template-columns: var(--side-w) minmax(0, 1fr); min-height: 100vh; }
+.side {
   position: sticky;
   top: env(safe-area-inset-top, 0px);
-  z-index: 8;
-  background: var(--desk);
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-}
-.tabs-inner {
-  max-width: 54rem;
-  margin: 0 auto;
-  height: var(--tabs-h);
+  height: calc(100vh - env(safe-area-inset-top, 0px));
+  height: calc(100dvh - env(safe-area-inset-top, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-right: 1px solid var(--rule);
+  background: var(--bg);
+  padding: 22px 16px 18px max(18px, env(safe-area-inset-left, 0px));
   display: flex;
-  align-items: flex-end;
-  gap: 3px;
-  overflow-x: auto;
-  box-shadow: inset 0 -1px var(--rule);
+  flex-direction: column;
+  gap: 20px;
 }
-.tabs a {
-  flex: none;
-  font-family: var(--font-ui);
-  font-size: 0.88rem;
-  color: var(--muted);
-  text-decoration: none;
-  padding: 0.45rem 0.85rem 0.4rem;
-  background: var(--shade);
-  border: 1px solid var(--rule);
-  border-bottom: 0;
-  border-radius: 5px 5px 0 0;
-  white-space: nowrap;
+.side > * { flex: none; }
+.brand { display: inline-flex; align-items: baseline; gap: 2px; font-weight: 500; font-size: 19px; letter-spacing: -0.02em; text-decoration: none; padding-left: 6px; }
+.brand i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--or); }
+.brand small { margin-left: 8px; font-family: var(--mono); font-size: 11px; color: var(--dim); letter-spacing: 0.02em; font-weight: 400; }
+.side-search {
+  display: flex; align-items: center; gap: 8px;
+  height: 38px; padding: 0 10px; border-radius: 10px;
+  background: var(--card); box-shadow: inset 0 0 0 1.5px var(--rule);
+  color: var(--dim);
 }
-.tabs a:hover { color: var(--ink); }
-.tabs a[aria-current="page"] {
-  background: var(--sheet);
-  color: var(--ink);
-  font-weight: 700;
-  padding-bottom: 0.5rem;
-  box-shadow: 0 1px 0 var(--sheet);
+.side-search:focus-within { box-shadow: inset 0 0 0 2px var(--or); }
+.side-search input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--ink); font: 400 14px/1 var(--sans); }
+.side-search input:focus { outline: none; }
+.side-search input::placeholder { color: var(--faint); }
+.side-h { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); font-weight: 500; padding: 0 8px 6px; }
+.tree { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; font-size: 14.5px; }
+.tree a, .tree button {
+  display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; column-gap: 11px; align-items: center;
+  min-height: 34px; padding: 4px 8px; border-radius: 8px;
+  color: var(--dim); text-decoration: none; text-align: left;
+  font: inherit; background: none; border: 0; width: 100%; cursor: pointer;
+  transition: color 0.15s, background-color 0.15s;
 }
-.tabs a .n { font-weight: 400; color: var(--muted); font-size: 0.78rem; }
+.tree a:hover, .tree button:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 5%, transparent); }
+.tree .on { color: var(--ink); font-weight: 500; }
+.tree .on svg.i { stroke: var(--or); }
+.tree .r { font-family: var(--mono); font-size: 11.5px; color: var(--faint); font-weight: 400; }
+.tree .sub { list-style: none; padding: 2px 0 6px; margin: 0; display: grid; gap: 1px; font-size: 13.5px; }
+.tree .sub a, .tree .sub button { padding-left: 35px; min-height: 30px; grid-template-columns: minmax(0, 1fr) auto; }
+.tree .sub .on { color: var(--ink); }
+.tree .sub .on::before { content: none; }
+.tree .sub a span:first-child, .tree .sub button span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tree .sub .on span:first-child { box-shadow: inset 0 -1.5px var(--or); }
+.tree.tag-nav a { grid-template-columns: 16px minmax(0, 1fr) auto; }
+.tree.tag-nav .hash { font-family: var(--mono); color: var(--or); text-align: center; font-size: 13px; }
+.side-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 8px 0; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--dim); }
+.theme {
+  display: inline-grid; place-items: center; width: 34px; height: 34px; padding: 0;
+  border: 0; border-radius: 50%; background: transparent; color: var(--dim); cursor: pointer;
+}
+.theme:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 7%, transparent); }
+.theme i {
+  width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px currentColor;
+  background: linear-gradient(90deg, currentColor 50%, transparent 50%);
+  transition: transform 0.5s var(--ease);
+}
+.theme[aria-pressed="true"] i { transform: rotate(180deg); }
 
-.view-sheet { border-top: 0; padding-block: 1.5rem 3.5rem; margin-bottom: 3rem; display: grid; gap: 1.1rem; }
-.runhead {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  font-style: italic;
-  font-size: 0.85rem;
-  color: var(--muted);
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 0.3rem;
-  margin-bottom: 1rem;
-}
+.mbar { display: none; }
+.scrim { display: none; }
+.main { min-width: 0; padding: 0 max(28px, env(safe-area-inset-right, 0px)) 0 clamp(28px, 5vw, 80px); }
+.main-in { max-width: 940px; }
 
-/* Tipografi isi */
-h2.bab { text-align: center; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 0.02em; margin-top: 1.5rem; }
-h2.bab span { display: block; font-size: 1.05rem; letter-spacing: 0.06em; }
-h2.lampiran { font-size: 1.35rem; }
-h3 { font-size: 1.12rem; margin-top: 0.75rem; }
-h4 { font-size: 1rem; font-style: italic; }
-.prose { max-width: 70ch; }
-ul, ol { padding-left: 1.5rem; display: grid; gap: 0.3rem; }
-ol.alpha { list-style-type: lower-alpha; }
-.mark, mark {
-  color: inherit;
-  background: linear-gradient(transparent 12%, var(--stabilo) 12%, var(--stabilo) 88%, transparent 88%);
-  padding: 0 0.12em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-.box { border: 1px solid var(--ink); padding: 0.75rem 1rem; display: grid; gap: 0.35rem; max-width: 70ch; }
-.box-title { font-weight: 700; }
-.box-title i { font-weight: 400; }
-.rumus {
-  text-align: center;
-  font-style: italic;
-  padding-block: 0.5rem;
-  font-size: 1.05rem;
-}
-.rumus small { display: block; font-style: normal; font-size: 0.85rem; color: var(--muted); }
-.catatan {
-  font-family: var(--font-hand);
-  color: var(--red);
-  font-size: 1.12rem;
-  line-height: 1.4;
-  border-left: 2px solid var(--red);
-  padding: 0.1rem 0 0.1rem 0.8rem;
-  max-width: 60ch;
-  transform: rotate(-0.6deg);
-  transform-origin: left;
-}
-.caption { font-size: 0.9rem; font-weight: 700; }
-.caption i { font-weight: 400; }
-.sumber { font-size: 0.85rem; color: var(--muted); font-style: italic; }
-
-/* Tabel */
-.table-wrap { overflow-x: auto; }
-table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
-th, td { border: 1px solid var(--ink); padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
-th { background: var(--shade); }
-td.num, th.num { text-align: right; white-space: nowrap; }
-.tc { text-align: center; }
-
-/* Daftar isi */
-.daftar-isi { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
-.daftar-isi > li > a { font-weight: 700; text-decoration: none; color: var(--ink); display: grid; grid-template-columns: 3.2rem 1fr; }
-.daftar-isi > li > a:hover span:last-child { text-decoration: underline; }
-.daftar-isi ul { list-style: none; padding-left: 3.2rem; gap: 0.1rem; font-size: 0.95rem; }
-
-/* Kontrol: isian bergaris */
-.isian { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.25rem 0.6rem; }
-.isian label { white-space: nowrap; }
-.isian input[type="search"] { flex: 1 1 14rem; }
-input[type="search"], input[type="number"], select {
-  font: inherit;
-  color: var(--ink);
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--ink);
-  border-radius: 0;
-  padding: 0.15rem 0.2rem;
-  min-width: 0;
-}
-input[type="number"] { width: 9.5rem; text-align: right; font-variant-numeric: tabular-nums; }
-input.short { width: 5rem; }
-input:focus, select:focus { outline: none; border-bottom: 2px solid var(--pen); }
-.pilih { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.85rem; font-size: 0.97rem; }
-.pilih > span:first-child { font-style: italic; color: var(--muted); }
-.opt {
-  font: inherit;
-  background: none;
-  border: 0;
-  padding: 0 0.1em;
-  color: var(--pen);
-  text-decoration: underline;
-  cursor: pointer;
-}
-.opt[aria-pressed="true"] {
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 700;
-  background: linear-gradient(transparent 12%, var(--stabilo) 12%, var(--stabilo) 88%, transparent 88%);
-}
-.opt .n { font-weight: 400; color: var(--muted); font-size: 0.82em; }
-.abjad { display: flex; flex-wrap: wrap; gap: 0.15rem 0.55rem; font-weight: 700; }
-.abjad a { text-decoration: none; }
-.abjad span { color: var(--rule); }
-.info { font-style: italic; color: var(--muted); font-size: 0.92rem; }
-.info button { font: inherit; background: none; border: 0; color: var(--pen); text-decoration: underline; cursor: pointer; padding: 0; }
+/* ── tombol & isian ─────────────────────────────── */
 .btn {
-  font-family: var(--font-ui);
-  font-size: 0.9rem;
-  border: 1px solid var(--ink);
-  background: var(--sheet);
-  color: var(--ink);
-  padding: 0.4rem 0.9rem;
-  border-radius: 2px;
-  cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  height: 44px; padding: 0 18px; border-radius: 10px;
+  background: var(--ink); color: var(--bg); font: 500 14.5px/1 var(--sans);
+  text-decoration: none; white-space: nowrap; border: 0; cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
 }
-.btn:hover { background: var(--shade); }
-
-/* Glosarium */
-.huruf h3 {
-  position: sticky;
-  top: calc(env(safe-area-inset-top, 0px) + var(--tabs-h));
-  z-index: 2;
-  background: var(--sheet);
-  font-size: 1.5rem;
-  border-bottom: 1px solid var(--ink);
-  padding-block: 0.15rem;
-  margin-block: 1rem 0.6rem;
+.btn i { width: 6px; height: 6px; border-radius: 50%; background: var(--or); flex: none; }
+.btn:hover { background: var(--btn-hover); }
+.btn:active { transform: translateY(1px); }
+.btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ring); }
+.btn.ghost:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.btn.sm { height: 34px; padding: 0 13px; font-size: 13.5px; border-radius: 9px; }
+.search {
+  display: flex; align-items: center; gap: 12px;
+  height: 54px; padding: 0 18px; border-radius: 12px;
+  background: var(--card); box-shadow: inset 0 0 0 1.5px var(--ring); color: var(--dim);
+  transition: box-shadow 0.18s;
 }
-.lema-list { columns: 2 19rem; column-gap: 2.25rem; position: relative; z-index: 0; }
-.lema {
-  break-inside: avoid;
-  padding-left: 1.2em;
-  text-indent: -1.2em;
-  margin-bottom: 0.7rem;
-  font-size: 0.98rem;
-  line-height: 1.5;
+.search:hover { box-shadow: inset 0 0 0 1.5px var(--dim); }
+.search:focus-within { box-shadow: inset 0 0 0 2px var(--or); }
+.search svg.i { width: 18px; height: 18px; }
+.search input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--ink); font: 400 16.5px/1 var(--sans); }
+.search input:focus { outline: none; }
+.search input::placeholder { color: var(--faint); }
+.fl { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.fl button {
+  display: inline-flex; align-items: center; gap: 9px; padding: 5px 0;
+  font: 400 14.5px/1.3 var(--sans); color: var(--dim); background: none; border: 0; cursor: pointer;
 }
-.lema .kat { color: var(--muted); font-size: 0.88em; }
-.lema .dasar { display: block; text-indent: 0; font-size: 0.85rem; color: var(--muted); margin-top: 0.1rem; }
-.lema .dasar a { white-space: nowrap; }
-.kosong { font-style: italic; color: var(--muted); padding-block: 1.5rem; }
+.fl button:hover { color: var(--ink); }
+.fl button::before {
+  content: ""; width: 13px; height: 13px; border-radius: 50%; flex: none;
+  box-shadow: inset 0 0 0 1.5px var(--ring); transition: background 0.2s, box-shadow 0.2s;
+}
+.fl button[aria-pressed="true"] { color: var(--ink); font-weight: 500; }
+.fl button[aria-pressed="true"]::before { background: var(--or); box-shadow: inset 0 0 0 1.5px var(--or); }
+.fl .n { font-family: var(--mono); font-size: 11.5px; color: var(--faint); font-weight: 400; }
+.az { display: flex; flex-wrap: wrap; gap: 2px 4px; font-family: var(--mono); font-size: 13px; }
+.az a, .az span { width: 26px; height: 28px; display: grid; place-items: center; border-radius: 6px; text-decoration: none; }
+.az a { color: var(--ink-2); }
+.az a:hover { background: color-mix(in srgb, var(--ink) 6%, transparent); color: var(--ink); }
+.az span { color: var(--faint); opacity: 0.6; }
+.info { font-size: 14px; color: var(--dim); display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; }
+.info button { font: inherit; background: none; border: 0; padding: 0; color: var(--ink); text-decoration: underline; text-decoration-color: var(--or); text-underline-offset: 3px; cursor: pointer; }
+.tags { display: flex; flex-wrap: wrap; gap: 4px 12px; }
+.tag { font-family: var(--mono); font-size: 12px; color: var(--dim); text-decoration: none; letter-spacing: 0.01em; }
+.tag b { color: var(--or); font-weight: 500; margin-right: 1px; }
+.tag:hover { color: var(--ink); }
+.got { display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12px; color: var(--dim); text-decoration: none; letter-spacing: 0.01em; }
+.got::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--or); flex: none; }
+.got:hover { color: var(--ink); }
 
-/* Regulasi */
-.aturan { border-bottom: 1px solid var(--rule); padding-bottom: 1rem; display: grid; gap: 0.4rem; scroll-margin-top: calc(var(--tabs-h) + 1rem); }
-.aturan:last-child { border-bottom: 0; }
-.aturan h3 { margin: 0; font-size: 1.05rem; font-weight: 400; }
-.aturan h3 b { font-weight: 700; }
-.aturan .kode { font-variant: small-caps; color: var(--muted); font-size: 0.95rem; margin-right: 0.3rem; }
-.aturan ol { font-size: 0.97rem; }
-.aturan .status { font-style: italic; font-size: 0.9rem; color: var(--muted); }
-.aturan .rel { font: inherit; font-size: 0.9rem; background: none; border: 0; padding: 0; color: var(--pen); text-decoration: underline; cursor: pointer; justify-self: start; }
-.aturan.sorot { background: linear-gradient(var(--stabilo), var(--stabilo)) left top / 4px 100% no-repeat; padding-left: 0.8rem; }
+/* ── kepala halaman ─────────────────────────────── */
+.view { padding-block: clamp(40px, 7vw, 88px) 32px; display: grid; gap: 32px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); gap: 24px 48px; align-items: end; padding-bottom: 12px; }
+.hero h1 { font-weight: 500; letter-spacing: -0.045em; line-height: 0.95; font-size: clamp(46px, 7.4vw, 104px); }
+.hero-side { display: grid; gap: 14px; }
+.hero-side p { font-size: 15px; line-height: 1.5; color: var(--dim); }
+.hero-side .mono { display: grid; gap: 4px; }
+.hero-side .mono b { color: var(--ink); font-weight: 500; }
+.head { display: grid; gap: 20px; }
+.head h2 { font-weight: 500; letter-spacing: -0.04em; line-height: 0.98; font-size: clamp(38px, 5.6vw, 72px); }
+.head p { font-size: clamp(16.5px, 1.4vw, 19px); line-height: 1.55; color: var(--dim); max-width: 50ch; }
+.head p b { color: var(--ink); font-weight: 500; }
+.controls { display: grid; gap: 18px; }
 
-/* Simulasi */
-.lk { border: 1px solid var(--ink); display: grid; scroll-margin-top: calc(var(--tabs-h) + 1rem); }
-.lk-head { border-bottom: 1px solid var(--ink); padding: 0.55rem 1rem; background: var(--shade); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1rem; align-items: baseline; }
-.lk-head h3 { margin: 0; font-size: 1.08rem; }
-.lk-head span { font-size: 0.88rem; font-style: italic; color: var(--muted); }
-.lk-body { padding: 1rem; display: grid; gap: 0.9rem; min-width: 0; }
-.diketahui { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: 0.55rem 1.5rem; }
-.field { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; }
-.field label { flex: 1; min-width: 0; }
-.field .unit { color: var(--muted); font-size: 0.9rem; min-width: 2.5rem; }
-.langkah { list-style: none; padding: 0; display: grid; gap: 0.35rem; font-variant-numeric: tabular-nums; }
-.langkah li { padding-left: 1.3rem; text-indent: -1.3rem; }
-.langkah li::before { content: "= "; color: var(--muted); }
-.langkah li.ket::before { content: ""; }
-.langkah li.ket { padding-left: 0; text-indent: 0; font-style: italic; color: var(--muted); }
-.hasil { font-size: 1.05rem; }
-.lewat { color: var(--red); font-weight: 700; }
-.aman { font-weight: 700; }
-.sched { max-height: 20rem; overflow: auto; }
-.sched thead th { position: sticky; top: 0; }
-.lk-index { display: grid; gap: 0.2rem; padding-left: 1.4rem; }
+/* ── glosarium ─────────────────────────────── */
+.letter { display: grid; scroll-margin-top: calc(var(--bar-h) + 16px); }
+.letter h3 {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--bar-h)); z-index: 3;
+  background: var(--bg); font-family: var(--mono); font-weight: 500; font-size: 13px; letter-spacing: 0.04em; color: var(--dim);
+  padding: 14px 0 10px; border-bottom: 1px solid var(--ink);
+}
+.entries { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 44px; }
+.entry { padding: 20px 0 22px; border-bottom: 1px solid var(--rule); display: grid; gap: 8px; align-content: start; min-width: 0; scroll-margin-top: calc(var(--bar-h) + 60px); transition: background-color 0.6s; }
+.entry h4 { font-size: 19px; letter-spacing: -0.02em; line-height: 1.2; }
+.entry .cat { font-family: var(--mono); font-size: 11.5px; color: var(--faint); letter-spacing: 0.02em; }
+.entry p { color: var(--ink-2); font-size: 15.5px; line-height: 1.55; }
+.entry .meta { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 2px; }
+.flash { background: var(--or-soft); border-radius: 8px; }
+.empty { color: var(--dim); padding: 28px 0; font-size: 16px; }
 
-/* Latihan */
-.soal { display: grid; gap: 0.4rem; }
-.soal fieldset { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 0.15rem; }
-.soal legend { padding: 0; font-weight: 700; margin-bottom: 0.25rem; }
-.soal label { display: flex; gap: 0.5rem; align-items: baseline; cursor: pointer; padding: 0.1rem 0.25rem; }
-.soal label.benar span { background: linear-gradient(transparent 12%, var(--stabilo) 12%, var(--stabilo) 88%, transparent 88%); }
-.soal label.salah span { text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 2px; }
-.soal .bahas { font-family: var(--font-hand); color: var(--red); font-size: 1.05rem; line-height: 1.4; }
-.latihan-bar { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
-.skor { font-family: var(--font-hand); color: var(--red); font-size: 1.4rem; }
+/* ── regulasi ─────────────────────────────── */
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; padding-block: 8px 12px; }
+.facts div { display: grid; gap: 8px; align-content: start; }
+.facts h3 { font-size: 18px; letter-spacing: -0.02em; }
+.facts p { color: var(--dim); font-size: 14.5px; line-height: 1.55; }
+.faq { border-top: 1px solid var(--rule); }
+.faq details { border-bottom: 1px solid var(--rule); scroll-margin-top: calc(var(--bar-h) + 16px); transition: background-color 0.6s; }
+.faq summary {
+  list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) 10px; gap: 6px 24px; align-items: center;
+  padding: 22px 0;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: ""; grid-column: 2; grid-row: 1 / span 2; width: 10px; height: 10px; border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px var(--ring); transition: background 0.2s, box-shadow 0.2s;
+}
+.faq details[open] summary::after { background: var(--or); box-shadow: inset 0 0 0 1.5px var(--or); }
+.faq summary:hover::after { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.faq summary .mono { grid-column: 1; }
+.faq summary .t { grid-column: 1; font-size: clamp(18px, 2vw, 23px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.25; }
+.faq .a { padding: 0 0 26px; max-width: 66ch; color: var(--ink-2); font-size: 16px; line-height: 1.6; display: grid; gap: 14px; }
+.faq .a ol { padding-left: 1.25rem; display: grid; gap: 6px; }
+.faq .a .ket { color: var(--dim); font-size: 14.5px; }
+.faq .a .row { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; }
 
+/* ── materi ─────────────────────────────── */
+.bab { display: grid; gap: 22px; padding-top: 40px; border-top: 1px solid var(--rule); scroll-margin-top: calc(var(--bar-h) + 8px); }
+.bab:first-of-type { border-top: 0; padding-top: 0; }
+.bab-head { display: grid; gap: 14px; }
+.bab-head h2 { font-size: clamp(30px, 3.8vw, 46px); letter-spacing: -0.035em; line-height: 1.02; }
+.prose { max-width: 68ch; color: var(--ink-2); font-size: 16.5px; line-height: 1.65; display: grid; gap: 14px; }
+.prose b, .prose strong { color: var(--ink); font-weight: 500; }
+.prose ol, .prose ul { padding-left: 1.25rem; display: grid; gap: 8px; }
+.prose ol.alpha { list-style-type: lower-alpha; }
+.bab h3 { font-size: 21px; letter-spacing: -0.02em; margin-top: 8px; }
+.card { background: var(--card); border-radius: 16px; padding: 24px 26px; box-shadow: var(--shadow-card); display: grid; gap: 12px; max-width: 72ch; }
+.card .cap { display: flex; justify-content: space-between; gap: 8px 16px; flex-wrap: wrap; align-items: center; }
+.card p, .card li { color: var(--ink-2); line-height: 1.6; }
+.card b { color: var(--ink); font-weight: 500; }
+.card ol { padding-left: 1.25rem; display: grid; gap: 8px; }
+.code { font-family: var(--mono); font-size: 14px; line-height: 1.75; color: var(--ink-2); background: var(--card); border-radius: 12px; padding: 14px 18px; box-shadow: inset 0 0 0 1px var(--rule); max-width: 72ch; overflow-x: auto; }
+.code .c { color: var(--faint); }
+.note { display: grid; gap: 8px; max-width: 64ch; font-size: 16px; color: var(--ink); }
+.table-wrap { overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.table th, .table td { text-align: left; padding: 14px 16px 14px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.table thead th { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); font-weight: 500; padding-top: 0; white-space: nowrap; }
+.table td { color: var(--ink-2); }
+.table td b { color: var(--ink); font-weight: 500; }
+.table td.num, .table th.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; padding-right: 0; padding-left: 16px; }
+.table .sub { display: block; color: var(--dim); font-size: 13.5px; margin-top: 3px; }
+
+/* ── simulasi ─────────────────────────────── */
+.lk { background: var(--card); border-radius: 20px; box-shadow: var(--shadow-card); padding: clamp(20px, 3vw, 32px); display: grid; gap: 22px; scroll-margin-top: calc(var(--bar-h) + 16px); min-width: 0; }
+.lk-head { display: grid; gap: 12px; }
+.lk-head h3 { font-size: clamp(24px, 2.6vw, 32px); letter-spacing: -0.03em; line-height: 1.1; }
+.fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: 14px 16px; }
+.field { display: grid; gap: 7px; }
+.field label { font-size: 13.5px; color: var(--dim); }
+.field input, .field select {
+  height: 46px; min-width: 0; width: 100%; padding: 0 14px; border: 0; border-radius: 11px;
+  background: var(--bg); box-shadow: inset 0 0 0 1.5px var(--rule); color: var(--ink);
+  font: 400 16px/1 var(--sans); font-variant-numeric: tabular-nums;
+}
+.field select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--dim) 50%), linear-gradient(135deg, var(--dim) 50%, transparent 50%); background-position: calc(100% - 19px) 20px, calc(100% - 14px) 20px; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 34px; }
+.field input:hover, .field select:hover { box-shadow: inset 0 0 0 1.5px var(--ring); }
+.field input:focus, .field select:focus { outline: none; box-shadow: inset 0 0 0 2px var(--or); }
+.ask { font-size: 16px; color: var(--ink-2); }
+.ask b { color: var(--ink); font-weight: 500; }
+.panel { background: var(--panel); color: var(--p-ink); border-radius: 18px; padding: 24px clamp(18px, 3vw, 28px); display: grid; gap: 14px; }
+.panel .sc { color: var(--p-dim); }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; font-size: 15.5px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.steps li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 4px; }
+.steps li::before { content: "="; color: var(--p-dim); font-family: var(--mono); }
+.steps li.ket { grid-template-columns: minmax(0, 1fr); color: var(--p-dim); padding-top: 6px; border-top: 1px solid var(--p-rule); }
+.steps li.ket::before { content: none; }
+.steps .hit { color: var(--or); font-weight: 500; }
+.steps .lewat { color: var(--or); font-weight: 600; }
+.steps .aman { color: var(--p-ink); font-weight: 600; }
+.lk .cap { font-size: 13.5px; color: var(--dim); font-weight: 500; }
+.sched { max-height: 22rem; overflow: auto; }
+.sched thead th { position: sticky; top: 0; background: var(--card); }
+.fine { font-size: 13.5px; color: var(--dim); line-height: 1.55; max-width: 72ch; }
+.lk-list { display: grid; gap: 36px; }
+
+/* ── latihan ─────────────────────────────── */
+.quiz { display: grid; gap: 8px; border-top: 1px solid var(--rule); }
+.q { padding: 26px 0; border-bottom: 1px solid var(--rule); display: grid; gap: 14px; }
+.q fieldset { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 4px; }
+.q legend { padding: 0; margin-bottom: 12px; display: grid; gap: 8px; font-size: clamp(18px, 2vw, 22px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.3; }
+.opt { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 14px; align-items: center; padding: 8px 0; cursor: pointer; font-size: 16px; color: var(--ink-2); }
+.opt input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.ring { position: relative; width: 20px; height: 20px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--ring); transition: background 0.2s, box-shadow 0.2s; }
+.ring svg { position: absolute; inset: 0; width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 14; stroke-dashoffset: 14; transition: stroke-dashoffset 0.35s var(--ease); }
+.opt:hover .ring { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.opt input:checked + .ring { box-shadow: inset 0 0 0 1.5px var(--ink), inset 0 0 0 5px var(--bg); background: var(--ink); }
+.opt input:focus-visible + .ring { outline: 2px solid var(--or); outline-offset: 3px; }
+.opt.benar .ring { background: var(--or); box-shadow: inset 0 0 0 1.5px var(--or); }
+.opt.benar .ring svg { stroke-dashoffset: 0; }
+.opt.benar .txt { color: var(--ink); font-weight: 500; }
+.opt.salah .txt { color: var(--faint); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.why { display: flex; gap: 10px; align-items: baseline; color: var(--dim); font-size: 15px; line-height: 1.55; }
+.why::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--or); flex: none; transform: translateY(-2px); }
+.quiz-bar { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; }
+.score { display: flex; align-items: baseline; gap: 10px; }
+.score b { font-size: clamp(44px, 5vw, 64px); font-weight: 500; letter-spacing: -0.04em; line-height: 1; }
+.score span { color: var(--dim); font-size: 15px; }
+
+/* ── halaman tag ─────────────────────────────── */
+.ex { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--rule); }
+.ex li a { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: 6px 28px; padding: 16px 0; border-bottom: 1px solid var(--rule); text-decoration: none; }
+.ex .say { font-size: clamp(17px, 1.8vw, 21px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.25; }
+.ex li a:hover .say { text-decoration: underline; text-decoration-color: var(--or); text-underline-offset: 4px; }
+.group { display: grid; gap: 14px; }
+
+/* ── kaki ─────────────────────────────── */
+.foot { padding: 72px 0 calc(36px + env(safe-area-inset-bottom, 0px)); }
+.foot-big { font-size: clamp(64px, 12vw, 168px); font-weight: 500; letter-spacing: -0.05em; line-height: 0.9; margin: 0 0 40px; display: flex; align-items: baseline; }
+.foot-big i { display: inline-block; width: 0.13em; height: 0.13em; margin-left: 0.04em; border-radius: 50%; background: var(--or); }
+.foot-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px 40px; flex-wrap: wrap; padding-top: 22px; border-top: 1px solid var(--rule); font-size: 14px; color: var(--dim); }
+.foot-row p { max-width: 52ch; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.foot-links a { text-decoration: none; color: var(--dim); }
+.foot-links a:hover { color: var(--ink); }
+
+/* ── layar kecil ─────────────────────────────── */
+@media (max-width: 1180px) {
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 959px) {
+  :root { --bar-h: 58px; }
+  html { scroll-padding-top: 74px; }
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .mbar {
+    display: flex; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30;
+    height: var(--bar-h); align-items: center; justify-content: space-between; gap: 12px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    -webkit-backdrop-filter: saturate(1.2) blur(14px);
+    backdrop-filter: saturate(1.2) blur(14px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .mbar .brand { padding-left: 0; }
+  .menu-btn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 12px; border-radius: 10px; border: 0; background: transparent; box-shadow: inset 0 0 0 1.5px var(--ring); color: var(--ink); font: 500 14px/1 var(--sans); cursor: pointer; }
+  .side {
+    position: fixed; z-index: 50; top: 0; left: 0; bottom: 0; height: auto;
+    width: min(300px, 86vw);
+    padding-top: calc(env(safe-area-inset-top, 0px) + 20px);
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+    transform: translateX(-102%); visibility: hidden;
+    transition: transform 0.3s var(--ease), visibility 0s linear 0.3s;
+    box-shadow: var(--shadow-card);
+  }
+  .side.open { transform: none; visibility: visible; transition: transform 0.3s var(--ease); }
+  .scrim { display: block; position: fixed; inset: 0; z-index: 45; background: rgba(12, 12, 12, 0.34); opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .scrim.open { opacity: 1; pointer-events: auto; }
+  .main { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .entries { grid-template-columns: minmax(0, 1fr); }
+}
 @media (max-width: 560px) {
-  .tabs a { padding-inline: 0.6rem; font-size: 0.84rem; }
-  .tabs a .n { display: none; }
-  .field { flex-wrap: wrap; }
-  input[type="number"] { width: 8rem; }
+  .facts { grid-template-columns: minmax(0, 1fr); }
+  .ex li a { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
 }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="i-book" viewBox="0 0 16 16"><path d="M8 4.2C6.8 3.3 5.2 3 3 3.2v9.3c2.2-.2 3.8.1 5 1 1.2-.9 2.8-1.2 5-1V3.2c-2.2-.2-3.8.1-5 1zM8 4.2v9.3"/></symbol>
+  <symbol id="i-law" viewBox="0 0 16 16"><path d="M8 2.5v11M5 13.5h6M3.2 5h9.6M4.4 5L2.6 9h3.6zM11.6 5L9.8 9h3.6zM2.6 9a1.8 1.2 0 0 0 3.6 0M9.8 9a1.8 1.2 0 0 0 3.6 0"/></symbol>
+  <symbol id="i-note" viewBox="0 0 16 16"><path d="M4 2.5h5.5L12.5 5.5V13a.5.5 0 0 1-.5.5H4a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5z"/><path d="M9.5 2.5v3h3M5.8 8.5h4.4M5.8 10.8h3"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 16 16"><path d="M4.2 2.5h7.6a.7.7 0 0 1 .7.7v9.6a.7.7 0 0 1-.7.7H4.2a.7.7 0 0 1-.7-.7V3.2a.7.7 0 0 1 .7-.7zM5.7 5h4.6M5.8 8h.4M7.8 8h.4M9.8 8h.4M5.8 10.6h.4M7.8 10.6h.4M9.8 10.6h.4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M8 2.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 1 0 0-11zM5.6 8.1l1.7 1.7 3.2-3.4"/></symbol>
+  <symbol id="i-search" viewBox="0 0 16 16"><path d="M7 3a4 4 0 1 0 0 8 4 4 0 1 0 0-8zM10 10l3.2 3.2"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 16 16"><path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11"/></symbol>
+  <symbol id="tick" viewBox="0 0 20 20"><path d="M6 10.3l2.6 2.6 5.4-5.8"/></symbol>
+</defs></svg>
 
-<div class="desk">
-  <header class="sheet cover">
-    <span class="jenis">DIKTAT KULIAH</span>
-    <h1>Buku Saku Kredit Perbankan</h1>
-    <p class="sub">Glosarium, regulasi OJK dan Bank Indonesia, materi perkreditan, lembar kerja simulasi, dan latihan soal</p>
-    <p class="ket">Edisi Oktober 2026 · <span id="stat-terms">0</span> istilah · <span id="stat-regs">0</span> peraturan</p>
-    <span class="kalangan">Untuk kalangan sendiri</span>
-  </header>
-</div>
+<header class="mbar">
+  <a class="brand" href="#glosarium">Kredit<i></i></a>
+  <button class="menu-btn" type="button" id="menu-btn" aria-controls="side" aria-expanded="false"><svg class="i"><use href="#i-menu"></use></svg>Menu</button>
+</header>
+<div class="scrim" id="scrim"></div>
 
-<nav class="tabs" aria-label="Menu">
-  <div class="tabs-inner">
-    <a href="#glosarium" data-view="glosarium">Glosarium <span class="n" id="tab-terms"></span></a>
-    <a href="#regulasi" data-view="regulasi">Regulasi <span class="n" id="tab-regs"></span></a>
-    <a href="#materi" data-view="materi">Materi</a>
-    <a href="#simulasi" data-view="simulasi">Simulasi</a>
-    <a href="#latihan" data-view="latihan">Latihan Soal</a>
-  </div>
-</nav>
+<div class="app">
+  <aside class="side" id="side" aria-label="Menu">
+    <a class="brand" href="#glosarium">Kredit<i></i><small>buku saku</small></a>
+    <label class="side-search" for="s-q">
+      <svg class="i"><use href="#i-search"></use></svg>
+      <span class="sr">Cari istilah</span>
+      <input type="search" id="s-q" placeholder="Cari istilah…" autocomplete="off">
+    </label>
+    <nav aria-label="Halaman">
+      <p class="side-h">Halaman</p>
+      <ul class="tree" id="nav-pages"></ul>
+    </nav>
+    <nav aria-label="Tag">
+      <p class="side-h">Tag</p>
+      <ul class="tree tag-nav" id="nav-tags"></ul>
+    </nav>
+    <div class="side-foot">
+      <span>Edisi Oktober 2026</span>
+      <button class="theme" type="button" id="theme-btn" aria-label="Ganti tema terang atau gelap" aria-pressed="false"><i aria-hidden="true"></i></button>
+    </div>
+  </aside>
 
-<div class="desk">
+  <main class="main" id="main">
+  <div class="main-in">
 
-<!-- ================= GLOSARIUM ================= -->
-<section class="sheet view-sheet view" id="view-glosarium" aria-label="Glosarium">
-  <div class="runhead"><span>Buku Saku Kredit Perbankan</span><span>Lampiran A · Glosarium</span></div>
-  <h2 class="lampiran">Lampiran A. Glosarium Istilah Perbankan dan Kredit</h2>
-  <p class="prose">Istilah disusun menurut abjad. Ketik kata kunci untuk mencari di nama istilah, singkatan, maupun isi definisinya. Baris “Dasar” menunjuk peraturan di Lampiran B; klik untuk membukanya.</p>
-  <div class="isian">
-    <label for="g-q">Cari istilah:</label>
-    <input type="search" id="g-q" placeholder="mis. NPL, fidusia, SLIK" autocomplete="off">
-  </div>
-  <div class="pilih" id="g-cats" role="group" aria-label="Kategori"></div>
-  <nav class="abjad" id="g-az" aria-label="Abjad"></nav>
-  <p class="info" id="g-info" aria-live="polite"></p>
-  <div id="g-list"></div>
-</section>
+  <!-- ===== GLOSARIUM ===== -->
+  <section class="view" id="view-glosarium" aria-label="Glosarium">
+    <div class="hero">
+      <h1>Semua soal kredit, di satu tempat.</h1>
+      <div class="hero-side">
+        <p>Kamus istilah perbankan, ringkasan peraturan OJK, BI, dan LPS, materi kuliah, dan lembar kerja simulasi.</p>
+        <p class="mono"><span><b id="stat-terms">0</b> istilah</span><span><b id="stat-regs">0</b> peraturan</span><span><b id="stat-tags">0</b> tag</span></p>
+      </div>
+    </div>
+    <div class="controls">
+      <label class="search" for="g-q">
+        <svg class="i"><use href="#i-search"></use></svg>
+        <span class="sr">Cari istilah</span>
+        <input type="search" id="g-q" placeholder="Cari istilah, singkatan, atau isi definisi" autocomplete="off">
+      </label>
+      <div class="fl" id="g-cats" role="group" aria-label="Kategori"></div>
+      <nav class="az" id="g-az" aria-label="Abjad"></nav>
+      <p class="info" id="g-info" aria-live="polite"></p>
+    </div>
+    <div id="g-list"></div>
+  </section>
 
-<!-- ================= REGULASI ================= -->
-<section class="sheet view-sheet view" id="view-regulasi" aria-label="Regulasi" hidden>
-  <div class="runhead"><span>Buku Saku Kredit Perbankan</span><span>Lampiran B · Regulasi</span></div>
-  <h2 class="lampiran">Lampiran B. Peraturan tentang Perbankan dan Kredit</h2>
-  <p class="prose">Ringkasan poin penting tiap peraturan, dicek per Oktober 2026. Peraturan dapat berubah sewaktu-waktu; untuk keperluan resmi, rujuk teks lengkapnya di ojk.go.id, bi.go.id, lps.go.id, atau JDIH.</p>
-  <p class="caption">Tabel B.1 <i>Pembagian kewenangan</i></p>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>Lembaga</th><th>Peran dalam perkreditan</th></tr></thead>
-      <tbody>
-        <tr><td><b>OJK</b></td><td>Mengatur dan mengawasi bank secara individual (mikroprudensial): perizinan, kualitas kredit, permodalan, tata kelola, manajemen risiko, dan pelindungan konsumen. Mengambil alih pengawasan bank dari BI sejak 31 Desember 2013.</td></tr>
-        <tr><td><b>Bank Indonesia</b></td><td>Kebijakan moneter (BI-Rate), makroprudensial (GWM, RIM, LTV/FTV, CCyB), sistem pembayaran, dan pemberi pinjaman terakhir bagi bank.</td></tr>
-        <tr><td><b>LPS</b></td><td>Menjamin simpanan hingga Rp2 miliar per nasabah per bank dan melakukan resolusi bank gagal.</td></tr>
-        <tr><td><b>KSSK</b></td><td>Menteri Keuangan (koordinator), Gubernur BI, Ketua DK OJK, dan Ketua DK LPS. Mencegah dan menangani krisis sistem keuangan.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="isian">
-    <label for="r-q">Cari peraturan:</label>
-    <input type="search" id="r-q" placeholder="nomor atau topik, mis. 40/2019, BMPK" autocomplete="off">
-  </div>
-  <div class="pilih" id="r-groups" role="group" aria-label="Penerbit"></div>
-  <p class="info" id="r-info" aria-live="polite"></p>
-  <div id="r-list" style="display:grid;gap:1rem"></div>
-</section>
+  <!-- ===== REGULASI ===== -->
+  <section class="view" id="view-regulasi" aria-label="Regulasi" hidden>
+    <div class="head">
+      <span class="sc">Regulasi</span>
+      <h2>Aturan main kredit, diringkas.</h2>
+      <p>Poin penting dari undang-undang, POJK, PBI, dan ketentuan LPS. Dicek per <b>Oktober 2026</b>; untuk keperluan resmi, rujuk teks lengkap di ojk.go.id, bi.go.id, lps.go.id, atau JDIH.</p>
+    </div>
+    <div class="facts">
+      <div><span class="sc">OJK</span><h3>Otoritas Jasa Keuangan</h3><p>Mengawasi bank satu per satu: izin, kualitas kredit, modal, tata kelola, risiko, dan pelindungan konsumen. Mengambil alih dari BI sejak 31 Desember 2013.</p></div>
+      <div><span class="sc">BI</span><h3>Bank Indonesia</h3><p>Moneter (BI-Rate), makroprudensial (GWM, RIM, LTV/FTV, CCyB), sistem pembayaran, dan pemberi pinjaman terakhir.</p></div>
+      <div><span class="sc">LPS</span><h3>Lembaga Penjamin Simpanan</h3><p>Menjamin simpanan hingga Rp2 miliar per nasabah per bank, dan menangani bank gagal.</p></div>
+      <div><span class="sc">KSSK</span><h3>Komite Stabilitas</h3><p>Menkeu, Gubernur BI, Ketua DK OJK, dan Ketua DK LPS. Mencegah dan menangani krisis sistem keuangan.</p></div>
+    </div>
+    <div class="controls">
+      <label class="search" for="r-q">
+        <svg class="i"><use href="#i-search"></use></svg>
+        <span class="sr">Cari peraturan</span>
+        <input type="search" id="r-q" placeholder="Cari nomor atau topik, mis. 40/2019, BMPK, penagihan" autocomplete="off">
+      </label>
+      <div class="fl" id="r-groups" role="group" aria-label="Penerbit"></div>
+      <p class="info" id="r-info" aria-live="polite"></p>
+    </div>
+    <div class="faq" id="r-list"></div>
+  </section>
 
-<!-- ================= MATERI ================= -->
-<section class="sheet view-sheet view" id="view-materi" aria-label="Materi" hidden>
-  <div class="runhead"><span>Buku Saku Kredit Perbankan</span><span>Materi</span></div>
-  <h2 class="lampiran">Daftar Isi</h2>
-  <ol class="daftar-isi">
-    <li><a href="#bab1"><span>BAB I</span><span>Pengertian dan Unsur Kredit</span></a></li>
-    <li><a href="#bab2"><span>BAB II</span><span>Tujuan dan Fungsi Kredit</span></a></li>
-    <li><a href="#bab3"><span>BAB III</span><span>Jenis-jenis Kredit</span></a></li>
-    <li><a href="#bab4"><span>BAB IV</span><span>Prinsip Analisis Kredit</span></a></li>
-    <li><a href="#bab5"><span>BAB V</span><span>Prosedur Pemberian Kredit</span></a></li>
-    <li><a href="#bab6"><span>BAB VI</span><span>Agunan dan Pengikatan Jaminan</span></a></li>
-    <li><a href="#bab7"><span>BAB VII</span><span>Bunga Kredit</span></a></li>
-    <li><a href="#bab8"><span>BAB VIII</span><span>Kolektibilitas</span></a></li>
-    <li><a href="#bab9"><span>BAB IX</span><span>Kredit Bermasalah</span></a></li>
-    <li><a href="#bab10"><span>BAB X</span><span>Rambu Regulasi</span></a></li>
-    <li><a href="#bab11"><span>BAB XI</span><span>Pembiayaan Syariah sebagai Pembanding</span></a></li>
-  </ol>
+  <!-- ===== MATERI ===== -->
+  <section class="view" id="view-materi" aria-label="Materi" hidden>
+    <div class="head">
+      <span class="sc">Materi</span>
+      <h2>Kredit dari nol sampai macet.</h2>
+      <p>Sebelas bab rangkuman materi perkreditan bank: definisi, jenis, analisis, agunan, bunga, kolektibilitas, sampai penanganan kredit bermasalah.</p>
+    </div>
 
-  <!-- BAB I -->
-  <h2 class="bab" id="bab1"><span>BAB I</span>Pengertian dan Unsur Kredit</h2>
-  <h3>1.1 Pengertian Kredit</h3>
-  <div class="box">
-    <p class="box-title">Definisi 1.1 <i>(UU No. 10 Tahun 1998, Pasal 1 angka 11)</i></p>
-    <p>Kredit adalah penyediaan uang atau tagihan yang dapat dipersamakan dengan itu, berdasarkan persetujuan atau kesepakatan pinjam-meminjam antara bank dengan pihak lain yang mewajibkan pihak peminjam untuk melunasi utangnya setelah jangka waktu tertentu dengan pemberian bunga.</p>
-  </div>
-  <p class="prose">Kata <i>kredit</i> berasal dari bahasa Latin <i>credere</i>, artinya “percaya”. Bank memberi pinjaman karena percaya debitur akan mengembalikan pokok beserta bunganya. Kredit adalah aset terbesar di neraca sebagian besar bank dan sumber utama pendapatan bunga.</p>
-  <h3>1.2 Pihak-pihak dalam Kredit</h3>
-  <p class="prose">Pihak yang terlibat adalah <b>kreditur</b> (bank pemberi pinjaman) dan <b>debitur</b> (nasabah peminjam). Hubungan keduanya diikat dalam <b>perjanjian kredit</b>, yang secara hukum termasuk perjanjian pinjam-meminjam (KUHPerdata Pasal 1754).</p>
-  <h3>1.3 Unsur-unsur Kredit</h3>
-  <ol class="alpha prose">
-    <li><b>Kepercayaan</b>, yaitu keyakinan bank bahwa dana akan kembali, berdasarkan hasil analisis.</li>
-    <li><b>Kesepakatan</b>, yaitu hak dan kewajiban yang dituangkan dalam akad kredit.</li>
-    <li><b>Jangka waktu</b>, yaitu masa pelunasan (tenor): pendek, menengah, atau panjang.</li>
-    <li><b>Risiko</b>, yaitu kemungkinan kredit tidak kembali. Makin panjang tenor, makin besar risikonya.</li>
-    <li><b>Balas jasa</b>, yaitu bunga dan biaya bagi bank; di bank syariah berupa margin atau bagi hasil.</li>
-  </ol>
+    <article class="bab" id="bab1" data-tags="analisis-kredit">
+      <div class="bab-head"><span class="sc">Bab 01</span><h2>Pengertian dan unsur kredit</h2><div class="tags" data-tagrow></div></div>
+      <div class="card">
+        <div class="cap"><span class="sc">Definisi</span><span class="mono">UU 10/1998 Pasal 1 angka 11</span></div>
+        <p>Kredit adalah penyediaan uang atau tagihan yang dapat dipersamakan dengan itu, berdasarkan persetujuan atau kesepakatan pinjam-meminjam antara bank dengan pihak lain yang mewajibkan pihak peminjam untuk melunasi utangnya setelah jangka waktu tertentu dengan pemberian bunga.</p>
+      </div>
+      <div class="prose">
+        <p>Kata <i>kredit</i> berasal dari bahasa Latin <i>credere</i>, artinya “percaya”. Bank memberi pinjaman karena percaya debitur akan mengembalikan pokok dan bunganya. Pihaknya adalah <b>kreditur</b> (bank) dan <b>debitur</b> (peminjam), yang diikat dalam <b>perjanjian kredit</b> (KUHPerdata Pasal 1754).</p>
+      </div>
+      <h3>Lima unsur kredit</h3>
+      <div class="prose"><ol class="alpha">
+        <li><b>Kepercayaan</b>: keyakinan bank bahwa dana akan kembali, berdasarkan hasil analisis.</li>
+        <li><b>Kesepakatan</b>: hak dan kewajiban dituangkan dalam akad kredit.</li>
+        <li><b>Jangka waktu</b>: masa pelunasan, pendek, menengah, atau panjang.</li>
+        <li><b>Risiko</b>: kemungkinan kredit tidak kembali. Makin panjang tenor, makin besar risikonya.</li>
+        <li><b>Balas jasa</b>: bunga dan biaya; di bank syariah berupa margin atau bagi hasil.</li>
+      </ol></div>
+    </article>
 
-  <!-- BAB II -->
-  <h2 class="bab" id="bab2"><span>BAB II</span>Tujuan dan Fungsi Kredit</h2>
-  <h3>2.1 Tujuan Kredit</h3>
-  <ol class="alpha prose">
-    <li><b>Mencari keuntungan.</b> Selisih bunga pinjaman dan bunga simpanan (<i>spread</i>) adalah sumber laba utama bank.</li>
-    <li><b>Membantu usaha nasabah</b> yang membutuhkan dana investasi atau modal kerja.</li>
-    <li><b>Membantu pemerintah</b>: mendorong pembangunan, membuka lapangan kerja, dan menambah penerimaan pajak.</li>
-  </ol>
-  <h3>2.2 Fungsi Kredit</h3>
-  <ol class="alpha prose">
-    <li>Meningkatkan daya guna uang, karena dana simpanan yang menganggur disalurkan ke kegiatan produktif.</li>
-    <li>Meningkatkan peredaran dan lalu lintas uang serta barang.</li>
-    <li>Menjadi alat stabilitas ekonomi.</li>
-    <li>Meningkatkan kegairahan berusaha, pemerataan pendapatan, dan hubungan internasional.</li>
-  </ol>
-  <p class="catatan">Ingat: bank = lembaga intermediasi. Menghimpun dana (simpanan) lalu menyalurkan (kredit).</p>
+    <article class="bab" id="bab2" data-tags="">
+      <div class="bab-head"><span class="sc">Bab 02</span><h2>Tujuan dan fungsi kredit</h2><div class="tags" data-tagrow></div></div>
+      <h3>Tujuan</h3>
+      <div class="prose"><ol class="alpha">
+        <li><b>Keuntungan.</b> Selisih bunga pinjaman dan bunga simpanan (<i>spread</i>) adalah sumber laba utama bank.</li>
+        <li><b>Membantu usaha nasabah</b> yang butuh dana investasi atau modal kerja.</li>
+        <li><b>Membantu pemerintah</b>: mendorong pembangunan, lapangan kerja, dan penerimaan pajak.</li>
+      </ol></div>
+      <h3>Fungsi</h3>
+      <div class="prose"><ol class="alpha">
+        <li>Meningkatkan daya guna uang, karena simpanan yang menganggur disalurkan ke kegiatan produktif.</li>
+        <li>Meningkatkan peredaran uang dan barang.</li>
+        <li>Menjadi alat stabilitas ekonomi.</li>
+        <li>Mendorong kegairahan berusaha, pemerataan pendapatan, dan hubungan internasional.</li>
+      </ol></div>
+      <p class="note"><span class="sc">Ingat</span>Bank adalah lembaga intermediasi: menghimpun dana dalam bentuk simpanan, lalu menyalurkannya dalam bentuk kredit.</p>
+    </article>
 
-  <!-- BAB III -->
-  <h2 class="bab" id="bab3"><span>BAB III</span>Jenis-jenis Kredit</h2>
-  <h3>3.1 Penggolongan Kredit</h3>
-  <p class="prose">Satu fasilitas bisa masuk beberapa golongan sekaligus. KPR, misalnya, termasuk kredit konsumtif, berjangka panjang, dan beragunan.</p>
-  <p class="caption">Tabel 3.1 <i>Penggolongan kredit</i></p>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>Dilihat dari</th><th>Jenis</th><th>Keterangan</th></tr></thead>
-      <tbody>
-        <tr><td rowspan="2">Kegunaan</td><td>Kredit investasi</td><td>Membeli barang modal: mesin, gedung, perluasan usaha. Tenor umumnya panjang.</td></tr>
-        <tr><td>Kredit modal kerja</td><td>Operasional usaha: bahan baku, gaji, biaya produksi.</td></tr>
-        <tr><td rowspan="3">Tujuan</td><td>Produktif</td><td>Menghasilkan barang atau jasa.</td></tr>
-        <tr><td>Konsumtif</td><td>Dipakai sendiri: KPR, KKB, KTA, kartu kredit.</td></tr>
-        <tr><td>Perdagangan</td><td>Membeli barang dagangan yang dibayar dari hasil penjualan.</td></tr>
-        <tr><td rowspan="3">Jangka waktu</td><td>Pendek</td><td>≤ 1 tahun</td></tr>
-        <tr><td>Menengah</td><td>&gt; 1 s.d. 3 tahun</td></tr>
-        <tr><td>Panjang</td><td>&gt; 3 tahun</td></tr>
-        <tr><td rowspan="2">Jaminan</td><td>Dengan jaminan</td><td>Benda berwujud, tak berwujud, atau orang.</td></tr>
-        <tr><td>Tanpa jaminan</td><td>Berdasarkan prospek dan karakter debitur, mis. KTA.</td></tr>
-        <tr><td>Sektor</td><td colspan="2">Pertanian, industri, perdagangan, pertambangan, konstruksi, perumahan, dan lain-lain.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <h3>3.2 Produk Kredit yang Sering Ditemui</h3>
-  <p class="caption">Tabel 3.2 <i>Produk kredit</i></p>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>Produk</th><th>Ciri utama</th><th>Agunan / pengikatan</th></tr></thead>
-      <tbody>
-        <tr><td><b>KPR</b></td><td>Membeli rumah, tenor hingga 20–30 tahun; plafon dibatasi rasio LTV.</td><td>Rumah yang dibeli, Hak Tanggungan</td></tr>
-        <tr><td><b>KKB</b></td><td>Membeli kendaraan; uang muka minimum diatur BI.</td><td>BPKB, fidusia</td></tr>
-        <tr><td><b>KTA</b></td><td>Tanpa agunan, bunga lebih tinggi, bergantung pada penghasilan dan riwayat kredit.</td><td>Tidak ada</td></tr>
-        <tr><td><b>KUR</b></td><td>UMKM, bunga disubsidi pemerintah. Permenko 1/2026: Super Mikro s.d. Rp10 juta (3%), Mikro &gt;Rp10–100 juta, Kecil &gt;Rp100–500 juta.</td><td>Usaha yang dibiayai; dijamin perusahaan penjaminan</td></tr>
-        <tr><td><b>Rekening koran</b></td><td>Tarik-setor kapan saja di bawah plafon; bunga dari saldo terpakai.</td><td>Sesuai analisis</td></tr>
-        <tr><td><b>Sindikasi</b></td><td>Kredit besar dibiayai beberapa bank, dipimpin <i>arranger</i>/agen.</td><td>Dibagi para kreditur</td></tr>
-      </tbody>
-    </table>
-  </div>
+    <article class="bab" id="bab3" data-tags="kpr kur-umkm kartu-kredit">
+      <div class="bab-head"><span class="sc">Bab 03</span><h2>Jenis-jenis kredit</h2><div class="tags" data-tagrow></div></div>
+      <div class="prose"><p>Satu fasilitas bisa masuk beberapa golongan sekaligus. KPR, misalnya, termasuk kredit konsumtif, jangka panjang, dan beragunan.</p></div>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Dilihat dari</th><th>Jenis</th><th>Keterangan</th></tr></thead>
+        <tbody>
+          <tr><td><b>Kegunaan</b></td><td>Investasi<br>Modal kerja</td><td>Barang modal: mesin, gedung, perluasan usaha.<span class="sub">Operasional: bahan baku, gaji, biaya produksi.</span></td></tr>
+          <tr><td><b>Tujuan</b></td><td>Produktif<br>Konsumtif<br>Perdagangan</td><td>Menghasilkan barang/jasa; dipakai sendiri (KPR, KKB, KTA, kartu kredit); membeli barang dagangan.</td></tr>
+          <tr><td><b>Jangka waktu</b></td><td>Pendek<br>Menengah<br>Panjang</td><td class="num" style="text-align:left;padding-left:0">≤ 1 tahun<br>&gt; 1 s.d. 3 tahun<br>&gt; 3 tahun</td></tr>
+          <tr><td><b>Jaminan</b></td><td>Dengan jaminan<br>Tanpa jaminan</td><td>Benda berwujud, tak berwujud, atau orang.<span class="sub">Tanpa jaminan: berdasarkan prospek dan karakter, mis. KTA.</span></td></tr>
+          <tr><td><b>Sektor</b></td><td colspan="2">Pertanian, industri, perdagangan, pertambangan, konstruksi, perumahan, dan lainnya.</td></tr>
+        </tbody>
+      </table></div>
+      <h3>Produk yang sering ditemui</h3>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Produk</th><th>Ciri utama</th><th>Agunan</th></tr></thead>
+        <tbody>
+          <tr><td><b>KPR</b></td><td>Membeli rumah, tenor hingga 20–30 tahun; plafon dibatasi rasio LTV.</td><td>Rumah, Hak Tanggungan</td></tr>
+          <tr><td><b>KKB</b></td><td>Membeli kendaraan; uang muka minimum diatur BI.</td><td>BPKB, fidusia</td></tr>
+          <tr><td><b>KTA</b></td><td>Tanpa agunan, bunga lebih tinggi, bergantung penghasilan dan riwayat kredit.</td><td>Tidak ada</td></tr>
+          <tr><td><b>KUR</b></td><td>UMKM, bunga disubsidi. Permenko 1/2026: Super Mikro s.d. Rp10 juta (3%), Mikro &gt;Rp10–100 juta, Kecil &gt;Rp100–500 juta.</td><td>Usaha yang dibiayai, dijamin perusahaan penjaminan</td></tr>
+          <tr><td><b>Rekening koran</b></td><td>Tarik-setor kapan saja di bawah plafon; bunga dari saldo terpakai.</td><td>Sesuai analisis</td></tr>
+          <tr><td><b>Sindikasi</b></td><td>Kredit besar dari beberapa bank, dipimpin <i>arranger</i>/agen.</td><td>Dibagi para kreditur</td></tr>
+        </tbody>
+      </table></div>
+    </article>
 
-  <!-- BAB IV -->
-  <h2 class="bab" id="bab4"><span>BAB IV</span>Prinsip Analisis Kredit</h2>
-  <p class="prose">Bank wajib yakin bahwa debitur mau dan mampu membayar (UU Perbankan Pasal 8). Keyakinan ini dibangun lewat analisis berikut.</p>
-  <h3>4.1 Prinsip 5C</h3>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>Unsur</th><th>Arti</th><th>Yang dinilai</th></tr></thead>
-      <tbody>
-        <tr><td><b>Character</b></td><td>Watak</td><td>Kemauan membayar: riwayat SLIK OJK, reputasi, gaya hidup, wawancara.</td></tr>
-        <tr><td><b>Capacity</b></td><td>Kemampuan</td><td>Kemampuan membayar dari penghasilan atau arus kas, mis. rasio angsuran terhadap penghasilan.</td></tr>
-        <tr><td><b>Capital</b></td><td>Modal</td><td>Modal sendiri yang ditanam debitur.</td></tr>
-        <tr><td><b>Collateral</b></td><td>Jaminan</td><td>Agunan sebagai sumber pelunasan kedua.</td></tr>
-        <tr><td><b>Condition</b></td><td>Kondisi ekonomi</td><td>Prospek sektor, kondisi ekonomi, kebijakan pemerintah.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="catatan">Sering keluar di ujian! Collateral BUKAN sumber pelunasan utama. First way out = arus kas usaha/penghasilan. Second way out = agunan.</p>
-  <h3>4.2 Prinsip 7P</h3>
-  <ol class="alpha prose">
-    <li><b>Personality</b>: kepribadian dan perilaku debitur.</li>
-    <li><b>Party</b>: penggolongan debitur berdasarkan modal, loyalitas, dan karakter.</li>
-    <li><b>Purpose</b>: tujuan penggunaan kredit.</li>
-    <li><b>Prospect</b>: prospek usaha ke depan.</li>
-    <li><b>Payment</b>: cara dan sumber pengembalian.</li>
-    <li><b>Profitability</b>: kemampuan usaha menghasilkan laba.</li>
-    <li><b>Protection</b>: perlindungan berupa jaminan barang, orang, atau asuransi.</li>
-  </ol>
-  <h3>4.3 Prinsip 3R</h3>
-  <p class="prose"><b>Returns</b> (hasil yang diperoleh debitur dari kredit), <b>Repayment capacity</b> (kemampuan membayar kembali), dan <b>Risk-bearing ability</b> (kemampuan menanggung risiko).</p>
-  <h3>4.4 Aspek Studi Kelayakan</h3>
-  <p class="prose">Untuk kredit usaha, bank menilai aspek hukum, pasar dan pemasaran, keuangan, teknis/operasi, manajemen, ekonomi-sosial, serta AMDAL.</p>
+    <article class="bab" id="bab4" data-tags="analisis-kredit">
+      <div class="bab-head"><span class="sc">Bab 04</span><h2>Prinsip analisis kredit</h2><div class="tags" data-tagrow></div></div>
+      <div class="prose"><p>Bank wajib yakin bahwa debitur mau dan mampu membayar (UU Perbankan Pasal 8). Keyakinan itu dibangun lewat analisis berikut.</p></div>
+      <h3>5C</h3>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Unsur</th><th>Arti</th><th>Yang dinilai</th></tr></thead>
+        <tbody>
+          <tr><td><b>Character</b></td><td>Watak</td><td>Kemauan membayar: riwayat SLIK OJK, reputasi, wawancara.</td></tr>
+          <tr><td><b>Capacity</b></td><td>Kemampuan</td><td>Kemampuan membayar dari penghasilan atau arus kas.</td></tr>
+          <tr><td><b>Capital</b></td><td>Modal</td><td>Modal sendiri yang ditanam debitur.</td></tr>
+          <tr><td><b>Collateral</b></td><td>Jaminan</td><td>Agunan sebagai sumber pelunasan kedua.</td></tr>
+          <tr><td><b>Condition</b></td><td>Kondisi</td><td>Prospek sektor, kondisi ekonomi, kebijakan pemerintah.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note"><span class="sc">Sering keluar di ujian</span>Collateral bukan sumber pelunasan utama. <i>First way out</i> adalah arus kas usaha atau penghasilan; <i>second way out</i> adalah agunan.</p>
+      <h3>7P dan 3R</h3>
+      <div class="prose">
+        <p><b>7P</b>: Personality, Party, Purpose, Prospect, Payment, Profitability, dan Protection.</p>
+        <p><b>3R</b>: Returns (hasil dari kredit), Repayment capacity (kemampuan membayar kembali), dan Risk-bearing ability (kemampuan menanggung risiko).</p>
+        <p>Untuk kredit usaha, studi kelayakan menilai aspek hukum, pasar, keuangan, teknis, manajemen, sosial-ekonomi, dan AMDAL.</p>
+      </div>
+    </article>
 
-  <!-- BAB V -->
-  <h2 class="bab" id="bab5"><span>BAB V</span>Prosedur Pemberian Kredit</h2>
-  <p class="prose">Urutan umum yang dipakai bank (detail dapat berbeda per bank dan produk):</p>
-  <ol class="prose">
-    <li><b>Pengajuan berkas.</b> Formulir permohonan, identitas, NPWP, laporan keuangan atau slip gaji, legalitas usaha, dokumen agunan.</li>
-    <li><b>Penyelidikan berkas.</b> Kelengkapan dan keaslian dokumen, serta riwayat kredit lewat SLIK OJK.</li>
-    <li><b>Wawancara pertama.</b> Mencocokkan berkas, menggali karakter dan rencana penggunaan dana.</li>
-    <li><b>On the spot (OTS).</b> Kunjungan ke lokasi usaha dan agunan; agunan dinilai (appraisal) oleh penilai internal atau KJPP.</li>
-    <li><b>Wawancara kedua.</b> Melengkapi temuan setelah OTS.</li>
-    <li><b>Keputusan kredit.</b> Komite atau pejabat pemutus menetapkan plafon, tenor, bunga, dan syarat.</li>
-    <li><b>Penandatanganan akad.</b> Akad kredit dan pengikatan agunan, biasanya di hadapan notaris/PPAT.</li>
-    <li><b>Realisasi kredit.</b> Dana dicairkan setelah semua syarat terpenuhi.</li>
-    <li><b>Penyaluran dan pemantauan.</b> Dana dipakai sesuai tujuan; bank memantau sampai lunas.</li>
-  </ol>
+    <article class="bab" id="bab5" data-tags="analisis-kredit agunan">
+      <div class="bab-head"><span class="sc">Bab 05</span><h2>Prosedur pemberian kredit</h2><div class="tags" data-tagrow></div></div>
+      <div class="prose"><ol>
+        <li><b>Pengajuan berkas</b>: formulir, identitas, NPWP, laporan keuangan atau slip gaji, legalitas usaha, dokumen agunan.</li>
+        <li><b>Penyelidikan berkas</b>: kelengkapan, keaslian, dan riwayat kredit lewat SLIK OJK.</li>
+        <li><b>Wawancara pertama</b>: mencocokkan berkas, menggali karakter dan rencana penggunaan dana.</li>
+        <li><b>On the spot</b>: kunjungan ke usaha dan agunan; agunan dinilai oleh penilai internal atau KJPP.</li>
+        <li><b>Wawancara kedua</b>: melengkapi temuan setelah kunjungan.</li>
+        <li><b>Keputusan kredit</b>: komite atau pejabat pemutus menetapkan plafon, tenor, bunga, dan syarat.</li>
+        <li><b>Akad</b>: perjanjian kredit dan pengikatan agunan, biasanya di hadapan notaris/PPAT.</li>
+        <li><b>Realisasi</b>: dana dicairkan setelah semua syarat terpenuhi.</li>
+        <li><b>Penyaluran dan pemantauan</b>: dana dipakai sesuai tujuan; bank memantau sampai lunas.</li>
+      </ol></div>
+    </article>
 
-  <!-- BAB VI -->
-  <h2 class="bab" id="bab6"><span>BAB VI</span>Agunan dan Pengikatan Jaminan</h2>
-  <p class="prose">Agunan harus <b>diikat secara hukum</b> sesuai jenis bendanya agar bank mendapat hak didahulukan.</p>
-  <p class="caption">Tabel 6.1 <i>Lembaga jaminan</i></p>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>Lembaga jaminan</th><th>Objek</th><th>Dasar hukum</th><th>Ciri utama</th></tr></thead>
-      <tbody>
-        <tr><td><b>Hak Tanggungan</b></td><td>Tanah dan bangunan</td><td>UU 4/1996</td><td>APHT oleh PPAT, didaftarkan di Kantor Pertanahan; dapat dieksekusi lewat lelang.</td></tr>
-        <tr><td><b>Fidusia</b></td><td>Benda bergerak; bangunan yang tidak dapat dibebani HT</td><td>UU 42/1999</td><td>Benda tetap dikuasai debitur; akta notaris, wajib didaftarkan.</td></tr>
-        <tr><td><b>Gadai</b></td><td>Benda bergerak</td><td>KUHPerdata Ps. 1150</td><td>Benda diserahkan ke kreditur: emas, deposito, saham.</td></tr>
-        <tr><td><b>Hipotek</b></td><td>Kapal terdaftar</td><td>KUHPerdata Ps. 1162, UU 17/2008</td><td>Akta hipotek, dicatat di daftar induk kapal.</td></tr>
-        <tr><td><b>Borgtocht</b></td><td>Orang atau badan usaha</td><td>KUHPerdata Ps. 1820</td><td>Personal atau corporate guarantee.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <h3>6.1 Syarat Agunan yang Baik</h3>
-  <ol class="alpha prose">
-    <li><b>Marketable</b>: mudah dijual, nilainya stabil.</li>
-    <li><b>Secured</b>: dapat diikat secara hukum dan bebas sengketa.</li>
-    <li>Nilainya memadai; bank menghitung <span class="mark">nilai likuidasi</span>, bukan hanya nilai pasar.</li>
-    <li>Diasuransikan dengan bank sebagai penerima manfaat (<i>banker’s clause</i>).</li>
-  </ol>
+    <article class="bab" id="bab6" data-tags="agunan kpr">
+      <div class="bab-head"><span class="sc">Bab 06</span><h2>Agunan dan pengikatan jaminan</h2><div class="tags" data-tagrow></div></div>
+      <div class="prose"><p>Agunan harus <b>diikat secara hukum</b> sesuai jenis bendanya agar bank mendapat hak didahulukan.</p></div>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Lembaga</th><th>Objek</th><th>Dasar</th><th>Ciri</th></tr></thead>
+        <tbody>
+          <tr><td><b>Hak Tanggungan</b></td><td>Tanah dan bangunan</td><td class="mono">UU 4/1996</td><td>APHT oleh PPAT, didaftarkan di Kantor Pertanahan; eksekusi lewat lelang.</td></tr>
+          <tr><td><b>Fidusia</b></td><td>Benda bergerak</td><td class="mono">UU 42/1999</td><td>Benda tetap dikuasai debitur; akta notaris, wajib didaftarkan.</td></tr>
+          <tr><td><b>Gadai</b></td><td>Benda bergerak</td><td class="mono">KUHPer 1150</td><td>Benda diserahkan ke kreditur: emas, deposito, saham.</td></tr>
+          <tr><td><b>Hipotek</b></td><td>Kapal terdaftar</td><td class="mono">KUHPer 1162</td><td>Akta hipotek, dicatat di daftar induk kapal.</td></tr>
+          <tr><td><b>Borgtocht</b></td><td>Orang/badan</td><td class="mono">KUHPer 1820</td><td>Personal atau corporate guarantee.</td></tr>
+        </tbody>
+      </table></div>
+      <div class="prose"><p>Agunan yang baik itu <b>marketable</b> (mudah dijual), <b>secured</b> (bisa diikat dan bebas sengketa), nilainya cukup berdasarkan <b>nilai likuidasi</b>, dan diasuransikan dengan bank sebagai penerima manfaat.</p></div>
+    </article>
 
-  <!-- BAB VII -->
-  <h2 class="bab" id="bab7"><span>BAB VII</span>Bunga Kredit</h2>
-  <p class="prose">Bank menetapkan bunga dari biaya dana (<i>cost of fund</i>), biaya overhead, premi risiko, dan target laba. Komponen dasarnya diumumkan sebagai Suku Bunga Dasar Kredit (SBDK).</p>
-  <h3>7.1 Metode Perhitungan Bunga</h3>
-  <h4>a. Bunga flat</h4>
-  <p class="prose">Bunga dihitung dari plafon awal sepanjang tenor. Angsuran tetap, total bunga paling besar.</p>
-  <p class="rumus">bunga per bulan = P × r ÷ 12<small>P = plafon, r = bunga per tahun</small></p>
-  <h4>b. Bunga efektif (sliding)</h4>
-  <p class="prose">Bunga dihitung dari sisa pokok. Pokok per bulan tetap, jadi angsuran menurun.</p>
-  <p class="rumus">bunga bulan ke-k = sisa pokok<sub>k−1</sub> × r ÷ 12</p>
-  <h4>c. Bunga anuitas</h4>
-  <p class="prose">Angsuran total tetap; porsi bunga mengecil, porsi pokok membesar. Umum untuk KPR.</p>
-  <p class="rumus">A = P × i ÷ (1 − (1 + i)<sup>−n</sup>)<small>i = r ÷ 12, n = tenor dalam bulan</small></p>
-  <h3>7.2 Contoh Soal</h3>
-  <div class="box">
-    <p class="box-title">Contoh 7.1</p>
-    <p>Plafon Rp60.000.000, bunga 12% per tahun, tenor 12 bulan. Hitung angsuran dan total bunga dengan ketiga metode.</p>
-    <p><b>Jawab:</b></p>
-    <ol class="alpha">
-      <li>Flat: pokok Rp5.000.000 + bunga Rp600.000 = <span class="mark">Rp5.600.000/bulan</span>; total bunga Rp7.200.000.</li>
-      <li>Efektif: bulan ke-1 Rp5.000.000 + Rp600.000 = Rp5.600.000, turun Rp50.000 tiap bulan sampai Rp5.050.000 di bulan ke-12; <span class="mark">total bunga Rp3.900.000</span>.</li>
-      <li>Anuitas: i = 1%, A = 60.000.000 × 0,01 ÷ (1 − 1,01<sup>−12</sup>) = <span class="mark">Rp5.330.927/bulan</span>; total bunga ≈ Rp3.971.128.</li>
-    </ol>
-    <p>Coba angka lain di <a href="#lk1">Simulasi, Lembar Kerja 1</a>.</p>
-  </div>
-  <p class="catatan">Bunga flat 12% ≠ bunga efektif 12%! Flat 12% untuk 12 bulan setara efektif sekitar 21,5% per tahun. Cek di Lembar Kerja 2.</p>
-  <h3>7.3 Biaya Lain</h3>
-  <p class="prose">Selain bunga, debitur biasanya membayar <b>provisi</b> (persentase dari plafon, sekali di awal), <b>biaya administrasi</b>, biaya notaris dan pengikatan, premi asuransi, serta <b>denda</b> keterlambatan dan penalti pelunasan dipercepat sesuai akad.</p>
+    <article class="bab" id="bab7" data-tags="bunga kpr">
+      <div class="bab-head"><span class="sc">Bab 07</span><h2>Bunga kredit</h2><div class="tags" data-tagrow></div></div>
+      <div class="prose"><p>Bunga kredit dibentuk dari biaya dana, biaya overhead, premi risiko, dan target laba. Komponen dasarnya diumumkan bank sebagai Suku Bunga Dasar Kredit (SBDK).</p></div>
+      <div class="code"><span class="c">// flat: dari plafon awal, angsuran tetap</span><br>bunga/bulan = P × r ÷ 12<br><br><span class="c">// efektif: dari sisa pokok, angsuran menurun</span><br>bunga bulan ke-k = sisa pokok × r ÷ 12<br><br><span class="c">// anuitas: angsuran tetap, porsi pokok naik</span><br>A = P × i ÷ (1 − (1 + i)<sup>−n</sup>), i = r ÷ 12</div>
+      <div class="card">
+        <div class="cap"><span class="sc">Contoh soal</span><a class="got" href="#lk1">Coba di Simulasi</a></div>
+        <p>Plafon Rp60.000.000, bunga 12% per tahun, tenor 12 bulan.</p>
+        <ol>
+          <li><b>Flat</b>: Rp5.000.000 + Rp600.000 = <b class="or">Rp5.600.000/bulan</b>; total bunga Rp7.200.000.</li>
+          <li><b>Efektif</b>: Rp5.600.000 di bulan pertama, turun Rp50.000 tiap bulan hingga Rp5.050.000; <b class="or">total bunga Rp3.900.000</b>.</li>
+          <li><b>Anuitas</b>: i = 1%, A = <b class="or">Rp5.330.927/bulan</b>; total bunga ≈ Rp3.971.128.</li>
+        </ol>
+      </div>
+      <p class="note"><span class="sc">Hati-hati</span>Bunga flat 12% tidak sama dengan efektif 12%. Untuk tenor 12 bulan, flat 12% setara efektif sekitar 21,5% per tahun.</p>
+      <div class="prose"><p>Biaya lain: <b>provisi</b> (persentase plafon di awal), biaya administrasi, notaris dan pengikatan, premi asuransi, serta denda keterlambatan dan penalti pelunasan dipercepat.</p></div>
+    </article>
 
-  <!-- BAB VIII -->
-  <h2 class="bab" id="bab8"><span>BAB VIII</span>Kolektibilitas</h2>
-  <p class="prose">Kualitas kredit dinilai dari tiga pilar: <b>prospek usaha</b>, <b>kinerja debitur</b>, dan <b>kemampuan membayar</b>. Ukuran paling mudah adalah lamanya tunggakan. Ketentuan bank umum mengacu pada POJK 40/POJK.03/2019.</p>
-  <p class="caption">Tabel 8.1 <i>Golongan kolektibilitas dan PPKA minimum</i></p>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th class="tc">Kol</th><th>Golongan</th><th>Tunggakan</th><th class="num">PPKA min.</th></tr></thead>
-      <tbody>
-        <tr><td class="tc">1</td><td>Lancar</td><td>Tidak ada</td><td class="num">1%</td></tr>
-        <tr><td class="tc">2</td><td>Dalam Perhatian Khusus (DPK)</td><td>s.d. 90 hari</td><td class="num">5%</td></tr>
-        <tr><td class="tc">3</td><td>Kurang Lancar</td><td>&gt; 90 s.d. 120 hari</td><td class="num">15%</td></tr>
-        <tr><td class="tc">4</td><td>Diragukan</td><td>&gt; 120 s.d. 180 hari</td><td class="num">50%</td></tr>
-        <tr><td class="tc">5</td><td>Macet</td><td>&gt; 180 hari</td><td class="num">100%</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="sumber">PPKA Kol 2–5 dihitung dari baki debet setelah dikurangi nilai agunan yang memenuhi syarat. Sumber: POJK 40/POJK.03/2019.</p>
-  <p class="prose">Kol 3, 4, dan 5 disebut <span class="mark">kredit bermasalah (NPL)</span>. Bila debitur punya beberapa fasilitas di satu bank, semuanya disamakan mengikuti yang terburuk (<i>one obligor</i>).</p>
-  <p class="prose">Hitung kolektibilitas dan cadangannya di <a href="#lk4">Simulasi, Lembar Kerja 4</a>.</p>
+    <article class="bab" id="bab8" data-tags="kolektibilitas">
+      <div class="bab-head"><span class="sc">Bab 08</span><h2>Kolektibilitas</h2><div class="tags" data-tagrow></div></div>
+      <div class="prose"><p>Kualitas kredit dinilai dari prospek usaha, kinerja debitur, dan kemampuan membayar. Ukuran termudah adalah lamanya tunggakan (POJK 40/POJK.03/2019).</p></div>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Kol</th><th>Golongan</th><th>Tunggakan</th><th class="num">PPKA min.</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">1</td><td><b>Lancar</b></td><td>Tidak ada</td><td class="num">1%</td></tr>
+          <tr><td class="mono">2</td><td><b>Dalam Perhatian Khusus</b></td><td>s.d. 90 hari</td><td class="num">5%</td></tr>
+          <tr><td class="mono">3</td><td><b>Kurang Lancar</b></td><td>&gt; 90 s.d. 120 hari</td><td class="num">15%</td></tr>
+          <tr><td class="mono">4</td><td><b>Diragukan</b></td><td>&gt; 120 s.d. 180 hari</td><td class="num">50%</td></tr>
+          <tr><td class="mono">5</td><td><b>Macet</b></td><td>&gt; 180 hari</td><td class="num">100%</td></tr>
+        </tbody>
+      </table></div>
+      <div class="prose"><p>Kol 3–5 disebut <b>kredit bermasalah (NPL)</b>. PPKA Kol 2–5 dihitung dari baki debet setelah dikurangi agunan yang memenuhi syarat. Semua fasilitas satu debitur di satu bank disamakan mengikuti yang terburuk (<i>one obligor</i>).</p></div>
+      <a class="got" href="#lk4">Hitung di Simulasi, lembar kerja 4</a>
+    </article>
 
-  <!-- BAB IX -->
-  <h2 class="bab" id="bab9"><span>BAB IX</span>Kredit Bermasalah</h2>
-  <h3>9.1 Penyebab</h3>
-  <ol class="alpha prose">
-    <li><b>Dari pihak bank</b>: analisis kurang cermat, kolusi, pengawasan lemah, plafon tidak sesuai kebutuhan.</li>
-    <li><b>Dari pihak debitur</b>: kesengajaan (tidak mau bayar) atau ketidaksengajaan (usaha gagal, musibah, PHK).</li>
-    <li><b>Faktor eksternal</b>: krisis ekonomi, bencana alam, perubahan regulasi.</li>
-  </ol>
-  <h3>9.2 Penyelamatan Kredit (3R)</h3>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>Cara</th><th>Yang diubah</th><th>Contoh</th></tr></thead>
-      <tbody>
-        <tr><td><b>Rescheduling</b><br><i>penjadwalan ulang</i></td><td>Jadwal pembayaran atau jangka waktu</td><td>Tenor diperpanjang dari 3 menjadi 5 tahun; masa tenggang.</td></tr>
-        <tr><td><b>Reconditioning</b><br><i>persyaratan ulang</i></td><td>Sebagian atau seluruh syarat</td><td>Penurunan bunga, penundaan atau pembebasan bunga, kapitalisasi bunga.</td></tr>
-        <tr><td><b>Restructuring</b><br><i>penataan ulang</i></td><td>Struktur kredit atau permodalan</td><td>Tambahan fasilitas, konversi tunggakan bunga menjadi pokok, konversi kredit menjadi penyertaan modal sementara.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="catatan">Jangan tertukar: 3R analisis (Returns, Repayment, Risk-bearing) vs 3R penyelamatan (Rescheduling, Reconditioning, Restructuring).</p>
-  <h3>9.3 Penyelesaian bila Penyelamatan Gagal</h3>
-  <ol class="alpha prose">
-    <li>Penagihan intensif dan surat peringatan (SP1–SP3), sesuai etika penagihan POJK 22/2023.</li>
-    <li>Penjualan agunan secara sukarela, atau eksekusi lewat lelang (KPKNL atau balai lelang swasta).</li>
-    <li>AYDA: bank membeli agunan untuk dijual kembali.</li>
-    <li><b>Hapus buku</b>: kredit dikeluarkan dari neraca, tetapi <span class="mark">tetap ditagih</span>.</li>
-    <li><b>Hapus tagih</b>: kewajiban debitur benar-benar dibebaskan.</li>
-  </ol>
+    <article class="bab" id="bab9" data-tags="restrukturisasi penagihan kolektibilitas">
+      <div class="bab-head"><span class="sc">Bab 09</span><h2>Kredit bermasalah</h2><div class="tags" data-tagrow></div></div>
+      <div class="prose"><p>Penyebabnya bisa dari <b>bank</b> (analisis kurang cermat, pengawasan lemah), dari <b>debitur</b> (sengaja tidak bayar, usaha gagal, musibah), atau <b>faktor luar</b> (krisis, bencana, regulasi).</p></div>
+      <h3>Penyelamatan: 3R</h3>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Cara</th><th>Yang diubah</th><th>Contoh</th></tr></thead>
+        <tbody>
+          <tr><td><b>Rescheduling</b></td><td>Jadwal atau jangka waktu</td><td>Tenor diperpanjang dari 3 menjadi 5 tahun; masa tenggang.</td></tr>
+          <tr><td><b>Reconditioning</b></td><td>Sebagian atau seluruh syarat</td><td>Bunga diturunkan, ditunda, atau dibebaskan; kapitalisasi bunga.</td></tr>
+          <tr><td><b>Restructuring</b></td><td>Struktur kredit atau modal</td><td>Tambahan fasilitas, konversi tunggakan menjadi pokok atau penyertaan modal sementara.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="note"><span class="sc">Jangan tertukar</span>3R analisis (Returns, Repayment, Risk-bearing) berbeda dengan 3R penyelamatan (Rescheduling, Reconditioning, Restructuring).</p>
+      <h3>Bila penyelamatan gagal</h3>
+      <div class="prose"><ol class="alpha">
+        <li>Penagihan dan surat peringatan, sesuai etika penagihan POJK 22/2023.</li>
+        <li>Penjualan agunan sukarela, atau eksekusi lewat lelang.</li>
+        <li>AYDA: bank membeli agunan untuk dijual kembali.</li>
+        <li><b>Hapus buku</b>: keluar dari neraca, tetapi tetap ditagih.</li>
+        <li><b>Hapus tagih</b>: kewajiban debitur dibebaskan.</li>
+      </ol></div>
+    </article>
 
-  <!-- BAB X -->
-  <h2 class="bab" id="bab10"><span>BAB X</span>Rambu Regulasi</h2>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>Ketentuan</th><th>Isi singkat</th></tr></thead>
-      <tbody>
-        <tr><td><b>Prinsip kehati-hatian</b></td><td>Bank wajib yakin atas kemampuan dan kesanggupan debitur (UU Perbankan Ps. 8 dan 29).</td></tr>
-        <tr><td><b>BMPK</b></td><td>Pihak terkait maks. 10% modal inti; satu peminjam tidak terkait 20%; satu kelompok 25% (POJK 32/POJK.03/2018).</td></tr>
-        <tr><td><b>NPL</b></td><td>Rasio kredit Kol 3–5 terhadap total kredit; NPL neto di bawah 5%.</td></tr>
-        <tr><td><b>LDR / RIM</b></td><td>Kredit dibanding dana pihak ketiga; BI memakai RIM dengan target 84–94%.</td></tr>
-        <tr><td><b>LTV / FTV</b></td><td>Batas plafon kredit properti terhadap nilai agunan. PADG 30/2025 memperpanjang pelonggaran (hingga 100%) sampai 31 Desember 2026 bagi bank yang memenuhi kriteria.</td></tr>
-        <tr><td><b>SLIK OJK</b></td><td>Pengganti BI Checking; berisi riwayat dan kolektibilitas kredit debitur.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="prose">Daftar lengkap ada di <a href="#regulasi">Lampiran B (Regulasi)</a>.</p>
+    <article class="bab" id="bab10" data-tags="permodalan makroprudensial kpr">
+      <div class="bab-head"><span class="sc">Bab 10</span><h2>Rambu regulasi</h2><div class="tags" data-tagrow></div></div>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Ketentuan</th><th>Isi singkat</th></tr></thead>
+        <tbody>
+          <tr><td><b>Kehati-hatian</b></td><td>Bank wajib yakin atas kemampuan dan kesanggupan debitur (UU Perbankan Ps. 8 dan 29).</td></tr>
+          <tr><td><b>BMPK</b></td><td>Pihak terkait maks. 10% modal inti; satu peminjam tidak terkait 20%; satu kelompok 25%.</td></tr>
+          <tr><td><b>NPL</b></td><td>Kredit Kol 3–5 terhadap total kredit; NPL neto di bawah 5%.</td></tr>
+          <tr><td><b>RIM</b></td><td>Rasio intermediasi makroprudensial BI dengan target 84–94%.</td></tr>
+          <tr><td><b>LTV/FTV</b></td><td>PADG 30/2025 memperpanjang pelonggaran hingga 100% sampai 31 Desember 2026 bagi bank yang memenuhi kriteria.</td></tr>
+          <tr><td><b>SLIK</b></td><td>Pengganti BI Checking; riwayat dan kolektibilitas kredit debitur.</td></tr>
+        </tbody>
+      </table></div>
+      <a class="got" href="#regulasi">Lihat semua peraturan</a>
+    </article>
 
-  <!-- BAB XI -->
-  <h2 class="bab" id="bab11"><span>BAB XI</span>Pembiayaan Syariah sebagai Pembanding</h2>
-  <p class="prose">Di bank syariah (UU 21/2008), istilah kredit diganti <b>pembiayaan</b>, dan bunga diganti margin, bagi hasil, atau ujrah sesuai akad.</p>
-  <div class="table-wrap">
-    <table>
-      <thead><tr><th>Aspek</th><th>Kredit konvensional</th><th>Pembiayaan syariah</th></tr></thead>
-      <tbody>
-        <tr><td>Imbalan</td><td>Bunga</td><td>Margin, nisbah bagi hasil, atau ujrah</td></tr>
-        <tr><td>Hubungan</td><td>Kreditur–debitur</td><td>Penjual–pembeli, mitra usaha, pemberi sewa–penyewa</td></tr>
-        <tr><td>Pengawasan</td><td>OJK</td><td>OJK dan Dewan Pengawas Syariah</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <ol class="alpha prose">
-    <li><b>Murabahah</b>: jual-beli dengan margin yang disepakati; banyak dipakai untuk rumah dan kendaraan.</li>
-    <li><b>Mudharabah</b>: bank menyediakan seluruh modal, nasabah mengelola; untung dibagi sesuai nisbah.</li>
-    <li><b>Musyarakah</b>: modal dari kedua pihak; untung sesuai nisbah, rugi sesuai porsi modal.</li>
-    <li><b>Ijarah / IMBT</b>: sewa-menyewa; IMBT diakhiri perpindahan kepemilikan.</li>
-  </ol>
-</section>
+    <article class="bab" id="bab11" data-tags="syariah">
+      <div class="bab-head"><span class="sc">Bab 11</span><h2>Pembiayaan syariah sebagai pembanding</h2><div class="tags" data-tagrow></div></div>
+      <div class="prose"><p>Di bank syariah (UU 21/2008), kredit disebut <b>pembiayaan</b>, dan bunga diganti margin, bagi hasil, atau ujrah sesuai akad.</p></div>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Aspek</th><th>Konvensional</th><th>Syariah</th></tr></thead>
+        <tbody>
+          <tr><td><b>Imbalan</b></td><td>Bunga</td><td>Margin, nisbah bagi hasil, atau ujrah</td></tr>
+          <tr><td><b>Hubungan</b></td><td>Kreditur–debitur</td><td>Penjual–pembeli, mitra usaha, pemberi sewa–penyewa</td></tr>
+          <tr><td><b>Pengawasan</b></td><td>OJK</td><td>OJK dan Dewan Pengawas Syariah</td></tr>
+        </tbody>
+      </table></div>
+      <div class="prose"><p><b>Murabahah</b> (jual-beli dengan margin), <b>mudharabah</b> (bank memodali, nasabah mengelola), <b>musyarakah</b> (modal bersama), dan <b>ijarah/IMBT</b> (sewa, bisa diakhiri perpindahan kepemilikan).</p></div>
+    </article>
+  </section>
 
-<!-- ================= SIMULASI ================= -->
-<section class="sheet view-sheet view" id="view-simulasi" aria-label="Simulasi" hidden>
-  <div class="runhead"><span>Buku Saku Kredit Perbankan</span><span>Lembar Kerja Simulasi</span></div>
-  <h2 class="lampiran">Lembar Kerja Simulasi</h2>
-  <p class="prose">Isi bagian <i>Diketahui</i>; bagian <i>Jawab</i> dihitung otomatis lengkap dengan langkah-langkahnya, seperti mengerjakan soal di kelas. Angka awal hanyalah contoh.</p>
-  <ol class="lk-index">
-    <li><a href="#lk1">Angsuran kredit: flat, efektif, anuitas</a></li>
-    <li><a href="#lk2">Konversi bunga flat ke bunga efektif</a></li>
-    <li><a href="#lk3">Kemampuan bayar dan plafon maksimum (KPR)</a></li>
-    <li><a href="#lk4">Kolektibilitas dan cadangan (PPKA)</a></li>
-    <li><a href="#lk5">Cek biaya pinjaman daring</a></li>
-  </ol>
+  <!-- ===== SIMULASI ===== -->
+  <section class="view" id="view-simulasi" aria-label="Simulasi" hidden>
+    <div class="head">
+      <span class="sc">Simulasi</span>
+      <h2>Hitung sendiri, lihat langkahnya.</h2>
+      <p>Isi bagian <b>Diketahui</b>. Bagian <b>Jawab</b> dihitung langsung beserta langkah-langkahnya, seperti mengerjakan soal di kelas. Angka awal hanyalah contoh.</p>
+    </div>
+    <div class="lk-list">
 
-  <!-- LK 1 -->
-  <article class="lk" id="lk1">
-    <div class="lk-head"><h3>Lembar Kerja 1. Angsuran Kredit</h3><span>Bab VII</span></div>
-    <div class="lk-body">
-      <p><b>Diketahui:</b></p>
-      <div class="diketahui">
-        <div class="field"><label for="l1-p">Plafon (P)</label><span class="unit">Rp</span><input type="number" id="l1-p" value="60000000" min="0" step="1000000" inputmode="numeric"></div>
-        <div class="field"><label for="l1-r">Bunga per tahun (r)</label><input type="number" id="l1-r" class="short" value="12" min="0" max="100" step="0.1" inputmode="decimal"><span class="unit">%</span></div>
-        <div class="field"><label for="l1-n">Tenor (n)</label><input type="number" id="l1-n" class="short" value="12" min="1" max="360" step="1" inputmode="numeric"><span class="unit">bulan</span></div>
+    <article class="lk" id="lk1" data-tags="bunga">
+      <div class="lk-head"><span class="sc">Lembar kerja 1</span><h3>Angsuran kredit</h3><div class="tags" data-tagrow></div></div>
+      <span class="sc">Diketahui</span>
+      <div class="fields">
+        <div class="field"><label for="l1-p">Plafon (Rp)</label><input type="number" id="l1-p" value="60000000" min="0" step="1000000" inputmode="numeric"></div>
+        <div class="field"><label for="l1-r">Bunga per tahun (%)</label><input type="number" id="l1-r" value="12" min="0" max="100" step="0.1" inputmode="decimal"></div>
+        <div class="field"><label for="l1-n">Tenor (bulan)</label><input type="number" id="l1-n" value="12" min="1" max="360" step="1" inputmode="numeric"></div>
         <div class="field"><label for="l1-m">Metode</label><select id="l1-m"><option value="flat">Flat</option><option value="efektif">Efektif</option><option value="anuitas" selected>Anuitas</option></select></div>
       </div>
-      <p><b>Ditanya:</b> angsuran per bulan dan total bunga.</p>
-      <p><b>Jawab:</b></p>
-      <ol class="langkah" id="l1-steps"></ol>
-      <p class="caption">Perbandingan tiga metode</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Metode</th><th class="num">Angsuran bln ke-1</th><th class="num">Angsuran terakhir</th><th class="num">Total bunga</th><th class="num">Total bayar</th></tr></thead>
-          <tbody id="l1-compare"></tbody>
-        </table>
-      </div>
-      <p class="caption" id="l1-sched-title">Jadwal angsuran</p>
-      <div class="table-wrap sched">
-        <table>
-          <thead><tr><th class="num">Bln</th><th class="num">Pokok</th><th class="num">Bunga</th><th class="num">Angsuran</th><th class="num">Sisa pokok</th></tr></thead>
-          <tbody id="l1-sched"></tbody>
-        </table>
-      </div>
-    </div>
-  </article>
+      <p class="ask"><b>Ditanya:</b> angsuran per bulan dan total bunga.</p>
+      <div class="panel"><span class="sc">Jawab</span><ol class="steps" id="l1-steps"></ol></div>
+      <p class="cap">Perbandingan tiga metode</p>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Metode</th><th class="num">Bulan ke-1</th><th class="num">Terakhir</th><th class="num">Total bunga</th><th class="num">Total bayar</th></tr></thead>
+        <tbody id="l1-compare"></tbody>
+      </table></div>
+      <p class="cap" id="l1-sched-title">Jadwal angsuran</p>
+      <div class="table-wrap sched"><table class="table">
+        <thead><tr><th class="num">Bln</th><th class="num">Pokok</th><th class="num">Bunga</th><th class="num">Angsuran</th><th class="num">Sisa</th></tr></thead>
+        <tbody id="l1-sched"></tbody>
+      </table></div>
+    </article>
 
-  <!-- LK 2 -->
-  <article class="lk" id="lk2">
-    <div class="lk-head"><h3>Lembar Kerja 2. Bunga Flat ke Bunga Efektif</h3><span>Bab VII</span></div>
-    <div class="lk-body">
-      <p><b>Diketahui:</b></p>
-      <div class="diketahui">
-        <div class="field"><label for="l2-r">Bunga flat per tahun</label><input type="number" id="l2-r" class="short" value="12" min="0" max="100" step="0.1" inputmode="decimal"><span class="unit">%</span></div>
-        <div class="field"><label for="l2-n">Tenor (n)</label><input type="number" id="l2-n" class="short" value="12" min="1" max="360" step="1" inputmode="numeric"><span class="unit">bulan</span></div>
+    <article class="lk" id="lk2" data-tags="bunga">
+      <div class="lk-head"><span class="sc">Lembar kerja 2</span><h3>Bunga flat ke bunga efektif</h3><div class="tags" data-tagrow></div></div>
+      <span class="sc">Diketahui</span>
+      <div class="fields">
+        <div class="field"><label for="l2-r">Bunga flat per tahun (%)</label><input type="number" id="l2-r" value="12" min="0" max="100" step="0.1" inputmode="decimal"></div>
+        <div class="field"><label for="l2-n">Tenor (bulan)</label><input type="number" id="l2-n" value="12" min="1" max="360" step="1" inputmode="numeric"></div>
       </div>
-      <p><b>Ditanya:</b> bunga efektif per tahun yang menghasilkan angsuran sama.</p>
-      <p><b>Jawab:</b></p>
-      <ol class="langkah" id="l2-steps"></ol>
-      <p class="caption">Bunga efektif setara untuk berbagai tenor</p>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Tenor</th><th class="num">Bunga flat</th><th class="num">Setara efektif</th></tr></thead>
-          <tbody id="l2-table"></tbody>
-        </table>
-      </div>
-    </div>
-  </article>
+      <p class="ask"><b>Ditanya:</b> bunga efektif per tahun yang menghasilkan angsuran yang sama.</p>
+      <div class="panel"><span class="sc">Jawab</span><ol class="steps" id="l2-steps"></ol></div>
+      <p class="cap">Setara efektif untuk berbagai tenor</p>
+      <div class="table-wrap"><table class="table">
+        <thead><tr><th>Tenor</th><th class="num">Flat</th><th class="num">Setara efektif</th></tr></thead>
+        <tbody id="l2-table"></tbody>
+      </table></div>
+    </article>
 
-  <!-- LK 3 -->
-  <article class="lk" id="lk3">
-    <div class="lk-head"><h3>Lembar Kerja 3. Kemampuan Bayar dan Plafon Maksimum</h3><span>Bab IV · Capacity</span></div>
-    <div class="lk-body">
-      <p><b>Diketahui:</b></p>
-      <div class="diketahui">
-        <div class="field"><label for="l3-inc">Penghasilan bersih per bulan</label><span class="unit">Rp</span><input type="number" id="l3-inc" value="15000000" min="0" step="500000" inputmode="numeric"></div>
-        <div class="field"><label for="l3-oth">Cicilan lain per bulan</label><span class="unit">Rp</span><input type="number" id="l3-oth" value="1500000" min="0" step="100000" inputmode="numeric"></div>
-        <div class="field"><label for="l3-dsr">Batas DSR</label><input type="number" id="l3-dsr" class="short" value="35" min="1" max="100" step="1" inputmode="numeric"><span class="unit">%</span></div>
-        <div class="field"><label for="l3-r">Bunga efektif per tahun</label><input type="number" id="l3-r" class="short" value="8" min="0" max="100" step="0.1" inputmode="decimal"><span class="unit">%</span></div>
-        <div class="field"><label for="l3-n">Tenor</label><input type="number" id="l3-n" class="short" value="15" min="1" max="30" step="1" inputmode="numeric"><span class="unit">tahun</span></div>
-        <div class="field"><label for="l3-h">Harga rumah</label><span class="unit">Rp</span><input type="number" id="l3-h" value="600000000" min="0" step="10000000" inputmode="numeric"></div>
-        <div class="field"><label for="l3-dp">Uang muka</label><input type="number" id="l3-dp" class="short" value="10" min="0" max="100" step="1" inputmode="numeric"><span class="unit">%</span></div>
+    <article class="lk" id="lk3" data-tags="kpr analisis-kredit">
+      <div class="lk-head"><span class="sc">Lembar kerja 3</span><h3>Kemampuan bayar dan plafon KPR</h3><div class="tags" data-tagrow></div></div>
+      <span class="sc">Diketahui</span>
+      <div class="fields">
+        <div class="field"><label for="l3-inc">Penghasilan bersih/bulan (Rp)</label><input type="number" id="l3-inc" value="15000000" min="0" step="500000" inputmode="numeric"></div>
+        <div class="field"><label for="l3-oth">Cicilan lain/bulan (Rp)</label><input type="number" id="l3-oth" value="1500000" min="0" step="100000" inputmode="numeric"></div>
+        <div class="field"><label for="l3-dsr">Batas DSR (%)</label><input type="number" id="l3-dsr" value="35" min="1" max="100" step="1" inputmode="numeric"></div>
+        <div class="field"><label for="l3-r">Bunga efektif/tahun (%)</label><input type="number" id="l3-r" value="8" min="0" max="100" step="0.1" inputmode="decimal"></div>
+        <div class="field"><label for="l3-n">Tenor (tahun)</label><input type="number" id="l3-n" value="15" min="1" max="30" step="1" inputmode="numeric"></div>
+        <div class="field"><label for="l3-h">Harga rumah (Rp)</label><input type="number" id="l3-h" value="600000000" min="0" step="10000000" inputmode="numeric"></div>
+        <div class="field"><label for="l3-dp">Uang muka (%)</label><input type="number" id="l3-dp" value="10" min="0" max="100" step="1" inputmode="numeric"></div>
       </div>
-      <p><b>Ditanya:</b> plafon KPR maksimum yang sanggup dibayar, dan apakah cukup untuk rumah tersebut.</p>
-      <p><b>Jawab:</b></p>
-      <ol class="langkah" id="l3-steps"></ol>
-      <p class="sumber">Batas DSR adalah kebijakan internal bank (umumnya 30–40%), bukan angka regulasi. LTV mengikuti ketentuan BI (PADG 30/2025).</p>
-    </div>
-  </article>
+      <p class="ask"><b>Ditanya:</b> plafon maksimum yang sanggup dibayar, dan apakah cukup untuk rumah tersebut.</p>
+      <div class="panel"><span class="sc">Jawab</span><ol class="steps" id="l3-steps"></ol></div>
+      <p class="fine">Batas DSR adalah kebijakan internal bank (umumnya 30–40%), bukan angka regulasi. LTV mengikuti ketentuan BI (PADG 30/2025).</p>
+    </article>
 
-  <!-- LK 4 -->
-  <article class="lk" id="lk4">
-    <div class="lk-head"><h3>Lembar Kerja 4. Kolektibilitas dan PPKA</h3><span>Bab VIII · POJK 40/2019</span></div>
-    <div class="lk-body">
-      <p><b>Diketahui:</b></p>
-      <div class="diketahui">
-        <div class="field"><label for="l4-b">Baki debet</label><span class="unit">Rp</span><input type="number" id="l4-b" value="250000000" min="0" step="1000000" inputmode="numeric"></div>
-        <div class="field"><label for="l4-d">Lama tunggakan</label><input type="number" id="l4-d" class="short" value="95" min="0" step="1" inputmode="numeric"><span class="unit">hari</span></div>
-        <div class="field"><label for="l4-a">Agunan yang dapat diperhitungkan</label><span class="unit">Rp</span><input type="number" id="l4-a" value="150000000" min="0" step="1000000" inputmode="numeric"></div>
+    <article class="lk" id="lk4" data-tags="kolektibilitas agunan">
+      <div class="lk-head"><span class="sc">Lembar kerja 4</span><h3>Kolektibilitas dan PPKA</h3><div class="tags" data-tagrow></div></div>
+      <span class="sc">Diketahui</span>
+      <div class="fields">
+        <div class="field"><label for="l4-b">Baki debet (Rp)</label><input type="number" id="l4-b" value="250000000" min="0" step="1000000" inputmode="numeric"></div>
+        <div class="field"><label for="l4-d">Lama tunggakan (hari)</label><input type="number" id="l4-d" value="95" min="0" step="1" inputmode="numeric"></div>
+        <div class="field"><label for="l4-a">Agunan yang diperhitungkan (Rp)</label><input type="number" id="l4-a" value="150000000" min="0" step="1000000" inputmode="numeric"></div>
       </div>
-      <p><b>Ditanya:</b> golongan kolektibilitas dan PPKA minimum.</p>
-      <p><b>Jawab:</b></p>
-      <ol class="langkah" id="l4-steps"></ol>
-      <p class="sumber">Disederhanakan: hanya memakai kriteria ketepatan membayar. Dalam praktik, prospek usaha dan kinerja debitur ikut dinilai, dan nilai agunan diperhitungkan sesuai bobot dalam POJK.</p>
-    </div>
-  </article>
+      <p class="ask"><b>Ditanya:</b> golongan kolektibilitas dan PPKA minimum.</p>
+      <div class="panel"><span class="sc">Jawab</span><ol class="steps" id="l4-steps"></ol></div>
+      <p class="fine">Disederhanakan: hanya kriteria ketepatan membayar. Dalam praktik, prospek usaha dan kinerja debitur ikut dinilai, dan agunan diperhitungkan sesuai bobot dalam POJK 40/2019.</p>
+    </article>
 
-  <!-- LK 5 -->
-  <article class="lk" id="lk5">
-    <div class="lk-head"><h3>Lembar Kerja 5. Cek Biaya Pinjaman Daring</h3><span>SEOJK 19/SEOJK.06/2023</span></div>
-    <div class="lk-body">
-      <p><b>Diketahui:</b></p>
-      <div class="diketahui">
-        <div class="field"><label for="l5-p">Pokok pinjaman</label><span class="unit">Rp</span><input type="number" id="l5-p" value="3000000" min="0" step="100000" inputmode="numeric"></div>
-        <div class="field"><label for="l5-d">Tenor</label><input type="number" id="l5-d" class="short" value="30" min="1" max="365" step="1" inputmode="numeric"><span class="unit">hari</span></div>
-        <div class="field"><label for="l5-r">Bunga + biaya ditawarkan</label><input type="number" id="l5-r" class="short" value="0.3" min="0" max="10" step="0.01" inputmode="decimal"><span class="unit">%/hari</span></div>
+    <article class="lk" id="lk5" data-tags="pinjol bunga pelindungan-konsumen">
+      <div class="lk-head"><span class="sc">Lembar kerja 5</span><h3>Cek biaya pinjaman daring</h3><div class="tags" data-tagrow></div></div>
+      <span class="sc">Diketahui</span>
+      <div class="fields">
+        <div class="field"><label for="l5-p">Pokok pinjaman (Rp)</label><input type="number" id="l5-p" value="3000000" min="0" step="100000" inputmode="numeric"></div>
+        <div class="field"><label for="l5-d">Tenor (hari)</label><input type="number" id="l5-d" value="30" min="1" max="365" step="1" inputmode="numeric"></div>
+        <div class="field"><label for="l5-r">Bunga + biaya (%/hari)</label><input type="number" id="l5-r" value="0.3" min="0" max="10" step="0.01" inputmode="decimal"></div>
         <div class="field"><label for="l5-j">Jenis pendanaan</label><select id="l5-j"><option value="k">Konsumtif</option><option value="p">Produktif</option></select></div>
       </div>
-      <p><b>Ditanya:</b> total biaya, dan apakah masih dalam batas OJK tahun 2026.</p>
-      <p><b>Jawab:</b></p>
-      <ol class="langkah" id="l5-steps"></ol>
-      <p class="sumber">Batas 2026: konsumtif jangka pendek 0,1%/hari, produktif 0,067%/hari; total manfaat ekonomi dan denda maks. 100% dari pokok. Cek legalitas penyelenggara di daftar resmi OJK.</p>
+      <p class="ask"><b>Ditanya:</b> total biaya, dan apakah masih dalam batas OJK 2026.</p>
+      <div class="panel"><span class="sc">Jawab</span><ol class="steps" id="l5-steps"></ol></div>
+      <p class="fine">Batas 2026 (SEOJK 19/SEOJK.06/2023): konsumtif jangka pendek 0,1%/hari, produktif 0,067%/hari; total manfaat ekonomi dan denda maks. 100% pokok. Cek legalitas penyelenggara di daftar resmi OJK.</p>
+    </article>
     </div>
-  </article>
-</section>
+  </section>
 
-<!-- ================= LATIHAN ================= -->
-<section class="sheet view-sheet view" id="view-latihan" aria-label="Latihan Soal" hidden>
-  <div class="runhead"><span>Buku Saku Kredit Perbankan</span><span>Latihan Soal</span></div>
-  <h2 class="lampiran">Latihan Soal</h2>
-  <p class="prose">Pilih satu jawaban yang paling tepat. Kunci dan pembahasan muncul setelah jawaban diperiksa.</p>
-  <form id="quiz" style="display:grid;gap:1.1rem"></form>
-  <div class="latihan-bar">
-    <button type="button" class="btn" id="quiz-check">Periksa jawaban</button>
-    <button type="button" class="btn" id="quiz-reset">Ulangi</button>
-    <span class="skor" id="quiz-score" aria-live="polite"></span>
+  <!-- ===== LATIHAN ===== -->
+  <section class="view" id="view-latihan" aria-label="Latihan soal" hidden>
+    <div class="head">
+      <span class="sc">Latihan</span>
+      <h2>Dua belas soal, satu kali duduk.</h2>
+      <p>Pilih satu jawaban di tiap soal, lalu periksa. Pembahasan muncul setelahnya.</p>
+    </div>
+    <form class="quiz" id="quiz"></form>
+    <div class="quiz-bar">
+      <button type="button" class="btn" id="quiz-check"><i></i>Periksa jawaban</button>
+      <button type="button" class="btn ghost" id="quiz-reset">Ulangi</button>
+      <p class="score" id="quiz-score" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- ===== TAG ===== -->
+  <section class="view" id="view-tag" aria-label="Tag" hidden>
+    <div class="head" id="t-head"></div>
+    <div id="t-body" style="display:grid;gap:40px"></div>
+  </section>
+
+  <footer class="foot">
+    <p class="foot-big" aria-hidden="true">Kredit<i></i></p>
+    <div class="foot-row">
+      <p>Bahan belajar, bukan nasihat hukum atau keuangan. Angka ketentuan dapat berubah; rujuk regulasi terbaru dari OJK, Bank Indonesia, dan LPS.</p>
+      <nav class="foot-links" aria-label="Tautan bawah">
+        <a href="#glosarium">Glosarium</a><a href="#regulasi">Regulasi</a><a href="#materi">Materi</a><a href="#simulasi">Simulasi</a><a href="#latihan">Latihan</a>
+      </nav>
+    </div>
+  </footer>
+
   </div>
-</section>
-
+  </main>
 </div>
 
 <script>
@@ -1484,6 +1521,50 @@ var TERMS = [
   ["Laporan arus kas", "akuntansi", "Laporan aliran kas masuk dan keluar dari kegiatan operasi, investasi, dan pendanaan. Inti analisis kemampuan bayar.", ""]
 ];
 
+
+/* ---------- Tag: daftar terpusat. Tambah tag baru cukup di sini. ----------
+   cats: kategori glosarium yang otomatis ber-tag ini
+   name: pola pada nama istilah; text: pola pada nama + definisi */
+var TAGS = [
+  { id: "kpr", label: "KPR & properti", name: /KPR|KPA|LTV|FTV|inden|Hak Tanggungan|APHT|SKMHT|Roya|SHM/i, text: /\bKPR\b|kredit properti|pembiayaan properti/i },
+  { id: "kur-umkm", label: "KUR & UMKM", name: /KUR|UMKM|RPIM|Inklusi|Kredit program|Hapus tagih/i, text: /\bUMKM\b|\bKUR\b/ },
+  { id: "agunan", label: "Agunan & jaminan", cats: ["jaminan"], text: /\bagunan/i },
+  { id: "bunga", label: "Bunga & biaya", cats: ["bunga"], name: /bunga|angsuran|BI-Rate/i },
+  { id: "kolektibilitas", label: "Kolektibilitas & NPL", name: /Kol \d|Kolektibilitas|NPL|NPF|DPD|PPKA|CKPN|One obligor|Tiga pilar|Loan at Risk|Coverage|Roll rate|Stage|AYDA/i },
+  { id: "restrukturisasi", label: "Restrukturisasi", name: /Restruktur|Reschedul|Recondition|Penyertaan Modal Sementara|Perlakuan khusus|Hapus buku|Hapus tagih|Novasi|Kapitalisasi/i },
+  { id: "penagihan", label: "Penagihan & eksekusi", name: /Penagihan|Debt collector|Surat peringatan|Somasi|Wanprestasi|Etika penagihan|Kontak darurat|Recovery rate|Lelang|Parate|Eksekusi|Kepailitan|PKPU|Kreditur/i },
+  { id: "pinjol", label: "Pinjaman daring", name: /LPBBTI|Pinjol|Pemberi dana|Penerima dana|TWP90|Manfaat ekonomi|Paylater|Satgas PASTI|Credit scoring/i },
+  { id: "kartu-kredit", label: "Kartu kredit & paylater", name: /Kartu kredit|kartu kredit|APMK|Bunga berbunga|Paylater/i },
+  { id: "syariah", label: "Syariah", cats: ["syariah"], name: /FTV|Syariah|BPRS/i },
+  { id: "permodalan", label: "Permodalan bank", name: /KPMM|ATMR|Modal inti|Modal pelengkap|CET1|buffer|surcharge|KBMI|Pinjaman subordinasi|Bank sistemik/i },
+  { id: "likuiditas", label: "Likuiditas & dana", name: /LCR|NSFR|GWM|PLM|\bRIM\b|LDR|Risiko likuiditas|PLJP|Lender of last|PUAB|Repo|DPK|CASA|FDR|Lending Facility|Deposit Facility/i },
+  { id: "makroprudensial", label: "Makroprudensial BI", name: /makroprudensial|\bRIM\b|RPIM|KLM|PLM|Countercyclical|LTV|FTV|GWM/i },
+  { id: "sistem-pembayaran", label: "Sistem pembayaran", name: /BI-FAST|BI-RTGS|SKNBI|QRIS|GPN|APMK|PJP|Uang elektronik/i },
+  { id: "pelindungan-konsumen", label: "Pelindungan konsumen", cats: ["konsumen"], name: /Klausula|Rahasia bank|Penjaminan simpanan|LAPS|Satgas/i },
+  { id: "analisis-kredit", label: "Analisis kredit", cats: ["proses"] },
+  { id: "risiko-tata-kelola", label: "Risiko & tata kelola", name: /Risiko|Manajemen risiko|Good Corporate|Tingkat kesehatan|Profil risiko|kemampuan dan kepatutan|Status pengawasan|Rencana pemulihan|Stress test|APU PPT|KYC|CDD|EDD|Beneficial/i }
+];
+var REG_TAGS = {
+  "uu-perbankan": ["analisis-kredit", "risiko-tata-kelola"], "uu-p2sk": ["kur-umkm", "pelindungan-konsumen", "pinjol"],
+  "uu-syariah": ["syariah"], "uu-bi": ["makroprudensial", "likuiditas"], "uu-ojk": ["pelindungan-konsumen", "risiko-tata-kelola"],
+  "uu-lps": ["pelindungan-konsumen", "likuiditas"], "uu-ppksk": ["makroprudensial", "risiko-tata-kelola"],
+  "uu-ht": ["agunan", "kpr", "penagihan"], "uu-fidusia": ["agunan", "penagihan"], "kuhper": ["agunan", "penagihan"],
+  "uu-kpkpu": ["agunan", "penagihan", "restrukturisasi"], "uu-pk": ["pelindungan-konsumen"], "uu-pdp": ["pelindungan-konsumen", "penagihan"],
+  "uu-tppu": ["risiko-tata-kelola"], "pp47-2024": ["kur-umkm", "restrukturisasi"], "kur": ["kur-umkm", "bunga"],
+  "pojk40-2019": ["kolektibilitas", "restrukturisasi", "agunan"], "pojk32-2018": ["analisis-kredit", "permodalan"],
+  "pojk42-2017": ["analisis-kredit", "risiko-tata-kelola"], "pojk18-2016": ["risiko-tata-kelola"], "pojk4-2016": ["risiko-tata-kelola", "permodalan"],
+  "pojk17-2023": ["risiko-tata-kelola"], "pojk11-2016": ["permodalan"], "pojk12-2021": ["permodalan"],
+  "pojk42-2015": ["likuiditas"], "pojk50-2017": ["likuiditas"], "pojk18-2017": ["analisis-kredit", "pinjol"],
+  "pojk22-2023": ["pelindungan-konsumen", "penagihan"], "pojk40-2024": ["pinjol"], "seojk19-2023": ["pinjol", "bunga"],
+  "pojk46-2024": ["agunan"], "pojk19-2022": ["restrukturisasi", "kolektibilitas"], "pojk11-2020": ["restrukturisasi", "kolektibilitas"],
+  "pojk19-2025": ["kur-umkm"], "pojk1-2024": ["kolektibilitas"], "pojk7-2024": ["permodalan"], "pojk16-2014": ["syariah", "kolektibilitas"],
+  "pojk8-2023": ["risiko-tata-kelola"], "pojk13-2021": ["risiko-tata-kelola", "pelindungan-konsumen"], "pojk26-2024": ["risiko-tata-kelola"],
+  "pojk18-2025": ["risiko-tata-kelola"], "pojk51-2017": ["risiko-tata-kelola"], "pojk5-2024": ["risiko-tata-kelola", "permodalan"],
+  "pbi-birate": ["bunga", "likuiditas"], "pbi-ltv": ["kpr", "makroprudensial"], "pbi-gwm": ["likuiditas", "makroprudensial"],
+  "pbi-rim": ["likuiditas", "makroprudensial"], "pbi-rpim": ["kur-umkm", "makroprudensial"], "pbi-klm": ["makroprudensial", "likuiditas"],
+  "pbi-ccyb": ["permodalan", "makroprudensial"], "pbi-sp": ["sistem-pembayaran"], "pbi-kk": ["kartu-kredit", "bunga", "sistem-pembayaran"],
+  "pbi-pk": ["pelindungan-konsumen", "sistem-pembayaran"], "lps-penjaminan": ["pelindungan-konsumen", "bunga"]
+};
 </script>
 <script>
 (function () {
@@ -1500,15 +1581,24 @@ var TERMS = [
     var re = new RegExp("(" + esc(q).replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "gi");
     return safe.replace(re, "<mark>$1</mark>");
   }
+  function slug(s) { return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
   function steps(id, arr) {
     document.getElementById(id).innerHTML = arr.map(function (s) {
-      return s.charAt(0) === "~" ? '<li class="ket">' + s.slice(1) + "</li>" : "<li>" + s + "</li>";
+      return s.charAt(0) === "~" ? '<li class="ket">' + s.slice(1) + "</li>" : "<li><span>" + s + "</span></li>";
     }).join("");
   }
 
-  /* ---------- Data turunan ---------- */
+  /* ---------- Data turunan & tag ---------- */
+  var tagById = {};
+  TAGS.forEach(function (t) { tagById[t.id] = t; });
+  function tagChips(ids) {
+    return ids.filter(function (id) { return tagById[id]; }).map(function (id) {
+      return '<a class="tag" href="#tag-' + id + '"><b>#</b>' + id + "</a>";
+    }).join("");
+  }
   var regById = {};
-  REGS.forEach(function (r, i) { r.idx = i + 1; regById[r.id] = r; });
+  REGS.forEach(function (r, i) { r.idx = i + 1; r.t = REG_TAGS[r.id] || []; regById[r.id] = r; });
+  var seen = {};
   var terms = TERMS.map(function (t) {
     return { t: t[0], c: t[1], d: t[2], r: t[3] ? t[3].split(" ") : [] };
   }).sort(function (a, b) { return a.t.localeCompare(b.t, "id", { sensitivity: "base" }); });
@@ -1516,16 +1606,42 @@ var TERMS = [
     var ch = x.t.charAt(0).toUpperCase();
     x.letter = /[A-Z]/.test(ch) ? ch : "0–9";
     x.hay = (x.t + " " + x.d + " " + CATS[x.c]).toLowerCase();
+    var s = slug(x.t) || "istilah";
+    x.id = "g-" + (seen[s] ? s + "-" + (++seen[s]) : (seen[s] = 1, s));
+    x.tags = TAGS.filter(function (tg) {
+      return (tg.cats && tg.cats.indexOf(x.c) !== -1) || (tg.name && tg.name.test(x.t)) || (tg.text && tg.text.test(x.t + " " + x.d));
+    }).map(function (tg) { return tg.id; });
+  });
+  var pageItems = [];
+  document.querySelectorAll("[data-tags]").forEach(function (el) {
+    var tags = (el.getAttribute("data-tags") || "").split(" ").filter(Boolean);
+    var row = el.querySelector("[data-tagrow]");
+    if (row) { row.innerHTML = tagChips(tags); row.hidden = !tags.length; }
+    pageItems.push({
+      id: el.id, tags: tags, kind: el.classList.contains("lk") ? "simulasi" : "materi",
+      title: el.querySelector("h2, h3").textContent, label: el.querySelector(".sc").textContent
+    });
+  });
+  function itemsForTag(id) {
+    return {
+      terms: terms.filter(function (x) { return x.tags.indexOf(id) !== -1; }),
+      regs: REGS.filter(function (r) { return r.t.indexOf(id) !== -1; }),
+      materi: pageItems.filter(function (p) { return p.kind === "materi" && p.tags.indexOf(id) !== -1; }),
+      simulasi: pageItems.filter(function (p) { return p.kind === "simulasi" && p.tags.indexOf(id) !== -1; })
+    };
+  }
+  TAGS.forEach(function (t) {
+    var it = itemsForTag(t.id);
+    t.count = it.terms.length + it.regs.length + it.materi.length + it.simulasi.length;
   });
   function relatedCount(id) { return terms.filter(function (x) { return x.r.indexOf(id) !== -1; }).length; }
   document.getElementById("stat-terms").textContent = terms.length;
   document.getElementById("stat-regs").textContent = REGS.length;
-  document.getElementById("tab-terms").textContent = terms.length;
-  document.getElementById("tab-regs").textContent = REGS.length;
+  document.getElementById("stat-tags").textContent = TAGS.length;
 
   /* ---------- Glosarium ---------- */
   var gState = { q: "", cat: "all", ref: null };
-  var gq = document.getElementById("g-q");
+  var gq = document.getElementById("g-q"), sq = document.getElementById("s-q");
   function gFiltered(ignoreCat) {
     var q = gState.q.toLowerCase();
     return terms.filter(function (x) {
@@ -1538,11 +1654,9 @@ var TERMS = [
     var base = gFiltered(true);
     var counts = { all: base.length };
     base.forEach(function (x) { counts[x.c] = (counts[x.c] || 0) + 1; });
-    var chips = "<span>Kategori:</span>" +
-      '<button type="button" class="opt" data-cat="all" aria-pressed="' + (gState.cat === "all") + '">semua <span class="n">(' + counts.all + ")</span></button>";
+    var chips = '<button type="button" data-cat="all" aria-pressed="' + (gState.cat === "all") + '">Semua <span class="n">' + counts.all + "</span></button>";
     Object.keys(CATS).forEach(function (k) {
-      chips += '<button type="button" class="opt" data-cat="' + k + '" aria-pressed="' + (gState.cat === k) + '">' +
-        esc(CATS[k]) + ' <span class="n">(' + (counts[k] || 0) + ")</span></button>";
+      chips += '<button type="button" data-cat="' + k + '" aria-pressed="' + (gState.cat === k) + '">' + esc(CATS[k]) + ' <span class="n">' + (counts[k] || 0) + "</span></button>";
     });
     document.getElementById("g-cats").innerHTML = chips;
 
@@ -1558,34 +1672,48 @@ var TERMS = [
     });
     document.getElementById("g-az").innerHTML = az;
 
-    var info = "Menampilkan " + list.length + " dari " + terms.length + " istilah";
+    var info = "<span>" + list.length + " dari " + terms.length + " istilah</span>";
     if (gState.ref && regById[gState.ref]) {
-      info += ", terkait " + esc(regById[gState.ref].no) + '. <button type="button" id="g-clear-ref">Hapus saringan peraturan</button>';
-    } else info += ".";
+      info += "<span>terkait " + esc(regById[gState.ref].no) + '</span><button type="button" id="g-clear-ref">Hapus saringan</button>';
+    }
     document.getElementById("g-info").innerHTML = info;
+    syncSub();
 
     if (!list.length) {
-      document.getElementById("g-list").innerHTML = '<p class="kosong">Tidak ada istilah yang cocok dengan “' + esc(q) + '”. Coba kata lain atau singkatannya, atau pilih kategori “semua”.</p>';
+      document.getElementById("g-list").innerHTML = '<p class="empty">Tidak ada istilah yang cocok dengan “' + esc(q) + '”. Coba kata lain, singkatannya, atau pilih kategori Semua.</p>';
       return;
     }
     var html = "";
     order.forEach(function (L) {
-      html += '<div class="huruf" id="huruf-' + (L === "0–9" ? "0" : L) + '"><h3>' + L + '</h3><div class="lema-list">';
+      html += '<section class="letter" id="huruf-' + (L === "0–9" ? "0" : L) + '"><h3>' + L + '</h3><div class="entries">';
       groups[L].forEach(function (x) {
-        html += '<p class="lema"><b>' + hl(x.t, q) + '</b> <i class="kat">(' + esc(CATS[x.c]) + ")</i> " + hl(x.d, q);
+        html += '<article class="entry" id="' + x.id + '"><span class="cat">' + esc(CATS[x.c]) + "</span><h4>" + hl(x.t, q) + "</h4><p>" + hl(x.d, q) + "</p>";
         var refs = x.r.filter(function (id) { return regById[id]; });
-        if (refs.length) {
-          html += '<span class="dasar">Dasar: ' + refs.map(function (id) {
-            return '<a href="#r-' + id + '">' + esc(regById[id].no) + "</a>";
-          }).join("; ") + "</span>";
+        if (refs.length || x.tags.length) {
+          html += '<div class="meta">' + refs.map(function (id) {
+            return '<a class="got" href="#r-' + id + '">' + esc(regById[id].no) + "</a>";
+          }).join("") + '<span class="tags">' + tagChips(x.tags) + "</span></div>";
         }
-        html += "</p>";
+        html += "</article>";
       });
-      html += "</div></div>";
+      html += "</div></section>";
     });
     document.getElementById("g-list").innerHTML = html;
   }
-  gq.addEventListener("input", function () { gState.q = gq.value.trim(); renderGloss(); });
+  function setQuery(v, from) {
+    gState.q = v.trim();
+    if (from !== gq) gq.value = v;
+    if (from !== sq) sq.value = v;
+    renderGloss();
+  }
+  gq.addEventListener("input", function () { setQuery(gq.value, gq); });
+  sq.addEventListener("input", function () {
+    setQuery(sq.value, sq);
+    if (current !== "glosarium") { location.hash = "glosarium"; }
+  });
+  sq.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { closeSide(); var t = document.getElementById("g-list"); if (t) t.scrollIntoView(); }
+  });
   document.getElementById("g-cats").addEventListener("click", function (e) {
     var b = e.target.closest("[data-cat]");
     if (b) { gState.cat = b.getAttribute("data-cat"); renderGloss(); }
@@ -1600,12 +1728,11 @@ var TERMS = [
   document.getElementById("g-info").addEventListener("click", function (e) {
     if (e.target.id === "g-clear-ref") { gState.ref = null; renderGloss(); }
   });
-  renderGloss();
 
   /* ---------- Regulasi ---------- */
   var rState = { q: "", g: "all" };
   var rq = document.getElementById("r-q");
-  var groupLabel = { uu: "UU / Pemerintah", ojk: "OJK", bi: "BI", lps: "LPS" };
+  var groupLabel = { uu: "UU / Pemerintah", ojk: "OJK", bi: "Bank Indonesia", lps: "LPS" };
   function renderRegs() {
     var q = rState.q.toLowerCase();
     var base = REGS.filter(function (r) {
@@ -1613,30 +1740,31 @@ var TERMS = [
     });
     var counts = { all: base.length };
     base.forEach(function (r) { counts[r.g] = (counts[r.g] || 0) + 1; });
-    var chips = "<span>Penerbit:</span>" +
-      '<button type="button" class="opt" data-g="all" aria-pressed="' + (rState.g === "all") + '">semua <span class="n">(' + counts.all + ")</span></button>";
+    var chips = '<button type="button" data-g="all" aria-pressed="' + (rState.g === "all") + '">Semua <span class="n">' + counts.all + "</span></button>";
     Object.keys(GROUPS).forEach(function (k) {
-      chips += '<button type="button" class="opt" data-g="' + k + '" aria-pressed="' + (rState.g === k) + '">' + esc(GROUPS[k]) + ' <span class="n">(' + (counts[k] || 0) + ")</span></button>";
+      chips += '<button type="button" data-g="' + k + '" aria-pressed="' + (rState.g === k) + '">' + esc(GROUPS[k]) + ' <span class="n">' + (counts[k] || 0) + "</span></button>";
     });
     document.getElementById("r-groups").innerHTML = chips;
     var list = base.filter(function (r) { return rState.g === "all" || r.g === rState.g; });
-    document.getElementById("r-info").textContent = "Menampilkan " + list.length + " dari " + REGS.length + " peraturan.";
+    document.getElementById("r-info").innerHTML = "<span>" + list.length + " dari " + REGS.length + " peraturan</span>";
+    syncSub();
     if (!list.length) {
-      document.getElementById("r-list").innerHTML = '<p class="kosong">Tidak ada peraturan yang cocok. Coba nomornya saja (mis. “40/2019”) atau topik seperti “agunan”.</p>';
+      document.getElementById("r-list").innerHTML = '<p class="empty">Tidak ada peraturan yang cocok. Coba nomornya saja (mis. “40/2019”) atau topik seperti “agunan”.</p>';
       return;
     }
-    var html = "";
-    list.forEach(function (r) {
+    var open = !!q;
+    document.getElementById("r-list").innerHTML = list.map(function (r) {
       var n = relatedCount(r.id);
-      html += '<article class="aturan" id="r-' + r.id + '"><h3><span class="kode">B.' + r.idx + " · " + groupLabel[r.g] + "</span><br><b>" +
-        hl(r.no, rState.q) + "</b> tentang " + hl(r.j, rState.q) + '</h3><ol class="alpha">';
-      r.p.forEach(function (pt) { html += "<li>" + hl(pt, rState.q) + "</li>"; });
-      html += "</ol>";
-      if (r.s) html += '<p class="status">Keterangan: ' + hl(r.s, rState.q) + "</p>";
-      if (n) html += '<button type="button" class="rel" data-rel="' + r.id + '">Lihat ' + n + " istilah terkait di Glosarium</button>";
-      html += "</article>";
-    });
-    document.getElementById("r-list").innerHTML = html;
+      var h = '<details id="r-' + r.id + '"' + (open ? " open" : "") + '><summary><span class="mono">' + groupLabel[r.g] + " · " + hl(r.no, rState.q) +
+        '</span><span class="t">' + hl(r.j, rState.q) + '</span></summary><div class="a"><ol>';
+      r.p.forEach(function (pt) { h += "<li>" + hl(pt, rState.q) + "</li>"; });
+      h += "</ol>";
+      if (r.s) h += '<p class="ket">' + hl(r.s, rState.q) + "</p>";
+      h += '<div class="row">';
+      if (n) h += '<button type="button" class="btn ghost sm" data-rel="' + r.id + '">Lihat ' + n + " istilah terkait</button>";
+      h += '<span class="tags">' + tagChips(r.t) + "</span></div></div></details>";
+      return h;
+    }).join("");
   }
   rq.addEventListener("input", function () { rState.q = rq.value.trim(); renderRegs(); });
   document.getElementById("r-groups").addEventListener("click", function (e) {
@@ -1646,13 +1774,37 @@ var TERMS = [
   document.getElementById("r-list").addEventListener("click", function (e) {
     var b = e.target.closest("[data-rel]");
     if (!b) return;
-    gState.ref = b.getAttribute("data-rel"); gState.cat = "all"; gState.q = ""; gq.value = "";
-    renderGloss();
+    gState.ref = b.getAttribute("data-rel"); gState.cat = "all";
+    setQuery("", null);
     if (location.hash === "#glosarium") route(); else location.hash = "glosarium";
   });
-  renderRegs();
 
-  /* ---------- LK 1: angsuran ---------- */
+  /* ---------- Halaman tag ---------- */
+  function renderTag(id) {
+    var t = tagById[id];
+    var head = document.getElementById("t-head"), body = document.getElementById("t-body");
+    if (!t) {
+      head.innerHTML = '<span class="sc">Tag</span><h2>Tag tidak ditemukan.</h2><p>Pilih salah satu tag di menu.</p>';
+      body.innerHTML = "";
+      return;
+    }
+    var it = itemsForTag(id);
+    head.innerHTML = '<span class="sc">Tag</span><h2><span class="or">#</span>' + esc(t.id) + "</h2><p><b>" + esc(t.label) + "</b>. " + t.count + " halaman dan istilah memakai tag ini.</p>";
+    function group(title, rows) {
+      if (!rows.length) return "";
+      return '<div class="group"><span class="sc">' + title + " · " + rows.length + '</span><ul class="ex">' + rows.join("") + "</ul></div>";
+    }
+    function row(href, say, meta) {
+      return '<li><a href="#' + href + '"><span class="say">' + esc(say) + '</span><span class="mono">' + esc(meta) + "</span></a></li>";
+    }
+    body.innerHTML =
+      group("Materi", it.materi.map(function (p) { return row(p.id, p.title, p.label); })) +
+      group("Simulasi", it.simulasi.map(function (p) { return row(p.id, p.title, p.label); })) +
+      group("Regulasi", it.regs.map(function (r) { return row("r-" + r.id, r.j, r.no); })) +
+      group("Glosarium", it.terms.map(function (x) { return row(x.id, x.t, CATS[x.c]); }));
+  }
+
+  /* ---------- Simulasi (logika sama dengan versi sebelumnya) ---------- */
   function schedule(method, P, rYear, n) {
     var i = rYear / 100 / 12, rows = [], sisa = P;
     var A = i === 0 ? P / n : P * i / (1 - Math.pow(1 + i, -n));
@@ -1667,6 +1819,7 @@ var TERMS = [
     return { rows: rows, A: A, i: i, bunga: rows.reduce(function (s, x) { return s + x.bunga; }, 0) };
   }
   var mName = { flat: "Flat", efektif: "Efektif", anuitas: "Anuitas" };
+  function hit(s) { return '<span class="hit">' + s + "</span>"; }
   function lk1() {
     var P = Math.max(0, num("l1-p")), r = Math.min(100, Math.max(0, num("l1-r")));
     var n = Math.min(360, Math.max(1, Math.round(num("l1-n")))), m = document.getElementById("l1-m").value;
@@ -1676,45 +1829,39 @@ var TERMS = [
     if (m === "flat") {
       st.push("Pokok per bulan = P ÷ n = " + rp(P) + " ÷ " + n + " = " + rp(P / n));
       st.push("Bunga per bulan = P × r ÷ 12 = " + rp(P) + " × " + pct(r) + " ÷ 12 = " + rp(first.bunga));
-      st.push('Angsuran per bulan = <span class="mark">' + rp(first.total) + "</span> (tetap)");
-      st.push('Total bunga = ' + rp(first.bunga) + " × " + n + ' = <span class="mark">' + rp(s.bunga) + "</span>");
+      st.push("Angsuran per bulan = " + hit(rp(first.total)) + " (tetap)");
+      st.push("Total bunga = " + rp(first.bunga) + " × " + n + " = " + hit(rp(s.bunga)));
     } else if (m === "efektif") {
       st.push("Pokok per bulan = P ÷ n = " + rp(P / n));
-      st.push("Bulan ke-1: bunga = " + rp(P) + " × " + pct(r) + " ÷ 12 = " + rp(first.bunga) + ", angsuran = " + rp(first.total));
-      if (n > 1) st.push("Bulan ke-" + n + ": bunga = " + rp(P / n) + " × " + pct(r) + " ÷ 12 = " + rp(last.bunga) + ", angsuran = " + rp(last.total));
-      st.push('Angsuran menurun dari <span class="mark">' + rp(first.total) + "</span> ke " + rp(last.total));
-      st.push('Total bunga = <span class="mark">' + rp(s.bunga) + "</span>");
+      st.push("Bulan ke-1: bunga = " + rp(P) + " × " + pct(r) + " ÷ 12 = " + rp(first.bunga) + ", angsuran " + rp(first.total));
+      if (n > 1) st.push("Bulan ke-" + n + ": bunga = " + rp(P / n) + " × " + pct(r) + " ÷ 12 = " + rp(last.bunga) + ", angsuran " + rp(last.total));
+      st.push("Angsuran menurun dari " + hit(rp(first.total)) + " ke " + rp(last.total));
+      st.push("Total bunga = " + hit(rp(s.bunga)));
     } else {
       st.push("i = r ÷ 12 = " + pct(r) + " ÷ 12 = " + pct(s.i * 100, 4));
       st.push("A = P × i ÷ (1 − (1 + i)<sup>−n</sup>) = " + rp(P) + " × " + pct(s.i * 100, 4) + " ÷ (1 − (1 + " + pct(s.i * 100, 4) + ")<sup>−" + n + "</sup>)");
-      st.push('A = <span class="mark">' + rp(s.A) + "</span> per bulan (tetap)");
+      st.push("A = " + hit(rp(s.A)) + " per bulan (tetap)");
       st.push("Bulan ke-1: bunga " + rp(first.bunga) + ", pokok " + rp(first.pokok));
-      st.push('Total bunga = A × n − P = <span class="mark">' + rp(s.bunga) + "</span>");
+      st.push("Total bunga = A × n − P = " + hit(rp(s.bunga)));
     }
     steps("l1-steps", st);
-    var cmp = "";
-    ["flat", "efektif", "anuitas"].forEach(function (k) {
+    document.getElementById("l1-compare").innerHTML = ["flat", "efektif", "anuitas"].map(function (k) {
       var x = res[k];
-      cmp += "<tr><td>" + (k === m ? "<b>" + mName[k] + "</b>" : mName[k]) + '</td><td class="num">' + rp(x.rows[0].total) + '</td><td class="num">' +
+      return "<tr><td>" + (k === m ? "<b>" + mName[k] + "</b>" : mName[k]) + '</td><td class="num">' + rp(x.rows[0].total) + '</td><td class="num">' +
         rp(x.rows[n - 1].total) + '</td><td class="num">' + rp(x.bunga) + '</td><td class="num">' + rp(P + x.bunga) + "</td></tr>";
-    });
-    document.getElementById("l1-compare").innerHTML = cmp;
-    document.getElementById("l1-sched-title").textContent = "Jadwal angsuran metode " + mName[m].toLowerCase();
+    }).join("");
+    document.getElementById("l1-sched-title").textContent = "Jadwal angsuran, metode " + mName[m].toLowerCase();
     document.getElementById("l1-sched").innerHTML = s.rows.map(function (x) {
       return '<tr><td class="num">' + x.k + '</td><td class="num">' + rpFmt.format(Math.round(x.pokok)) + '</td><td class="num">' + rpFmt.format(Math.round(x.bunga)) +
         '</td><td class="num">' + rpFmt.format(Math.round(x.total)) + '</td><td class="num">' + rpFmt.format(Math.round(x.sisa)) + "</td></tr>";
     }).join("");
   }
-
-  /* ---------- LK 2: flat ke efektif ---------- */
   function flatToEff(rf, n) {
-    var A = (1 + rf / 100 * n / 12) / n;
     if (rf <= 0) return 0;
-    var lo = 1e-9, hi = 1;
+    var A = (1 + rf / 100 * n / 12) / n, lo = 1e-9, hi = 1;
     for (var k = 0; k < 200; k++) {
       var mid = (lo + hi) / 2;
-      var pay = mid / (1 - Math.pow(1 + mid, -n));
-      if (pay > A) hi = mid; else lo = mid;
+      if (mid / (1 - Math.pow(1 + mid, -n)) > A) hi = mid; else lo = mid;
     }
     return (lo + hi) / 2 * 12 * 100;
   }
@@ -1722,75 +1869,66 @@ var TERMS = [
     var rf = Math.min(100, Math.max(0, num("l2-r"))), n = Math.min(360, Math.max(1, Math.round(num("l2-n"))));
     var A = (1 + rf / 100 * n / 12) / n, eff = flatToEff(rf, n);
     steps("l2-steps", [
-      "Angsuran flat per Rp1 pinjaman = (1 + r × n ÷ 12) ÷ n = (1 + " + pct(rf) + " × " + n + " ÷ 12) ÷ " + n + " = " + new Intl.NumberFormat("id-ID", { maximumFractionDigits: 6 }).format(A),
-      "~Cari i sehingga angsuran anuitas i ÷ (1 − (1 + i)<sup>−n</sup>) sama dengan angka di atas (dihitung dengan iterasi).",
-      "i = " + pct(eff / 12, 4) + " per bulan",
-      'Bunga efektif per tahun = i × 12 = <span class="mark">' + pct(eff) + "</span>",
-      "~Jadi bunga flat " + pct(rf) + " selama " + n + " bulan setara bunga efektif sekitar " + pct(eff, 1) + " per tahun."
+      "Angsuran flat per Rp1 = (1 + r × n ÷ 12) ÷ n = (1 + " + pct(rf) + " × " + n + " ÷ 12) ÷ " + n + " = " + new Intl.NumberFormat("id-ID", { maximumFractionDigits: 6 }).format(A),
+      "Cari i agar i ÷ (1 − (1 + i)<sup>−n</sup>) sama dengan angka itu (iterasi): i = " + pct(eff / 12, 4) + " per bulan",
+      "Bunga efektif per tahun = i × 12 = " + hit(pct(eff)),
+      "~Bunga flat " + pct(rf) + " selama " + n + " bulan setara bunga efektif sekitar " + pct(eff, 1) + " per tahun."
     ]);
     document.getElementById("l2-table").innerHTML = [6, 12, 24, 36, 48, 60].map(function (t) {
       return "<tr><td>" + t + ' bulan</td><td class="num">' + pct(rf) + '</td><td class="num">' + pct(flatToEff(rf, t)) + "</td></tr>";
     }).join("");
   }
-
-  /* ---------- LK 3: kemampuan bayar ---------- */
   function lk3() {
     var inc = Math.max(0, num("l3-inc")), oth = Math.max(0, num("l3-oth")), dsr = Math.min(100, Math.max(0, num("l3-dsr")));
     var r = Math.max(0, num("l3-r")), years = Math.min(30, Math.max(1, Math.round(num("l3-n")))), n = years * 12;
     var h = Math.max(0, num("l3-h")), dp = Math.min(100, Math.max(0, num("l3-dp")));
-    var i = r / 100 / 12;
-    var factor = i === 0 ? n : (1 - Math.pow(1 + i, -n)) / i;
+    var i = r / 100 / 12, factor = i === 0 ? n : (1 - Math.pow(1 + i, -n)) / i;
     var maxA = inc * dsr / 100, room = Math.max(0, maxA - oth), plafonMax = room * factor;
     var need = h * (1 - dp / 100), ltv = h ? need / h * 100 : 0;
     var angsNeed = i === 0 ? need / n : need * i / (1 - Math.pow(1 + i, -n));
     var st = [
       "Batas total angsuran = penghasilan × DSR = " + rp(inc) + " × " + pct(dsr) + " = " + rp(maxA),
       "Ruang angsuran KPR = " + rp(maxA) + " − cicilan lain " + rp(oth) + " = " + rp(room),
-      "Plafon maksimum = ruang angsuran × (1 − (1 + i)<sup>−n</sup>) ÷ i, dengan i = " + pct(i * 100, 4) + ", n = " + n + " bulan",
-      'Plafon maksimum = <span class="mark">' + rp(plafonMax) + "</span>",
-      "Plafon dibutuhkan = harga × (1 − uang muka) = " + rp(h) + " × " + pct(100 - dp) + " = " + rp(need) + " (LTV " + pct(ltv, 1) + ")",
-      "Angsuran untuk plafon tersebut = " + rp(angsNeed) + " per bulan"
+      "Plafon maksimum = ruang × (1 − (1 + i)<sup>−n</sup>) ÷ i, i = " + pct(i * 100, 4) + ", n = " + n + " bulan",
+      "Plafon maksimum = " + hit(rp(plafonMax)),
+      "Plafon dibutuhkan = " + rp(h) + " × " + pct(100 - dp) + " = " + rp(need) + " (LTV " + pct(ltv, 1) + ")",
+      "Angsuran untuk plafon itu = " + rp(angsNeed) + " per bulan"
     ];
-    if (need <= plafonMax) st.push('~<span class="aman">Kesimpulan: sanggup.</span> Angsuran ' + rp(angsNeed) + " masih di bawah ruang angsuran " + rp(room) + ".");
-    else st.push('~<span class="lewat">Kesimpulan: belum sanggup.</span> Kurang ' + rp(need - plafonMax) + " dari plafon maksimum. Naikkan uang muka, perpanjang tenor, atau pilih rumah yang lebih murah.");
+    if (need <= plafonMax) st.push('~<span class="aman">Sanggup.</span> Angsuran ' + rp(angsNeed) + " masih di bawah ruang angsuran " + rp(room) + ".");
+    else st.push('~<span class="lewat">Belum sanggup.</span> Kurang ' + rp(need - plafonMax) + ". Naikkan uang muka, perpanjang tenor, atau pilih rumah yang lebih murah.");
     steps("l3-steps", st);
   }
-
-  /* ---------- LK 4: kolektibilitas & PPKA ---------- */
   var kolNames = ["", "Lancar", "Dalam Perhatian Khusus", "Kurang Lancar", "Diragukan", "Macet"];
   var ppkaRate = [0, 1, 5, 15, 50, 100];
   function kolOf(d) { return d <= 0 ? 1 : d <= 90 ? 2 : d <= 120 ? 3 : d <= 180 ? 4 : 5; }
   function lk4() {
     var b = Math.max(0, num("l4-b")), d = Math.max(0, Math.round(num("l4-d"))), a = Math.max(0, num("l4-a"));
     var k = kolOf(d), rate = ppkaRate[k], st = [];
-    var rangeText = ["", "tidak ada tunggakan", "tunggakan 1 s.d. 90 hari", "tunggakan > 90 s.d. 120 hari", "tunggakan > 120 s.d. 180 hari", "tunggakan > 180 hari"][k];
-    st.push("Tunggakan " + d + " hari → " + rangeText + ' → <span class="mark">Kol ' + k + " (" + kolNames[k] + ")</span>" + (k >= 3 ? ", termasuk NPL" : ""));
+    var range = ["", "tidak ada tunggakan", "1 s.d. 90 hari", "> 90 s.d. 120 hari", "> 120 s.d. 180 hari", "> 180 hari"][k];
+    st.push("Tunggakan " + d + " hari, masuk rentang " + range + ": " + hit("Kol " + k + " (" + kolNames[k] + ")") + (k >= 3 ? ", termasuk NPL" : ""));
     if (k === 1) {
       st.push("PPKA umum = 1% × baki debet = 1% × " + rp(b));
-      st.push('PPKA = <span class="mark">' + rp(b * 0.01) + "</span>");
+      st.push("PPKA = " + hit(rp(b * 0.01)));
     } else {
       var base = Math.max(0, b - a);
-      st.push("Dasar perhitungan = baki debet − agunan = " + rp(b) + " − " + rp(a) + " = " + rp(base));
+      st.push("Dasar = baki debet − agunan = " + rp(b) + " − " + rp(a) + " = " + rp(base));
       st.push("PPKA khusus = " + rate + "% × " + rp(base));
-      st.push('PPKA = <span class="mark">' + rp(base * rate / 100) + "</span>");
+      st.push("PPKA = " + hit(rp(base * rate / 100)));
     }
     steps("l4-steps", st);
   }
-
-  /* ---------- LK 5: pinjaman daring ---------- */
   function lk5() {
     var p = Math.max(0, num("l5-p")), d = Math.min(365, Math.max(1, Math.round(num("l5-d")))), r = Math.max(0, num("l5-r"));
     var j = document.getElementById("l5-j").value, cap = j === "k" ? 0.1 : 0.067;
     var biaya = p * r / 100 * d, batas = p * cap / 100 * d, st = [];
-    st.push("Total bunga dan biaya = pokok × tarif × hari = " + rp(p) + " × " + pct(r, 3) + " × " + d + " = " + rp(biaya));
-    st.push("Total yang dibayar = " + rp(p) + " + " + rp(biaya) + " = " + rp(p + biaya));
-    st.push("Batas OJK 2026 (" + (j === "k" ? "konsumtif" : "produktif") + ") = " + pct(cap, 3) + " per hari → maks. " + rp(batas) + " untuk " + d + " hari");
-    if (r > cap) st.push('~<span class="lewat">Melebihi batas OJK.</span> Tarif ' + pct(r, 3) + "/hari di atas " + pct(cap, 3) + "/hari. Waspadai penyelenggara ilegal; cek di daftar OJK.");
+    st.push("Bunga + biaya = pokok × tarif × hari = " + rp(p) + " × " + pct(r, 3) + " × " + d + " = " + rp(biaya));
+    st.push("Total dibayar = " + rp(p) + " + " + rp(biaya) + " = " + hit(rp(p + biaya)));
+    st.push("Batas OJK 2026 (" + (j === "k" ? "konsumtif" : "produktif") + ") = " + pct(cap, 3) + "/hari, maks. " + rp(batas) + " untuk " + d + " hari");
+    if (r > cap) st.push('~<span class="lewat">Melebihi batas OJK.</span> Tarif ' + pct(r, 3) + "/hari di atas " + pct(cap, 3) + "/hari. Waspadai penyelenggara ilegal dan cek daftar resmi OJK.");
     else st.push('~<span class="aman">Masih dalam batas tarif harian OJK.</span>');
-    if (biaya > p) st.push('~<span class="lewat">Total biaya melebihi 100% pokok</span>, padahal total manfaat ekonomi dan denda dibatasi maksimal 100% dari pokok.');
+    if (biaya > p) st.push('~<span class="lewat">Total biaya melebihi 100% pokok</span>, padahal manfaat ekonomi dan denda dibatasi maksimal 100% dari pokok.');
     steps("l5-steps", st);
   }
-
   [["l1-p", lk1], ["l1-r", lk1], ["l1-n", lk1], ["l1-m", lk1], ["l2-r", lk2], ["l2-n", lk2],
    ["l3-inc", lk3], ["l3-oth", lk3], ["l3-dsr", lk3], ["l3-r", lk3], ["l3-n", lk3], ["l3-h", lk3], ["l3-dp", lk3],
    ["l4-b", lk4], ["l4-d", lk4], ["l4-a", lk4], ["l5-p", lk5], ["l5-d", lk5], ["l5-r", lk5], ["l5-j", lk5]
@@ -1801,94 +1939,153 @@ var TERMS = [
   });
   lk1(); lk2(); lk3(); lk4(); lk5();
 
-  /* ---------- Latihan soal ---------- */
+  /* ---------- Latihan ---------- */
   var questions = [
-    { q: "Definisi kredit dalam hukum perbankan Indonesia tercantum di…",
-      o: ["UU No. 10 Tahun 1998 Pasal 1 angka 11", "UU No. 4 Tahun 1996 Pasal 1", "UU No. 42 Tahun 1999 Pasal 1", "KUHPerdata Pasal 1150"], a: 0,
-      why: "UU 4/1996 = Hak Tanggungan, UU 42/1999 = Fidusia, KUHPerdata Ps. 1150 = gadai." },
-    { q: "Dalam prinsip 5C, kemauan debitur untuk membayar dinilai lewat…",
-      o: ["Capacity", "Character", "Capital", "Condition"], a: 1,
-      why: "Character = kemauan (willingness); Capacity = kemampuan (ability)." },
-    { q: "Kredit dengan tunggakan 100 hari masuk kolektibilitas…",
-      o: ["Dalam Perhatian Khusus", "Kurang Lancar", "Diragukan", "Macet"], a: 1,
-      why: "Kurang Lancar: tunggakan > 90 s.d. 120 hari." },
-    { q: "Agunan berupa mobil yang tetap dipakai debitur diikat dengan…",
-      o: ["Hak Tanggungan", "Gadai", "Fidusia", "Hipotek"], a: 2,
-      why: "Fidusia: benda bergerak tetap dikuasai debitur. Gadai: benda diserahkan ke kreditur." },
-    { q: "Memperpanjang tenor agar angsuran per bulan turun termasuk…",
-      o: ["Rescheduling", "Reconditioning", "Restructuring", "Hapus buku"], a: 0,
-      why: "Rescheduling = mengubah jadwal pembayaran atau jangka waktu." },
-    { q: "Metode bunga dengan angsuran tetap tetapi porsi pokoknya makin besar adalah…",
-      o: ["Flat", "Efektif", "Anuitas", "Rekening koran"], a: 2,
-      why: "Anuitas: angsuran tetap, bunga dari sisa pokok, porsi pokok terus naik." },
-    { q: "Kredit untuk membeli mesin produksi baru termasuk kredit…",
-      o: ["Konsumtif", "Modal kerja", "Investasi", "Perdagangan"], a: 2,
-      why: "Mesin = barang modal → kredit investasi." },
-    { q: "Yang dimaksud hapus buku (write-off) adalah…",
-      o: ["Debitur dibebaskan dari utangnya", "Kredit dikeluarkan dari neraca, tetapi tetap ditagih", "Agunan diambil alih bank", "Kredit dipindahkan ke bank lain"], a: 1,
-      why: "Hapus buku = administratif, tetap ditagih. Bebas utang = hapus tagih. Agunan diambil alih = AYDA." },
-    { q: "Batas maksimum penyaluran kredit kepada pihak terkait dengan bank adalah…",
-      o: ["5% modal inti", "10% modal inti", "20% modal inti", "25% modal inti"], a: 1,
-      why: "POJK 32/2018: pihak terkait 10%; satu peminjam tidak terkait 20%; kelompok 25%." },
-    { q: "Menurut POJK 22/2023, penagihan kepada debitur boleh dilakukan pada…",
-      o: ["Setiap hari pukul 06.00–22.00", "Senin–Sabtu pukul 08.00–20.00 waktu setempat", "Senin–Jumat jam kerja saja", "Kapan saja asal sopan"], a: 1,
-      why: "Senin–Sabtu di luar libur nasional, 08.00–20.00 waktu setempat; di luar itu harus dengan persetujuan debitur." },
-    { q: "Bunga flat 12% per tahun untuk tenor 12 bulan kira-kira setara bunga efektif…",
-      o: ["6% per tahun", "12% per tahun", "21,5% per tahun", "24% per tahun"], a: 2,
-      why: "Karena bunga flat dihitung dari plafon awal walau pokok sudah dicicil. Cek di Lembar Kerja 2." },
-    { q: "Pengganti BI Checking untuk melihat riwayat kredit debitur adalah…",
-      o: ["SLIK OJK", "SBDK", "RIM", "PPKA"], a: 0,
-      why: "SLIK (Sistem Layanan Informasi Keuangan) dikelola OJK sejak 2018." }
+    { q: "Definisi kredit dalam hukum perbankan Indonesia tercantum di…", o: ["UU No. 10 Tahun 1998 Pasal 1 angka 11", "UU No. 4 Tahun 1996 Pasal 1", "UU No. 42 Tahun 1999 Pasal 1", "KUHPerdata Pasal 1150"], a: 0, why: "UU 4/1996 mengatur Hak Tanggungan, UU 42/1999 Fidusia, dan KUHPerdata Pasal 1150 gadai." },
+    { q: "Dalam prinsip 5C, kemauan debitur untuk membayar dinilai lewat…", o: ["Capacity", "Character", "Capital", "Condition"], a: 1, why: "Character menilai kemauan (willingness); Capacity menilai kemampuan (ability)." },
+    { q: "Kredit dengan tunggakan 100 hari masuk kolektibilitas…", o: ["Dalam Perhatian Khusus", "Kurang Lancar", "Diragukan", "Macet"], a: 1, why: "Kurang Lancar mencakup tunggakan lebih dari 90 sampai 120 hari." },
+    { q: "Agunan berupa mobil yang tetap dipakai debitur diikat dengan…", o: ["Hak Tanggungan", "Gadai", "Fidusia", "Hipotek"], a: 2, why: "Fidusia untuk benda bergerak yang tetap dikuasai debitur. Pada gadai, bendanya diserahkan ke kreditur." },
+    { q: "Memperpanjang tenor agar angsuran per bulan turun termasuk…", o: ["Rescheduling", "Reconditioning", "Restructuring", "Hapus buku"], a: 0, why: "Rescheduling mengubah jadwal pembayaran atau jangka waktu kredit." },
+    { q: "Metode bunga dengan angsuran tetap tetapi porsi pokoknya makin besar adalah…", o: ["Flat", "Efektif", "Anuitas", "Rekening koran"], a: 2, why: "Pada anuitas, bunga dihitung dari sisa pokok, jadi porsi pokok terus naik walau angsuran tetap." },
+    { q: "Kredit untuk membeli mesin produksi baru termasuk kredit…", o: ["Konsumtif", "Modal kerja", "Investasi", "Perdagangan"], a: 2, why: "Mesin adalah barang modal, jadi termasuk kredit investasi." },
+    { q: "Yang dimaksud hapus buku (write-off) adalah…", o: ["Debitur dibebaskan dari utangnya", "Kredit dikeluarkan dari neraca, tetapi tetap ditagih", "Agunan diambil alih bank", "Kredit dipindahkan ke bank lain"], a: 1, why: "Hapus buku bersifat administratif. Pembebasan utang disebut hapus tagih; agunan yang diambil alih disebut AYDA." },
+    { q: "Batas maksimum penyaluran kredit kepada pihak terkait dengan bank adalah…", o: ["5% modal inti", "10% modal inti", "20% modal inti", "25% modal inti"], a: 1, why: "POJK 32/2018: pihak terkait 10%, satu peminjam tidak terkait 20%, satu kelompok 25%." },
+    { q: "Menurut POJK 22/2023, penagihan kepada debitur boleh dilakukan pada…", o: ["Setiap hari pukul 06.00–22.00", "Senin–Sabtu pukul 08.00–20.00 waktu setempat", "Senin–Jumat jam kerja saja", "Kapan saja asal sopan"], a: 1, why: "Senin–Sabtu di luar libur nasional, pukul 08.00–20.00 waktu setempat. Di luar itu harus dengan persetujuan debitur." },
+    { q: "Bunga flat 12% per tahun untuk tenor 12 bulan kira-kira setara bunga efektif…", o: ["6% per tahun", "12% per tahun", "21,5% per tahun", "24% per tahun"], a: 2, why: "Bunga flat tetap dihitung dari plafon awal walau pokok sudah dicicil. Coba di Simulasi, lembar kerja 2." },
+    { q: "Pengganti BI Checking untuk melihat riwayat kredit debitur adalah…", o: ["SLIK OJK", "SBDK", "RIM", "PPKA"], a: 0, why: "SLIK (Sistem Layanan Informasi Keuangan) dikelola OJK sejak 2018." }
   ];
   var quiz = document.getElementById("quiz");
   function buildQuiz() {
     quiz.innerHTML = questions.map(function (item, qi) {
-      var h = '<div class="soal"><fieldset><legend>' + (qi + 1) + ". " + item.q + "</legend>";
+      var h = '<div class="q"><fieldset><legend><span class="mono">Soal ' + (qi + 1 < 10 ? "0" : "") + (qi + 1) + "</span>" + esc(item.q) + "</legend>";
       item.o.forEach(function (opt, oi) {
         var id = "q" + qi + "o" + oi;
-        h += '<label for="' + id + '"><input type="radio" name="q' + qi + '" id="' + id + '" value="' + oi + '"> <span>' + "abcd"[oi] + ". " + opt + "</span></label>";
+        h += '<label class="opt" for="' + id + '"><input type="radio" name="q' + qi + '" id="' + id + '" value="' + oi + '"><span class="ring"><svg><use href="#tick"></use></svg></span><span class="txt">' + esc(opt) + "</span></label>";
       });
-      return h + '</fieldset><p class="bahas" hidden>Pembahasan: ' + item.why + "</p></div>";
+      return h + '</fieldset><p class="why" hidden>' + esc(item.why) + "</p></div>";
     }).join("");
-    document.getElementById("quiz-score").textContent = "";
+    document.getElementById("quiz-score").innerHTML = "";
   }
   buildQuiz();
   document.getElementById("quiz-check").addEventListener("click", function () {
-    var score = 0, answered = 0, blocks = quiz.querySelectorAll(".soal");
+    var score = 0, answered = 0, blocks = quiz.querySelectorAll(".q");
     questions.forEach(function (item, qi) {
       var picked = quiz.querySelector('input[name="q' + qi + '"]:checked');
-      blocks[qi].querySelectorAll("label").forEach(function (l, oi) {
+      blocks[qi].querySelectorAll(".opt").forEach(function (l, oi) {
         l.classList.remove("benar", "salah");
         if (oi === item.a) l.classList.add("benar");
         else if (picked && Number(picked.value) === oi) l.classList.add("salah");
       });
-      blocks[qi].querySelector(".bahas").hidden = false;
+      blocks[qi].querySelector(".why").hidden = false;
       if (picked) { answered++; if (Number(picked.value) === item.a) score++; }
     });
-    document.getElementById("quiz-score").textContent = "Nilai: " + score + "/" + questions.length +
-      (answered < questions.length ? " (" + (questions.length - answered) + " belum dijawab)" : "");
+    document.getElementById("quiz-score").innerHTML = "<b>" + score + "/" + questions.length + "</b><span>" +
+      (answered < questions.length ? (questions.length - answered) + " soal belum dijawab" : "semua soal dijawab") + "</span>";
   });
   document.getElementById("quiz-reset").addEventListener("click", buildQuiz);
 
+  /* ---------- Sidebar ---------- */
+  var PAGES = [
+    { id: "glosarium", label: "Glosarium", icon: "i-book", count: function () { return terms.length; } },
+    { id: "regulasi", label: "Regulasi", icon: "i-law", count: function () { return REGS.length; } },
+    { id: "materi", label: "Materi", icon: "i-note", count: function () { return 11; } },
+    { id: "simulasi", label: "Simulasi", icon: "i-calc", count: function () { return 5; } },
+    { id: "latihan", label: "Latihan soal", icon: "i-check", count: function () { return questions.length; } }
+  ];
+  var current = null, currentTag = null;
+  function subItems(v) {
+    if (v === "glosarium") {
+      return Object.keys(CATS).map(function (k) {
+        return '<li><button type="button" data-subcat="' + k + '" class="' + (gState.cat === k ? "on" : "") + '"><span>' + esc(CATS[k]) + "</span></button></li>";
+      }).join("");
+    }
+    if (v === "regulasi") {
+      return Object.keys(GROUPS).map(function (k) {
+        return '<li><button type="button" data-subg="' + k + '" class="' + (rState.g === k ? "on" : "") + '"><span>' + esc(GROUPS[k]) + "</span></button></li>";
+      }).join("");
+    }
+    if (v === "materi" || v === "simulasi") {
+      return pageItems.filter(function (p) { return p.kind === v; }).map(function (p) {
+        return '<li><a href="#' + p.id + '"><span>' + esc(p.title) + '</span><span class="r">' + esc(p.label.replace(/[^0-9]/g, "")) + "</span></a></li>";
+      }).join("");
+    }
+    return "";
+  }
+  function renderNav() {
+    document.getElementById("nav-pages").innerHTML = PAGES.map(function (p) {
+      var on = current === p.id;
+      var h = '<li><a href="#' + p.id + '" class="' + (on ? "on" : "") + '"' + (on ? ' aria-current="page"' : "") + '><svg class="i"><use href="#' + p.icon + '"></use></svg><span>' + p.label + '</span><span class="r">' + p.count() + "</span></a>";
+      if (on) { var s = subItems(p.id); if (s) h += '<ul class="sub">' + s + "</ul>"; }
+      return h + "</li>";
+    }).join("");
+    document.getElementById("nav-tags").innerHTML = TAGS.map(function (t) {
+      var on = current === "tag" && currentTag === t.id;
+      return '<li><a href="#tag-' + t.id + '" class="' + (on ? "on" : "") + '"' + (on ? ' aria-current="page"' : "") + '><span class="hash">#</span><span>' + t.id + '</span><span class="r">' + t.count + "</span></a></li>";
+    }).join("");
+  }
+  function syncSub() { if (current === "glosarium" || current === "regulasi") renderNav(); }
+  document.getElementById("nav-pages").addEventListener("click", function (e) {
+    var c = e.target.closest("[data-subcat]"), g = e.target.closest("[data-subg]");
+    if (c) { gState.cat = c.getAttribute("data-subcat"); renderGloss(); closeSide(); document.getElementById("g-list").scrollIntoView(); }
+    if (g) { rState.g = g.getAttribute("data-subg"); renderRegs(); closeSide(); document.getElementById("r-list").scrollIntoView(); }
+  });
+
+  /* laci di layar kecil */
+  var side = document.getElementById("side"), scrim = document.getElementById("scrim"), menuBtn = document.getElementById("menu-btn");
+  function isDrawer() { return window.matchMedia("(max-width: 959px)").matches; }
+  function openSide() { side.classList.add("open"); scrim.classList.add("open"); menuBtn.setAttribute("aria-expanded", "true"); setTimeout(function () { sq.focus(); }, 50); }
+  function closeSide() {
+    if (!side.classList.contains("open")) return;
+    side.classList.remove("open"); scrim.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false");
+    if (isDrawer()) menuBtn.focus({ preventScroll: true });
+  }
+  menuBtn.addEventListener("click", function () { side.classList.contains("open") ? closeSide() : openSide(); });
+  scrim.addEventListener("click", closeSide);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSide(); });
+  side.addEventListener("click", function (e) { if (e.target.closest("a[href^='#']") && isDrawer()) closeSide(); });
+
+  /* tema */
+  var themeBtn = document.getElementById("theme-btn");
+  function isDark() {
+    var t = document.documentElement.getAttribute("data-theme");
+    return t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function syncTheme() { themeBtn.setAttribute("aria-pressed", String(isDark())); }
+  try { var saved = localStorage.getItem("bsk-theme"); if (saved) document.documentElement.setAttribute("data-theme", saved); } catch (e) {}
+  themeBtn.addEventListener("click", function () {
+    var next = isDark() ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("bsk-theme", next); } catch (e) {}
+    syncTheme();
+  });
+  syncTheme();
+
   /* ---------- Navigasi ---------- */
-  var views = ["glosarium", "regulasi", "materi", "simulasi", "latihan"];
-  var tabs = document.querySelector(".tabs"), current = null;
+  var views = ["glosarium", "regulasi", "materi", "simulasi", "latihan", "tag"];
   function show(v) {
     views.forEach(function (name) { document.getElementById("view-" + name).hidden = name !== v; });
-    document.querySelectorAll(".tabs a").forEach(function (a) {
-      if (a.getAttribute("data-view") === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
-    });
     var changed = current !== v;
     current = v;
     return changed;
   }
+  function flash(el) {
+    el.classList.add("flash");
+    setTimeout(function () { el.classList.remove("flash"); }, 1600);
+  }
   function route() {
-    var h = decodeURIComponent(location.hash.slice(1)), view = "glosarium", target = null;
-    if (views.indexOf(h) !== -1) view = h;
+    var h = decodeURIComponent(location.hash.slice(1)), view = "glosarium", target = null, prevTag = currentTag;
+    currentTag = null;
+    if (views.indexOf(h) !== -1 && h !== "tag") view = h;
+    else if (h.indexOf("tag-") === 0) { view = "tag"; currentTag = h.slice(4); renderTag(currentTag); }
     else if (h.indexOf("r-") === 0) {
       view = "regulasi";
       target = document.getElementById(h);
       if (!target) { rState.q = ""; rState.g = "all"; rq.value = ""; renderRegs(); target = document.getElementById(h); }
+      if (target) target.open = true;
+    } else if (h.indexOf("g-") === 0) {
+      view = "glosarium";
+      target = document.getElementById(h);
+      if (!target) { gState.cat = "all"; gState.ref = null; setQuery("", null); target = document.getElementById(h); }
     } else if (h) {
       var el = document.getElementById(h);
       if (el) {
@@ -1896,18 +2093,18 @@ var TERMS = [
         target = el;
       }
     }
-    var changed = show(view);
+    var changed = show(view) || prevTag !== currentTag;
+    renderNav();
     if (target) {
       target.scrollIntoView();
-      if (target.classList.contains("aturan")) {
-        target.classList.add("sorot");
-        setTimeout(function () { target.classList.remove("sorot"); }, 2000);
-      }
-    } else if (changed && h && window.scrollY > tabs.offsetTop) {
-      window.scrollTo(0, tabs.offsetTop);
+      if (target.tagName === "DETAILS" || target.classList.contains("entry")) flash(target);
+    } else if (changed && h) {
+      window.scrollTo(0, 0);
     }
   }
   window.addEventListener("hashchange", route);
+  renderGloss();
+  renderRegs();
   route();
 })();
 </script>

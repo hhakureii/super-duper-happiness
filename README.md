@@ -1,6 +1,6 @@
 # Buku Saku Kredit Perbankan
 
-Website satu halaman bergaya diktat kuliah tentang perbankan, khususnya kredit/pinjaman, dengan lima menu:
+Website satu halaman tentang perbankan, khususnya kredit/pinjaman. Tampilannya tenang (terinspirasi pipdot.app), dengan sidebar menu (laci di HP), mode terang/gelap, dan sistem tag lintas halaman. Lima menu utama:
 
 ## 1. Glosarium (350+ istilah)
 - Pencarian langsung di nama istilah, singkatan, dan isi definisi
@@ -33,6 +33,11 @@ Format Diketahui / Ditanya / Jawab dengan langkah perhitungan:
 
 ## 5. Latihan soal
 12 soal pilihan ganda dengan pembahasan.
+
+## Tag
+Tag (mis. `#kpr`, `#agunan`, `#pinjol`) menghubungkan istilah, peraturan, bab materi, dan lembar kerja.
+Klik tag untuk melihat semua item terkait. Menambah tag cukup lewat daftar `TAGS` di `index.html`
+(aturan otomatis untuk istilah), `REG_TAGS` untuk peraturan, dan atribut `data-tags` untuk bab/lembar kerja.
 
 ## Cara membuka
 Tidak perlu build. Buka `index.html` langsung di browser, atau aktifkan
