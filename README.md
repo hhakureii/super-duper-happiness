@@ -1,6 +1,6 @@
 # Buku Saku Kredit Perbankan
 
-Website satu halaman tentang perbankan, khususnya kredit/pinjaman, dengan tiga menu:
+Website satu halaman bergaya diktat kuliah tentang perbankan, khususnya kredit/pinjaman, dengan lima menu:
 
 ## 1. Glosarium (350+ istilah)
 - Pencarian langsung di nama istilah, singkatan, dan isi definisi
@@ -20,9 +20,19 @@ Website satu halaman tentang perbankan, khususnya kredit/pinjaman, dengan tiga m
 - LPS: penjaminan simpanan & tingkat bunga penjaminan
 - Filter per penerbit, pencarian nomor/topik, dan tautan ke istilah terkait di glosarium
 
-## 3. Materi & kuis
-12 bab rangkuman materi kredit, simulasi angsuran (flat/efektif/anuitas),
-cek kolektibilitas dari hari tunggakan, dan kuis 10 soal.
+## 3. Materi
+11 bab rangkuman materi kredit dengan definisi, tabel, rumus, dan contoh soal.
+
+## 4. Simulasi (lembar kerja)
+Format Diketahui / Ditanya / Jawab dengan langkah perhitungan:
+1. Angsuran kredit flat, efektif, anuitas + jadwal angsuran
+2. Konversi bunga flat ke bunga efektif
+3. Kemampuan bayar dan plafon KPR maksimum (DSR, LTV)
+4. Kolektibilitas dan PPKA (POJK 40/2019)
+5. Cek biaya pinjaman daring terhadap batas OJK 2026
+
+## 5. Latihan soal
+12 soal pilihan ganda dengan pembahasan.
 
 ## Cara membuka
 Tidak perlu build. Buka `index.html` langsung di browser, atau aktifkan
