@@ -36,12 +36,23 @@ Format Diketahui / Ditanya / Jawab dengan langkah perhitungan:
 
 ## Tag
 Tag (mis. `#kpr`, `#agunan`, `#pinjol`) menghubungkan istilah, peraturan, bab materi, dan lembar kerja.
-Klik tag untuk melihat semua item terkait. Menambah tag cukup lewat daftar `TAGS` di `index.html`
+Klik tag untuk melihat semua item terkait. Menambah tag cukup lewat daftar `TAGS` di `public/index.html`
 (aturan otomatis untuk istilah), `REG_TAGS` untuk peraturan, dan atribut `data-tags` untuk bab/lembar kerja.
 
 ## Cara membuka
-Tidak perlu build. Buka `index.html` langsung di browser, atau aktifkan
-GitHub Pages (Settings → Pages → branch ini, folder root).
+Tidak perlu build. Seluruh situs ada di satu file, `public/index.html`; buka langsung di browser.
+
+## Deploy ke Cloudflare (gratis)
+Repo ini sudah berisi `wrangler.jsonc` yang mengunggah folder `public/` sebagai static assets
+di Cloudflare Workers. Permintaan ke static assets gratis, juga di paket Free.
+
+Di dashboard Cloudflare (Workers & Pages → Create → Import a repository):
+- Project name: `super-duper-happiness` (harus sama dengan `name` di `wrangler.jsonc`)
+- Build command: kosongkan
+- Deploy command: `npx wrangler deploy`
+
+Situs akan tersedia di `super-duper-happiness.<subdomain-akun>.workers.dev`, dan setiap push
+ke branch production otomatis di-deploy ulang.
 
 Isi regulasi dicek per Oktober 2026. Aturan dapat berubah; untuk keperluan resmi
 selalu rujuk teks lengkap di ojk.go.id, bi.go.id, lps.go.id, atau JDIH.
